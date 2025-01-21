@@ -1,0 +1,216 @@
+% Math 402/502 Homework
+
+
+
+\documentclass[11pt]{amsart}
+
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsopn}
+\usepackage{amsthm}
+\usepackage{setspace}
+
+\def\bbN{{\mathbb N}}
+\def\bbR{{\mathbb R}}
+\def\bbQ{{\mathbb Q}}
+\def\bbZ{{\mathbb Z}}
+\def\bbF{{\mathbb F}}
+\def\bbE{{\mathbb E}}
+\def\bbP{{\mathbb P}}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+
+
+\usepackage{bbold}
+
+
+\newcommand{\hint}[1]{{\small \em \noindent [Hint: #1]}}
+
+
+\begin{document}
+\begin{spacing}{1.2}
+\begin{center}
+{\Large Math 402/502 Homework 1 -- due Friday, January 24}
+
+\vspace{.5em}
+\textbf{\emph{Nat Steven}}
+\ \\
+\end{center}
+
+%\ \\
+%\noindent \emph{\small Instructions: Show all your work to receive full credit. Please complete the problems in order, state what you are doing, write neatly, and staple. \\
+%Homework may be submitted either on paper or through Canvas.}
+%\ \\
+%
+ \begin{enumerate}
+
+\item Let variables range over the natural numbers $\bbN$, and let $P(n)$ be the relation that $n$ is prime, $L(n,m)$ the relation that $n<m$, and $E(n)$ the relation that $n$ is even. 
+
+\ 
+\begin{enumerate}
+\item Express the following symbolic statement as an English sentence:
+\[ \forall n \exists m (L(n,m) \wedge P(m)) \]
+
+\vspace{1em}
+\emph{For all natural numbers $n$, there exists a natural number $m$ such that $n$ is less than $m$ and $m$ is prime.
+Alternatively, there always exists a prime natural number greater than any given natural number.}
+
+\vfill
+\item Express the following English sentence as a symbolic statement. Do not use the $\exists !$ abbreviation.
+
+``There is a unique natural number $n$ which is both even and prime.''
+
+\vspace{1em}
+
+\[
+ \exists n ((E(n) \wedge P(n)) \wedge (\forall m (E(m) \wedge P(m)) \implies m=n))
+\]
+
+
+\vfill
+\end{enumerate}
+
+\newpage
+
+\item Let $\oplus$ be a new connective representing exclusive or (XOR), so that $P \oplus Q$ is true precisely when exactly one of $P$ and $Q$ is true. Write a truth table for $\oplus$.
+
+\vspace{1em}
+\begin{tabular}{c|c|c}
+    $P$ & $Q$ & $P \oplus Q$ \\
+    \hline
+    T & T & F \\
+    T & F & T \\
+    F & T & T \\
+    F & F & F
+\end{tabular}
+
+\newpage
+
+\item Consider the following three statements, where $P$, $Q$, and $R$ are three predicates:
+
+\begin{itemize}
+\item {\bf Statement 1:} $(P \rightarrow Q) \rightarrow R$
+\item {\bf Statement 2:} $P \rightarrow (Q \rightarrow R)$
+\item {\bf Statement 3:} $(P \wedge Q) \rightarrow R$
+\end{itemize}
+
+\begin{enumerate}
+\item Show  Statement 2 is logically equivalent to Statement 3.
+
+\vspace{1em}
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c}
+        $P$ & $Q$ & $R$ & $P \rightarrow (Q \rightarrow R)$ \\
+        \hline
+        T & T & T & T \\
+        T & T & F & F \\
+        T & F & T & T \\
+        T & F & F & T \\
+        F & T & T & T \\
+        F & T & F & T \\
+        F & F & T & T \\
+        F & F & F & T
+    \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c}
+        $P$ & $Q$ & $R$ & $(P \wedge Q) \rightarrow R$ \\
+        \hline
+        T & T & T & T \\
+        T & T & F & F \\
+        T & F & T & T \\
+        T & F & F & T \\
+        F & T & T & T \\
+        F & T & F & T \\
+        F & F & T & T \\
+        F & F & F & T
+        \end{tabular}
+\end{minipage}
+
+\vspace{1em}
+\emph{
+    The above truth tables show that the Statement 2 \& 3 are equivalent as for each permuation of $P$, $Q$, and $R$ the two statements have the same truth value.
+}
+
+
+\vfill
+\item Show  Statement 1 is not logically equivalent to Statement 2.
+
+\vspace{1em}
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c}
+        $P$ & $Q$ & $R$ & $(P \rightarrow Q) \rightarrow R$ \\
+        \hline
+        T & T & T & T \\
+        T & T & F & F \\
+        T & F & T & T \\
+        T & F & F & T \\
+        F & T & T & T \\
+        F & T & F & F \\
+        F & F & T & T \\
+        F & F & F & F
+    \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c}
+        $P$ & $Q$ & $R$ & $P \rightarrow (Q \rightarrow R)$ \\
+        \hline
+        T & T & T & T \\
+        T & T & F & F \\
+        T & F & T & T \\
+        T & F & F & T \\
+        F & T & T & T \\
+        F & T & F & T \\
+        F & F & T & T \\
+        F & F & F & T
+    \end{tabular}
+\end{minipage}
+
+\vspace{1em}
+\emph{
+    The above truth tables show that the Statement 1 \& 2 are not equivalent as there are some permuations of $P$, $Q$, and $R$ where the two statements have different truth values.
+}
+
+\vfill
+\end{enumerate}
+
+\newpage
+
+\item The symmetric difference of two sets, $X \Delta Y$, is defined to consist of those sets which are elements of exactly one of the two sets.
+
+Write a formula in the language of set theory which expresses the statement $Z = X \Delta Y$.
+
+\vspace{1em}
+
+    \[
+        Z = {(m \in X : m \notin Y) \wedge (m \in Y : m \notin X)}
+    \]
+or
+  \[
+      Z = X \cup Y - X \cap Y
+  \]
+
+\end{enumerate}
+
+\end{spacing}
+
+\end{document}
