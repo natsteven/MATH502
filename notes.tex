@@ -1,0 +1,330 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\title{Set Theory and Logic Notes}
+\author{Nat}
+
+\begin{document}
+    \maketitle
+
+    \section{Introduction}
+
+% Group theory. Group is a set of objects .
+
+% G - a set
+
+% . - binary function
+
+% -1 - inverse function
+
+% 1 - identity
+
+% Axioms of group theory:
+
+% For all a,b,c in G
+
+% associative - a.b. . c =
+
+    We can abbreviate statements, e.g. $\neg (x=y)$ and $x \neq y$
+    there exists a unique x satisfying $P(x) \rightarrow \exists! x P(x)$
+    expansion: $\exists x (P(x) \and \forall y (P(y) \rightarrow y=x))$
+    note we can give a tree which shows how a formula is constructed.
+    The connectives and quanitifers are the internal nodes and root, terminals are predicates/relations.
+
+    Connectives are functions on truth values, can be described using truth tables.
+    Examples:
+
+    \begin{tabular}{c|c}
+        P  &  $\neg$ P\\
+        \hline
+        T  & F \\
+        F & T
+    \end{tabular}
+
+    \vspace{1em}
+
+    \begin{tabular}{c|c|c}
+        P & Q & P $\wedge$ Q\\
+        \hline
+        T & T & T \\
+        T & F & F \\
+        F & T & F \\
+        F & F & F \\
+    \end{tabular}
+
+    \vspace{1em}
+
+    \begin{tabular}{c|c|c}
+        P & Q & P $\implies$ Q\\
+        \hline
+        T & T & T \\
+        T & F & F \\
+        F & T & T \\
+        F & F & T \\
+    \end{tabular}
+
+    \vspace{1em}
+    \begin{tabular}{c|c|c}
+        P & Q & P $\iff$ Q\\
+        \hline
+        T & T & T \\
+        T & F & F \\
+        F & T & F \\
+        F & F & T \\
+    \end{tabular}
+
+    \vspace{1em}
+    \textbf{Logical Equivalence}
+    \begin{itemize}
+        \item Two statements are logically equivalent if for any truth assignments of truth values to the predicates, both statements have the same resulting truth value. $s_1 \equiv s_2$
+    \end{itemize}
+
+    \emph{Ex}: $P \implies Q$ is logically equivalent to $(\neg P ) \vee Q$
+
+    \begin{tabular}{c|c|c}
+        P & Q & $(\neg P) \vee Q$\\
+        \hline
+        T & T & T \\
+        T & F & F \\
+        F & T & T \\
+        F & F & T \\
+    \end{tabular}
+    \vspace{1em}
+
+    \textbf{Def:} A statement is \emph{valid} if it is true for any truth assignment to the predicates
+    \emph{Ex:} $P \vee \neg P$
+
+
+    \section{Set Theory}
+    \begin{itemize}
+        \item First to study this was Cantor
+        \item \"size\" of infinite sets
+        \item two sets have the same size if we can put a bijection between the two
+        \item properties of sets.
+    \end{itemize}
+
+    \underline{Idea:} Sets are determined by their members. $\{1,2,3,4\} \equiv \{2,3,1,4\}$
+
+    \underline{Goals}
+    \begin{itemize}
+        \item Formalize Sets
+        \item Introduce Axioms of Zermelo-Frankel Set Theory with choice (ZFC)
+        \item Cardinality
+        \item represent standard mathematical objects as sets
+        \item ZFC as a foundation for all of mathematics
+    \end{itemize}
+
+    \underline{Note}
+    \begin{itemize}
+        \item Everything will be a set
+        \item Language of set theory will be built from two predicates!
+        \begin{itemize}
+            \item = : equality
+            \item $\in$ : set membership. $x\in y$ will be true when x is an element of y
+        \end{itemize}
+    \end{itemize}
+
+    \emph{Ex:} $\emptyset$ , empty set. $\{\emptyset\} \neq \emptyset$. Then we can build natural numbers. 2: $\{\emptyset,\{\emptyset\}\}$
+
+    \vspace{1em}
+    \noindent\textbf{\emph{The Axioms of ZFC}}
+
+    \underline{Language} built from =, $\in$
+    \begin{itemize}
+        \item Axiom 0: \emph{set existence}, There is a set. $\exists x (x=x)$. (axiom 0 will be redundant later).
+        \item Axiom 1: \emph{extensionality}, Sets are determined by their elements
+        \item Axiom 2: \emph{Foundation} There are no infinite descending chains of sets with respect to elementhood. i.e. No $..... \in x_2 \in x_1 \in x_0$. implies no element is an element of itself
+        \item Axiom 3: \emph{comprehension scheme}
+        \begin{itemize}
+            \item For every formula $\varphi(x)$ and every set $Z$ we can form the set $\{x \in Z : \varphi(x)\}$.
+            Those x which are elements of $Z$ which satisfy $\varphi(x)$
+            \item one axiom for each formula $\varphi(x)$
+        \end{itemize}
+        \item Axiom 4: \emph{pairing}, Given sets $x$ and $y$, there is a set containing both $x$ and $y$
+        \item Axiom 5: \emph{union}, Given a family of sets, $F$, there is a set containing the union of all of the sets in $F$
+        \item Axiom 6: \emph{replacement scheme}, Given a formula $\varphi$ which defines a function $f$ and a set $Z$, there is a set which consists of the range of $f$ applied to $Z$
+        \item Axiom 7: \emph{infinity} (makes 0 redundant), there is an infinite set
+        \item Axiom 8: \emph{power set}, given a set $X$ there is a set $\mathcal{P}(X)$ which contains as elements all of the subsets of $X$
+        \item Axiom 9: \emph{axiom of choice (AC)}, given a collection of disjoint non-empty sets, there is a set which contains exactly one element from each set in the collection.
+        \begin{itemize}
+            \item \emph{Ex}: $\mathbb{R}$ $x~y$ if $x-y \in \mathbb{Q}$
+
+            $[x] = \{y: y~x\}$
+
+            $\mathcal{e}=\{[x]: x \in \mathbb{R} \}$
+
+            if x not ~ y then [x] and [y] are disjoint$ [x] \neq \emptyset$
+            \item AC says there is a set containing exactly one element of each equivalence set
+            \item this is called a \emph{Vitali} set.
+        \end{itemize}
+
+        \underline{Note:}
+        \begin{itemize}
+            \item ZFC denotes Axioms 1-8
+            \item ZF denotes Axioms 1-8
+            \item ZC and Z denote ZFC and ZF with replacement scheme removed
+            \item Z-, ZF-, ZC-, ZFC- denote removing foundation axiom
+            \item \"most\" standard mathematics can be don in ZC-
+        \end{itemize}
+
+    \end{itemize}
+
+
+    \subsection{Axiom 0 - Set Existence}
+    \subsection{Axiom 1 - Extensionality}
+    \subsection{Axiom 2 - Foundations}
+    \subsection{Axiom 3 - Comprehension Scheme}
+    \subsection{Axiom 4 - Pairing}
+
+    \textbf{Recall} - Ordered Pair: $<x,y> = \{\{x,y\},\{x\}\}$
+
+    \subsection{Axiom 5 - Union}
+    \[\forall \mathcal{F} \exists A \forall Y \forall x ((x \in Y \wedge Y \in mathcal{F}) \implies x \in A
+    \]
+    \underline{Ex} $Y_1, Y_2, \dots, Y_k \in \mathcal{F}$
+
+    $A \supseteq Y_1 \cup Y_2 \dots \bigcup Y_k$
+
+    \vspace{1em}
+    \underline{Note}: Comprehension allows us to form the et whose elements are exactly those x so that $x \in Y$ for some $Y \in \mathcal{F}$. Denote this set $\bigcup \mathcal{F}$, i.e. $Y^\cup \in \mathcal{F}^Y$
+
+    \underline{Ex:} $x \cup y = \bigcup \{x,y\} =\{z : z \in x \cup z \in y\}$
+
+    $x \cup y \cup z = \big \{x,y,z\}$
+
+    \vspace{1em}
+    \underline{Ex:} $\bigcup\{x\} = \{z : z \in x\} = x$
+
+    $ \bigcup\{\{x\}\} = \{x\}$ and $\bigcup \bigcup\{\{x\}\} = x$
+
+    \vspace{1em}
+    \underline{Def}: When $\mathcal{F} \neq \emptyset$ we can define intersection. $\bigcap \mathcal{F} = \bigcup_{Y \in \mathcal{F}} Y$
+
+    $=\{x : \forall Y \in \mathcal{F} (x \in y)\}$ (naive)
+
+    $\{x\in Y_0 : \forall Y \in \mathcal{F}(x \in y)\}$ (proper use of comprehension.)
+
+    where $Y_0$ is some element of $\mathcal{F}$
+
+    \underline{Note} If $\mathcal{F} = \emptyset$ then $\bigcap \mathcal{F} would be a universal set$
+
+    \vspace{1em}
+    \underline{Def:} The \emph{ordinal successor function}
+
+    $S(x) = x \cup \{x\}$
+
+    \underline{Ex:} $S(\emptyset) = \emptyset \cup \{\emptyset\} = \{\emptyset\}$ and $S(\{\emptyset\}) = \{\emptyset\} \cup \{\{\emptyset\}\} = \{\emptyset,\{\emptyset\}\}$
+
+    $0 = \emptyset$
+
+    $1 = S(0)$
+
+    $2 = S(1) = S(S(0))$
+
+    $n+1 = S(n)$
+
+    \underline{Note} $n = \{ k : k < n\}$, n has exactly n elements. $n \leq m iff n \subseteq m$ and $n < m iff n \in m$
+
+    \underline{Informally} a natural number is a set obtained by some finite number of iteration of the successor applied to $\emptyset$
+
+
+    \subsection{Relations and Functions}
+
+    \underline{Def} R is a (binary) relation if R is a set of ordered pairs, i.e. $\forall z \in R \exists x \exists y z = <x,y>$
+
+    \underline{Note} If $\phi(z) is a formula the abbreviation \forall z \in R \phi(z) and \exists z \in R \phi(z)$ means
+
+    $\forall Z \in R \phi(z) means \forall z (z \in R \implies \phi(z))$
+
+    $\exists z \in R \phi(z) means \exists z (z \in R \and \phi(z))$
+
+    \vspace{1em}
+    \underline{Def} $dom(R) =^* \{x : \exists y <x,y> \in R\}$
+
+    $ran(R) =^* \{y: \exists x <x,y> \in R\}$
+
+    * need to see that there is a set $Z$ so that all $x$ and $y$ needed in these definitions are elements of $Z$
+
+    If $<x,y> \in R$
+
+    $\{\{x\},\{x,y\}\}$
+
+    $\{x\} \in \bigcup R$ and $\{x,y\} \in \bigcup R$ also
+    $x \in \bigcup \bigcup R$ and $x,y \in \bigcup \bigcup R$
+
+    So $dom(R) = \{x \in \bigcup \bigcup R : \exists y <x,y> \in R\}$
+    $ran(R) = \{y \in \bigcup \bigcup R : \exists x <x,y> \in R\}$
+
+    \vspace{1em}
+    \underline{Def} Properties of Relations
+
+    Let $R$ be a relation and $A$ some set. We will say that $R$ is\ldots
+    \begin{itemize}
+        \item \emph{transitive on A} if $\forall x,y,z \in A$
+        \[((x R y \and y R z) \implies x R z\]
+        where $x R y$ means $<x,y> \in R$
+        \item \emph{reflexive on A} if $\forall x \in A (x R x)$
+        \item \emph{irreflexive on A} if $\forall x \in A \neg(x R x)$
+        \item \emph{symmetric on A} if $\forall x,y \in A (xRy \leftrightarrow y R x)$
+        \item \emph{partially orders A strictly} if R is irreflexive on A and transitive on A
+        \item \emph{satisfies trichotomy on A} if  $\forall x,y \in A (x R y \lor y R x \lor x=y)$
+        \item \emph{totally orders A strictly} if R partially orders A strictly and R satisfies trichotomy on A
+        \item \emph{equivalence relation on A} if R is reflexive on A, symmetric on A, and transitive on A.
+    \end{itemize}
+
+    \underline{Ex} $A = \mathbb{N}$ and  $x R y$ if $x \equiv_3 y$. i.e. x-y is a multiple of 3. R is an equivalence relation on A.
+
+    e.g. $x R y$ and $y R z$ then $x-y =3j$ for  some j and $y-z = 3k$ for some k
+    $x-z=(x-y) + (y-z) = 3j + 3k = 3(j+k)$ so $x R z$
+
+    \underline{Ex} $A = \mathbb{N}$  $x R y$ if x divides y is reflexive on A and transitive on A.
+
+    \underline{Ex} $A = \mathbb{N}$ $x R y$ if $x < y$ R totally order A strictly
+
+    \underline{Def} Let R be a relation and A a set. The restriction of R to A, $R \upharpoonright A = \{<x,y> \in R : x \in A \}$
+
+
+    \underline{Def}
+    \begin{itemize}
+        \item R is a \emph{function} if R is a relation $\forall x \in dom(R) \exists! y <x,y> \in R$
+        \item F, $x \in dome(R)$ we will write R(x) to mean the unique y with $<x,y> \in R$
+    \end{itemize}
+
+    \underline{Ex} $F = \{<0,0> ,<1,0>,<2,2>\}$ is a function $dom(F) = \{0,1,2\}$ and $ran(F) = \{0,2\}$ $F(0) = 0, F(1) = 0, F(2) = 2$
+
+    \underline{Def} $F : A \rightarrow B$ means F is a function $dom(F) = A$ and $ran(F) \subseteq B$
+    F above $F: \{0,1,2\} \rightarrow \{0,1,2\}$
+    $F : A \rightarrow_{onto} B$ or $F: A \twoheadrightarrow B$
+    if $F: A \rightarrow B$ and $ran(F) = B$ i.e. F is surjective or onto.
+    $F: A \rightarrow^1-1 B$ or $F : A \hookrightarrow B$ if $F: A \rightarrow B$ and $\forall x_1, x_2 \in A$ then $(F(x_1) = F(x_2) \implies x_1=x_2)$ i.e. F is injective or one-to-one.
+    $F: A \rightarrow^{1-1}_{onto} B$ or $F : A \leftrightarrow B$ as F is surjective and injective
+
+    \underline{Ex}: $F(x) \sin X$
+    $F : \mathbb{R} \rightarrow \mathbb{R}$
+    $F : $
+
+    \underline{Ex} $\sin([0,\pi / 2]) = [0,1]$ but we need to be more careful because everything is a set.
+
+    \underline{Ex:} $F=\{<0,0>,<1,0>,<2,2>\}$ Recall $2 = \{0,1\}$
+    $F(2)=2$
+    the range of F applied to the set 2 is $\{F(0), F(1)\}=\{0,0\}=\{0\}$
+
+    \underline{Def:} For a function F and a set A. $F" A$ (F applied to A) is $F" A = ran(F\upharpoonright A)=\{F(x) : x \in A \}$
+    \underline{Ex} above F(2)=2, $F"2=\{0\}$
+
+\end{document}
+

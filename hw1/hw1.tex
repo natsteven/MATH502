@@ -202,9 +202,9 @@ Write a formula in the language of set theory which expresses the statement $Z =
 \vspace{1em}
 
     \[
-        Z = {(m \in X : m \notin Y) \wedge (m \in Y : m \notin X)}
+        Z = \{m |(m \in X \wedge m \notin Y) \lor (m \in Y \wedge m \notin X)\}
     \]
-or
+also
   \[
       Z = X \cup Y - X \cap Y
   \]
