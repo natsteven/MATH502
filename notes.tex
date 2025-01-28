@@ -326,5 +326,117 @@
     \underline{Def:} For a function F and a set A. $F" A$ (F applied to A) is $F" A = ran(F\upharpoonright A)=\{F(x) : x \in A \}$
     \underline{Ex} above F(2)=2, $F"2=\{0\}$
 
+
+    \underline{\textbf{\emph{Jan 28}}}
+
+    \emph{Note} axioms we have so far don't allow us to build many functions or relations.
+    Given set A,B a function f: a $\rightarrow$ b will be a subset of the direct product A X B but axioms so far don't allow us to construct A X B
+    even $\{\emptyset\}$ X B can't be produced
+
+    \underline{Ex} Suppos ewe had the set of natural numbers $\mathbb{N}$
+    And we want ot define $F(n) = S(n)$ (successor function).
+    we need the set $\{<n,S(n)> : n \in \mathbb{N}\}\}$
+    Let $\varphi(x,y) : y=S(x)$ i.e. $y = x \cup \{x\}$
+    woule like to see the \"range\" of $\varphi$ exists applied to $\mathbb{N}$
+
+    \subsection{Axiom 6 - Replacement Scheme}
+    For every formula $\varphi(x,y)$ so that the variable $B$ does not occur in $\varphi$ we have the axiom.
+    \[ \forall A ((\forall x \in A \exists! y \varphi(x,y)) \implies (\exists B \forall x \in A \exists y \in B \varphi(x,y)))\]
+
+    \emph{Note} called replacement since we replace each x in A by the unique y with $\varphi(x,y)$
+    Comprehension gives us the set range (f/A) where f is the function defined by $\varphi$
+
+    \underline{Def: Direct Product} (Naive)
+    \[S \times T = \{x : \exists s \in S \exists t \in T x=<s,t>\}\]
+    need to see there is a set containing all such x's
+    \underline{Lem:} Given set S and T there is a set Z so that for every $s \in S$ and $t \in T <s,t> \in Z$
+    \underline{Cor:} THe direct prodcut exists: $S \times T = \{x \in Z : \exists s \in S \exists t \in T x=<s,t>\}$
+
+    \underline{\emph{Proof of Lem:}}
+    \begin{itemize}
+        \item Fix $s \in S$.
+        \item Let $\varphi(x,y)$ be $y=<s,x>$
+        \item Then $\{s\} \times T = \{<s,t> : t \in T\} = \{<w \in B : \exists t \in T w = <s,t>\}$ where B is obtained from replacement applied to the set $A = T$ and $\varphi(x,y)$
+        \item Next Let $\varphi(x,y)$ be $y = \{s\} \times T$ and $A=S$
+        \item By replacement the set $n = \{\{s\} \times T : s \in S\}$
+        \item Then $\bigcup n = \bigcup_{s \in S}\{s\} \times T = S \times T$
+    \end{itemize}
+
+    \textbf{Note:} We can now also define functions by formulas.
+
+    \underline{Lemma:} Suppose $\forall x \in A \exists! y \varphi(x,y)$ then there is a function $f$ with $dom(f)=A$ so that for every $x \in A$ $f(x)$ is equal to the unique y so that $\varphi(x,y)$
+
+    \emph{Pf:} Let $B$ be the set given by Replacement.
+    Then $f = \{w \in A \times B : \exists x \exists y (w=<x,y>) \wedge \varphi(x,y))\}$
+
+    \underline{Ex:} $A = \mathbb{N} \varphi(x,y) is y=S(x)$ then there is a function $f$ so with $dom(f) = \mathbb{N}$ and $f(n) =S(n)$ for all $n \in \mathbb{N}$
+
+    \textbf{Note:} Multivariable function are relations can be defined as well
+
+    \underline{Ex:} $f(x,y)$ can be viewed as $f: X \times Y \rightarrow Z$
+
+    \textbf{Def:} Given a relation $R$ the \underline{inverse relation} $R^{-1}=\{<y,x> \in ran(R) \times dom(R) : <x,y> \in R\}$
+
+    \underline{Note:} If f is a function, $f^{-1}$ won't necessarily be a function unless f is one-to-one
+
+    \textbf{Def:} Given relations $F$ and $G$ the \underline{composition} $G \circ F$ is given by $G \circ F = \{<x,z> \in dom(F) \times ran(G): \exists y (<x,y> \in F \wedge <y,z> \in G)\}$
+    \underline{Note:} If $F$ and $G$ are functions and $ran(F) \subseteq dom(G)$ then $G \circ F$ is the usual composition with $(G \circ F)(x)=G(F(x))$
+
+    \underline{Def:} Suppose $(S,<) and (T,\prec)$ are relations, i.e. < is a relation with $dom(<)$ and $ran(<)$ subset of $S$ and similarly for $(T,\prec)$.
+    Then the \underline{lexicographic product} on $S \times T$ is defined by relation $<_{lex}$ given by $<s,t>  <_{lex} <s',t'>$ when $s < s' \vee (s=s' \wedge t \prec t')$
+
+    \underline{Ex:} $S=F=\{0,1,2\}$ < and $\prec$ be the usual ordering $0<1<2, 0 \prec 1 \prec 2$
+    $<0,0> <_{lex} <0,1> <_{lex} <0,2> <_{lex} <1,0> \dots <_{lex} <2,2>$
+
+    \emph{Note:} (homework) If < and $\prec$ are strict total orderings then so is $<_{lex}$.
+
+    \underline{Def:} let $R$ be a relation on the $A$  and $S$ a relation on $B$.
+    A function $F$ is an \underline{isomorphism} from $(A,R)$ onto $(B,S)$.
+    if $F: A \rightarrow B$ so that $\forall x,y \in A$ $x R y \iff F(x) S F(y)$
+    we say $(A,R)$ is isomorphic to $(B,S)$, $(A,R,) \cong (B,S)$ if there is a function $F$ which is an isomorphism of $(A,R)$ into $(B,S)$
+
+    \underline{Def:} Let $R$ be an eqiuvalence relation on $A$ (domain and range of R are subsets of A).
+    For $x \in A$ let the \underline{equivalence class} of $x$ be $[x] = \{y \in A : y R x\}$
+    \emph{Note } $x R y \iff [x] = [y]$
+
+    \underline{Def: } $A/R = \{[x] : x \in A\}$
+    i.e. $\{w \in B : \exists x \in A w \ [x]\}$
+    where $B$ is the set produced by applying Replacement scheme to the formula $\varphi(x,y) : y=[x]$
+
+    \subsection{Interlude}
+    Finite models of parts of Set Theory
+    \emph{Note:} can describe a structure on a finite domain where we interpret $\in$ explicitly
+
+    \textbf{Ex:} $X = \{a,b,c\}$ and $a \in b, b \in c$
+    i.e. $\in$ is interpreted by relation $E$ where $E = \{ <a,b> , <b,c>\}$
+
+    we can draw a directed graph where nodes are elements of x and arrow represent ordered pairs in $E$.
+
+    Given such a structure, which axioms are satisfied when we interpret $\in$ by $E$
+
+    \underline{Extensionality} two sets are the same exactly if they have the same elements:
+    a has no elements, b has a single element a, and c has a single element b.
+    satisfies extensionality as they are seperate.
+
+    \underline{Pairing} given two sets then a set exists containing both:
+    not satisfied - no set has both a and b as elements.
+
+    \underline{Foundation} no infinite chain of membership:
+    satisfied
+
+    \emph{Ex:} $X = \{a,b,c\}$
+    $E = \{<a,b>,<b,c>,<c,a>\}$
+    (cyclic triangle)
+
+    \underline{Extensionality}: a has element c, b has a, and c has b, satisfying
+    \underline{Pairing} fails
+    \underline{Foundation} fails
+
+    \emph{Ex} $E =\{<a,c>,<b,c>\}$ (binary tree)
+    Foundation and Pairing Fails, and so does Extensionality as a nd b are both empty sets.
+
+    \emph{Ex} $X=\{a\}$ and $E=\{<a,a>\}$ (self-loop)
+    Foundation fails, extensionality is trivially satisfied as there is only one set, and it satisfies pairing.
+
 \end{document}
 
