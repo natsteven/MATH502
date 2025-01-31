@@ -1,0 +1,200 @@
+% Math 402/502 Homework
+
+
+
+\documentclass[11pt]{amsart}
+
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsopn}
+\usepackage{amsthm}
+
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ran}{ran}
+
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+
+
+\usepackage{bbold}
+
+
+\newcommand{\hint}[1]{{\small \em \noindent [Hint: #1]}}
+
+
+\begin{document}
+
+\begin{center}
+{\Large Math 402/502 Homework 2 -- due Friday, January 31}
+
+ \textbf{Nat Steven}
+\ \\
+\end{center}
+
+ \begin{enumerate}
+
+
+%\item For each structure, draw a directed graph representing the membership relation as was done in class. 
+%Then determine which of the following axioms is satisfied by the structure: Extensionality, Foundation, Pairing.
+%
+%\ 
+%\begin{enumerate}
+%\item $U=\{a,b\}$, $a \in b$, $b \in a$
+%\vfill
+%\item $U=\{a,b,c\}$, $a \in c$, $b \in c$, $c \in c$
+%\vfill
+%\item $U= \{a,b,c\}$, $a \in b$, $a \in c$, $b \in c$
+%\vfill
+%\end{enumerate}
+
+%\item Recall that the successor of a set $x$ is defined as $S(x) = x \cup \{ x \}$. Prove that if $S(x)=S(y)$ then $x=y$. 
+%
+%\hint{You will need to use the Foundation Axiom.}
+%
+%\newpage
+
+\item Recall that we defined the ordered pair as $\langle x,y\rangle = \{ \{x\}, \{x,y\}\}$.
+
+
+\begin{enumerate}
+\item Show that if $\langle x_1,y_1 \rangle = \langle x_2, y_2 \rangle$ then $x_1=x_2$ and $y_1=y_2$.
+
+\noindent\begin{proof}
+
+ If $\langle x_1,y_1 \rangle = \langle x_2, y_2 \rangle$, then by definition,
+ \[
+  \{ \{x_1\}, \{x_1,y_1\}\} = \{ \{x_2\}, \{x_2,y_2\}\}.
+ \]
+ By the Axiom of Extensionality, two sets are equal if and only if they have the same elements.
+ Therefore, the two sets above must contain the same elements.
+ Since both sets contain two elements, there are two possibilities:
+
+ $\{x_1\} = \{x_2\}$ and $\{x_1, y_1\} = \{x_2, y_2\}$,
+
+ or $\{x_1\} = \{x_2, y_2\}$ and $\{x_1, y_1\} = \{x_2\}$.
+
+\vspace{1em}
+ Case 1: $\{x_1\} = \{x_2\}$ and $\{x_1, y_1\} = \{x_2, y_2\}$.
+ From $\{x_1\} = \{x_2\}$, by Extensionality, we have $x_1 = x_2$.
+ Substituting $x_1$ for $x_2$ in $\{x_1, y_1\} = \{x_2, y_2\}$ gives $\{x_1, y_1\} = \{x_1, y_2\}$.
+ Again, by Extensionality, since $x_1$ is in both sets, we must have $y_1 = y_2$.
+
+ \vspace{1em}
+ Case 2: $\{x_1\} = \{x_2, y_2\}$ and $\{x_1, y_1\} = \{x_2\}$.
+ From $\{x_1\} = \{x_2, y_2\}$, we have $x_1 = x_2$ and $x_1 = y_2$.
+ From $\{x_1, y_1\} = \{x_2\}$, we have $x_1 = x_2$ and $y_1 = x_2$.
+ Therefore, $x_1 = x_2$ and $y_1 = x_2 = x_1 = y_2$, so $y_1 = y_2$.
+
+ In either case, we have shown that $x_1 = x_2$ and $y_1 = y_2$.
+
+\end{proof}
+
+\item Show that it would not work to define the ordered pair as $(x,y) = \{ x, \{y\}\}$, i.e., find $x_1,y_1,x_2,y_2$ for which the analogue of the previous part is false.
+\vspace{1em}
+
+Let $A = (x_1, y_1)$ and $B = (x_2, y_2)$.
+From our new definition $A = \{x_1, \{y_1\}\}$ and $B = \{x_2, \{y_2\}\}$.
+Now, let $x_1 = \{a_2\}$, $y_1 = a_1$, $x_2 = a_1$, and $y_2 = \{a_2\}$.
+Then $A = \{\{a_2\}, a_1\}$ and $B = \{a_1, \{a_2\}\}$.
+Assuming $a_1 \neq \{a_2\}$ then $x_1 \neq x_2$ and $y_1 \neq y_2$
+But $A = B$ i.e. $(x_1,y_1) = (x_2,y_2)$ when $x_1 = y_2$ and $y_1 = x_2$.
+
+\vfill
+\end{enumerate}
+
+\newpage
+
+\item Let $f$ be a function and $A, B \subseteq \text{dom}(f)$.
+\begin{enumerate}
+\item Show that $f``(A \cup B) = f``A \cup f``B$.
+
+\begin{proof}
+% \[
+% f``(A \cup B) = \ran(f \upharpoonright A \cup B) = \{f(x) : x \in A \cup B\}
+%\]
+% and
+%\[
+% f``A \cup f``B = \ran(f \upharpoonright A) \cup \ran(f \upharpoonright B) = \{f(a): a \in A\} \cup \{f(b) : b \in B\}
+% \]
+%Now $\exists y \in Y : y \in A \vee y \in B$ and $ Y = A \cup B$
+% We can see that $\{f(y)\} = \{f(a)\} \cup \{f(b)\}$ as the union of the functions outputs on $A$ and $B$ would be the same as the output of the function on the union of $A$ and $B$.
+
+Let $y \in f``(A \cup B)$.
+By definition, this means $x \in A \cup B$ such that $y = f(x)$.
+So we have $x \in A \vee x \in B$.
+If $x \in A$ then $y \in f``A$.
+If $x \in B$ then $y \in f``B$.
+Therefore $y \in f``A \cup f``B \rightarrow f``(A \cup B) \subseteq f``A \cup f``B$.
+
+Now let $y \in f``A \cup f``B$.
+This means $y \in f``A \vee y \in f``B$.
+If $y \in f``A$ then $\exists x \in A : y=f(x)$. Then, also $x \in A \cup B$ so $y \in f``(A \cup B)$.
+If $y \in f``B$ then $\exists x \in B : y=f(x)$. Then, also $x \in A \cup B$ so $y \in f``(A \cup B)$.
+Therefore $f``A \cup f``B \subseteq f``(A \cup B)$.
+
+So we have shown $f``(A \cup B) = f``A \cup f`` B$ as the two sets are subsets of each other.
+
+\end{proof}
+
+\vfill
+\item Show that in general $f``(A \cap B) \neq f``A \cap f``B$.
+
+\begin{proof}
+If we have a function $f$ that is non-injective, i.e. we have $x_1 \neq x_2$ and $f(x_1) = f(x_2) = y$.
+Then when $x_1 \in A \wedge x_1 \notin B$ and $x_2 \in B \wedge \notin A$.
+$f``a = \{y =f(x_1) : x_1 \in A\}$ and $f``b=\{y=f(x_2) : x_2 \in B\}$.
+So $f``A \cap f``B = \{y\}$.
+But $x_1 \neq x_2 \rightarrow x_1, x_2 \notin A \cap B \rightarrow y \notin f``(A \cap B)$.
+Therefore, generally $f``(A \cap B) \neq f``A \cap f``B$.
+
+\end{proof}
+
+\vfill
+\item Give a necessary and sufficient condition on a function $f$ so that $f``(A \cap B) = f``A \cap f``B$ for all $A, B \subseteq \text{dom}(f)$.
+
+\vspace{1em}
+If f is injective or one-to-one, then $f``(A \cap B) = f``A \cap f``B$ for all $A, B \subseteq \text{dom}(f)$.
+
+\vfill
+\end{enumerate}
+
+\newpage
+
+\item Let $(X, <)$ and $(Y, \prec)$ be strict total orders, i.e., $<$ is a binary relation which totally orders $X$ strictly, and similarly for $\prec$. We define the \emph{lexicographic order}, $<_{\text{lex}}$ on the set $X \times Y$ by setting
+\[ (x_1,y_1) <_{\text{lex}} (x_2,y_2) \ \Leftrightarrow\ (x_1<x_2) \vee (x_1=x_2 \wedge y_1 \prec y_2) \]
+and call the resulting relation the \emph{lexicopgraphic product}.
+ Show that the lexicographic product of $X$ and $Y$ is a strict total order of $X \times Y$.
+{\em Note that we have not yet showed that the direct produce $S \times T=\{\langle s,t \rangle : s \in S \wedge t \in T\}$ exists, but you can assume this.}
+
+\begin{proof}
+ $(X,<)$ is a strict total order so $\forall x \in X$, $<$ is irreflexive, transitive, and satisfies trichotomy for $A$.
+ Similarly for $Y$.
+ Now we will show that $<_{\text{lex}}$ is irreflexive, transitive, and satisfies trichotomy for $X \times Y$.
+ We have $X \times Y = \{\langle x, y \rangle : x \in X \wedge y \in Y\}$
+ From trichotomy we know that $\forall x_1,x_2 \in X$ either: $x_1 < x_2$, $x_2 < x_1$, or $x_1 = x_2$.
+ Similarly for $(Y,\prec)$.
+ Therefore for $(x_1,y_1), (x_2,y_2)$:
+ Either $x_1 < x_2$, $x_2 < x_1$, or $x_1 = x_2$.
+ And when $x_1 = x_2$, either $y_1 \prec y_2$, $y_2 \prec y_1$, or $y_1 = y_2$.
+ Therefore $\forall (x,y) \in X \times Y$ $<_{lex}$ satisfies trichotomy.
+ $\forall (x,y) \in X \times Y$
+ \end{proof}
+%\item Let $\omega$ be the set of all finite von Neumann ordinals, i.e., $\bbN$ (we have not yet seen that this set exists, but will shortly). Suppose $f$ is a function with $\text{dom}(f) = \omega$ with the property that $f(x)=f``(x)$ for all $x \in \omega$. Show that $f(x) = x$ for all $x \in \omega$.
+%
+
+\end{enumerate}
+
+
+
+\end{document}
