@@ -438,5 +438,171 @@
     \emph{Ex} $X=\{a\}$ and $E=\{<a,a>\}$ (self-loop)
     Foundation fails, extensionality is trivially satisfied as there is only one set, and it satisfies pairing.
 
+   \emph{\underline{\textbf{Jan 30}}}
+
+    recall let r be a relation
+    r is a strict toal order on A if - R is transitive on A, irreflixive on A and satisfies trichotomy
+    \textbf{Def}: Let R be a relation. We say $a \in X$ is R-minimal in X if $\neg \exists z ( z \in X \wedge Z R a)$
+
+    \emph{Note:}    a is not necessarily least, i.e. there may be more than one element of x which is R-minimal in X.
+
+    \underline{EX:} $x=\mathbb{N}$ $n R m$ when $n<m$ 0 is the unique \underline{R-minimal} element in x.
+
+    Let $A \subseteq \mathbb{N}$ $A \neq \emptyset$ then A has an R-minimal in A.
+
+    \underline{Ex:} $x = \{ n \in \mathbb{N} : n \geq 2\} n R m$ when m is a proper multiple of n.
+    p is R-minimal in X exactly when p is prime.
+    infinite R-minimal
+
+    \underline{Ex:} $x=\mathbb{Z}$ $n R m$ when $n < m$ No R-minimal element in X.
+    no R-minimal
+
+    \emph{Note:} we can also define R-maximal
+
+    \textbf{Def} A relation R is \underline{well-founded} on X if for every non-empty $A \subseteq X$ there is an $a \in A$ which is R-minimal in A
+
+    \underline{Ex:} $x=\mathbb{N}$ $n R m$ when $n < m$ R is well-founded on X.
+
+    \underline{Ex:} $x = \{n \in \mathbb{N} : n \geq 2\}$ $n R m$ when m is a propers multiple of n.
+    R is well-founded on X.
+    Let A be a non-empty subset of X\@.
+    pick $a_0 \in A$
+    if $a_0$ is R-minimal in A we are done (no integer (element in A) is a proper divisor of it)
+    else if not there is $a_1 \in A$ so that $a_1$ is a proper divisor of $a_0$
+    Note $a_1 < a_0$
+    if $a_1$ R-minimal in A we are done \dots etcetera
+    This must stop at some point as we can't go below two since the sequence would be decreasing.
+    The last term will be R-minimal in A.
+
+    \underline{Ex:} $x \in \mathbb{Z}$ $n R m$ when $n < m$ R is not well-founded
+    $A = \mathbb{Z}$ has no R-minimal element
+
+    \underline{Ex:} $x=[0,1]$ $x R y$ when $x < y$.
+    R is not well-founded on X.
+    $A = (0,1)$ has no R-minimal element because if $a \in A$ $a>0$ so let $b=a/2$ and $b<a$ showing we can find something smaller.
+
+    \textbf{Def:} A relation R is \underline{well-orders} a set A if R totally orders A strictly (transitive and satisfies trichotomy) and R is well-founded on A.
+
+    \underline{Ex:} < well-orders $\mathbb{N}$.
+
+    \underline{Ex:} < does not well-order $\mathbb{Z}$ or $[0,1]$
+
+    \underline{Ex:} proper multiple relation does not well-order $\{n \in \mathbb{N} : n \geq 2\}$
+
+    \textbf{Def}: A \underline{well-ordering} is a pair $(A ; R)$ where A is a set and R is a relation which well-orders R.
+
+    \underline{Ex:} $(\mathbb{N};<)$ is a well-ordering
+
+    \emph{Note:} For a well-ordering $(A;R)$ every non-empty $X \subseteq A $ has an \underline{R-least} element, i.e. there is a unique element of X which is R-minimal in X.
+    suppose both x and y are R-minimal in X
+    either x=y or $x R y$ meaining y is not R-minmal or vice versa.
+
+    \emph{Note:} If $(S;<)$ and $(T;\prec)$ are both well-orderings then so is their lexicographic product.
+
+    \emph{Note:} If R well-orders A and $B \subseteq A$ is a non-empty subset then R well-orders B.
+
+    \underline{ex:} $(N;<)$
+
+    B = primes
+
+    < is a well-ordering of B
+    
+    \underline{Ex:} $0=\emptyset$ , $1 = \{\emptyset\}$, $2 = \{\{\emptyset\}\}\}$
+    
+    $x = \{0,1,2\}$ and $R = \in$
+    
+    Then $\in$ well-orders X.
+    
+    \emph{Note:} If X is a finite set then any strict total ordering of X is actually a well-ordering of X.
+    
+    
+    \textbf{\underline{Ordinals}}
+    Recall: $0=\emptyset$ and $n+1=S(n)$ where $S(x) = x \cup \{x\}$
+    Informally: Natural numbers are 0, S(0), S(S(0))
+    
+    \textbf{Def}: A set $Z$ is \underline{transitive} if $\forall y \in Z (y \subseteq Z)$
+    i.e. $\forall x \forall y ((x \in y \wedge y \in Z) \rightarrow x \in z)$
+    
+    \underline{Ex:} $z=2=\{\emptyset\{\emptyset\}\}$
+    $y=\emptyset$
+    $\emptyset \subseteq Z$
+    $y=\{\emptyset\}$
+    $\{\emptyset\} \subseteq Z$ since $\emptyset \in Z$
+    so Z is transitive
+    
+    \underline{Ex:} $Z=\{\{\emptyset\}\}$ is not transitive
+    $y=\{\emptyset\}$
+    $y \in Z$
+    $x=\emptyset$
+    $x \in y$
+    but $\emptyset \notin Z$
+    
+    \emph{Note:} The $\in $ relation behaves transitively with respect to the set Z.
+    Z is transitive of $(x \in y \wedge y \in z) \implies x \in z$ for any x and y.
+
+    (natural numbers are transitive)
+    
+    \textbf{Def} Z is a (von Neumann) \underline{ordinal} if Z is transitive, and Z is well-ordered by $\in$
+    
+    \underline{Ex:} $2 = \{\emptyset\{\emptyset\}\}$ is an ordinal
+    elements: $\emptyset, \{\emptyset\}$
+    
+    $3=\{0,1,2\}$ is an ordinal
+    
+    every natural number is an ordinal (see this ?later on?)
+    
+    \emph{Note: } we usually use Greek letters to denote ordinal.
+    
+    \textbf{Def} For ordinal $\alpha$ and $\beta$:
+    
+    $\alpha < \beta$ means $\alpha \in \beta$
+    
+    $\alpha \leq \beta$ means $\alpha \in \beta$ or $\alpha = \beta$
+    
+    \textbf{Def} ON or Ord is the class of all ordinals.
+    
+    \emph{Note:} $ON$ is not a set
+    
+    $"x \in ON"$ abbreviates \("\)x is transitive and $\in$ well-order x(\")
+    
+    $" \forall x \in ON \varphi(x)"$ abbreviates $" \forall x (( x is transitive \wedge \in well-order x) \rightarrow \varphi(x))"$
+    
+    $"x \subseteq ON"$ , $"x \cap ON"$ are similarly abbreviated
+    
+    \textbf{\underline{Theorem}} $ON$ is well-ordered by $\in$, i.e. 
+    \begin{enumerate}
+        \item $\forall \alpha, \beta, \gamma \in ON ((\alpha < \beta \wedge \beta < \gamma) \rightarrow (\alpha < \gamma))$
+        \item $\forall \alpha \in ON (\alpha \neg < \alpha)$
+        \item $\forall \alpha, \beta \in ON ( \alpha < \beta \vee \beta < \alpha \vee \alpha = \beta)$
+        \item $\forall z ((z \notin \emptyset \wedge z \subseteq ON) \rightarrow z has an \in - minimal element)$
+        \end{enumerate}
+
+    \underline{cor} There is no set which contains all ordinals.
+    \underline{pf of cor} suppose X is a set which contains all ordinal
+    By comprehension let $Y=\{Z \in X : Z is an ordinal\}$
+    Then $Y=ON$ is a set.
+    Theorem implies Y is transitive
+    (1) If $alpha \in \beta$ and $\beta \in Y$ then $(\alpha < \beta)$ and $\alpha \in Y$ Y is well-ordered by $\in$
+    Hence Y is an ordinal so $Y \in Y$
+    but since Y is an ordinal by (2) of Theorem $Y \notin Y$ so contradiction
+
+    \emph{Note} This is known as the Burali-Forti Paradox.
+
+    we need some lemmas before proving the theorem
+
+    \underline{Lem 1} ON is a transitive class, i.e. if $\alpha \in ON$ and $z \in \alpha$ then $z \in ON$
+
+    \underline{pf} let $\alpha$ be an ordinal.
+    Then $\alpha$ is transitive.
+    Since $z \in \alpha$ then $z \subseteq \alpha$.
+    $\in$ well-orders $\alpha$, so $\in$ well-orders $z$.
+    To see $z$ is transitive: suppose $x \in y$ and $y \in z$
+    so $y \in \alpha$ so $y \subseteq \alpha$ (since $\alpha$ is transitive and $z \subseteq \alpha$)
+    so $x \in \alpha$
+    hence $x,y,z \in \alpha$ and $x \in y$ and $y \in z$ so $x \in z$
+    since $\in$ well-orders $\alpha$ and hence $\in$ is a transitive relation in $\alpha$
+    which is what we wanted.
+    Hence $z$ is transitive and well-ordered by $\in$ , so $z$ is an ordinal
+
 \end{document}
 
