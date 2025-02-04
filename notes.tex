@@ -14,6 +14,8 @@
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{upgreek}
+\usepackage{amsthm}
 
 \title{Set Theory and Logic Notes}
 \author{Nat}
@@ -603,6 +605,172 @@
     since $\in$ well-orders $\alpha$ and hence $\in$ is a transitive relation in $\alpha$
     which is what we wanted.
     Hence $z$ is transitive and well-ordered by $\in$ , so $z$ is an ordinal
+
+    \emph{ordinals} \underline{feb 4}
+
+    Recall: A set z is a transitive if whenever $y \in z$ then $y \subseteq$, i.e. if $x \in y$ and $y \in z$ then $x \in z$.
+    A set $\alpha$ is an \underline{ordinal} if $\alpha$ is transitive and $\in$ well-orders $\alpha$.
+    $\alpha < \beta \leftrightarrow \alpha \in \beta$ and $alpha \leq \beta \leftrightarrow \alpha < \beta \vee \alpha = \beta$
+
+    \underline{Theorem} $ON$ is well-ordered by $\in$
+
+    \underline{Lem 1} $ON$ is a transitive class, i.e. $\alpha \in ON$ and $z \in \alpha$ then $z \in ON$ where $ON$ is the class of ordinals. $\alpha$ is an ordinal (is what the in means)
+
+    \underline{Lem 2} For $\alpha , \beta \in ON$ $\alpha \leq \beta $ iff $\alpha \subseteq \beta$.
+    \begin{proof}
+
+    $\alpha \leq \beta$ means $\alpha \in \beta \vee \alpha = \beta$
+    if $\alpha = \beta$ immediately $\alpha \subseteq \beta$
+    if $\alpha \in \beta$ then $\alpha \subseteq \beta$ since $\beta$ is transitive.
+
+    suppose $\alpha \subseteq \beta$
+    if $\alpha = \beta$ we are done, so suppose not.
+    let $X = \beta \\ \alpha \neq \emptyset$ , $X \subseteq \beta$
+    $\beta$ is wel-ordered by $\in$,
+    X has an $\in$-minimal element $\xi$
+    show $\xi = \alpha$
+    For $\mu \in \xi$ we have $\mu \in \beta$ and $\mu \notin X$ so $\mu \in \alpha$
+    Hence $\xi \leq \alpha$.
+    Suppose $\xi \neq \alpha$.
+    Then there is a$\mu \in \alpha \setminus \xi$
+    $\mu$ and $\xi$ both in $\beta$.
+    $\beta$ is totally ordered by $\in$ so one of $\mu \in \xi$, $\xi \in \mu$, or $\xi = \mu$.
+    $\mu \neq \xi$ by choice of $\mu$
+    since $\mu \in \xi$ and $\xi \notin \alpha$ $(\xi \in X = \beta \setminus \alpha)$ so $\mu = \xi$
+    if $\xi \in \mu$ then $\xi \in \alpha$ (since $\mu \in \alpha$) but $\xi \notin \alpha$, hence $\xi \notin \mu$
+    Hence $\xi = \alpha$, so $\alpha \in \beta$.
+    \end{proof}
+
+    \underline{Lem 3} If $\alpha, \beta \in ON$ then $\alpha \cap \beta \in ON$.
+    (we will see $\alpha \cap \beta = min(\alpha, \beta)$)
+
+    \begin{proof}
+        $\alpha \cap \beta \subseteq \alpha$ so $\alpha \cap \beta$ is well-ordered by $\in$.
+        $\alpha \cap \beta$ is transitive since if $x \in \alpha \cap \beta$.
+        then $x \in \alpha$ so $x \subseteq \alpha$, and $x \in \beta$ so $x \subseteq \beta$.
+        Hence $x \subseteq \alpha \cap \beta$.
+        So $\alpha \cap \beta$ is an ordinal.
+    \end{proof}
+
+Proof of Theorem:
+\begin{proof}
+    \begin{enumerate}
+        \item $\forall \alpha, \beta, \gamma \in ON$ and $\alpha < \beta \wedge \beta < \gamma$ then $\alpha < \gamma$
+        \begin{itemize}
+            \item $\alpha$ is a transitive set.
+            \item $\beta < \gamma$ means $\beta \in \gamma$.
+            \item $\alpha < \beta$ means $\alpha \in \beta$.
+            \item So $\alpha \in \gamma$ i.e. $\alpha < \gamma$.
+        \end{itemize}
+        \item $\forall \alpha \in ON$ $\alpha \notin \alpha$
+        \begin{itemize}
+            \item $\alpha$ is well-ordered by $\in$.
+            \item If $\alpha \in \alpha$ then $\forall x \in \alpha$ ($x \notin x$).
+            \item Hence $\alpha \notin \alpha$.
+        \end{itemize}
+        \item $\forall \alpha, \beta \in ON$ ($\alpha \in \beta \vee \beta \in \alpha \vee \alpha = \beta$)
+        \begin{itemize}
+            \item Let $\delta = \alpha \cap \beta$.
+            \item $\delta \in ON$ by Lemma 3.
+            \item $\delta \subseteq \alpha$ so $\delta \leq \alpha$ by Lemma 2.
+            \item So either $\delta = \alpha$ or $\delta \in \alpha$.
+            \item If $\delta = \alpha$ then $\alpha \subseteq \beta$ so either $\alpha = \beta$ or $\alpha \in \beta$ and we are done.
+            \item So assume $\delta \in \alpha$
+            \item $\delta \subseteq \beta$ so either $\delta = \beta$ or $\delta \in \beta$.
+            \item if $\delta = \beta$ then $\beta \subseteq \alpha$ so we are done.
+            \item so assume $\delta \in \beta$
+            \item so $\delta \in \alpha \cap \beta = \delta$ but $\delta \notin \delta$, contradiction
+            \item so either $\delta = \alpha$ or $\delta = \beta$ and we are done
+        \end{itemize}
+        \item $\forall z$ ($z \neq \emptyset \wedge z \subseteq ON \rightarrow$ $z$ has an $\in$-least element.
+        \begin{itemize}
+            \item Let $\alpha \in z$ be arbitrary.
+            \item If $\alpha$ is $\in$-minimal in $z$ we are done.
+            \item Suppose not.
+            \item Consider $\alpha \cap z = \{\beta \in z : \beta < \alpha\}$
+            \item $\alpha \cap z \subseteq \alpha$
+            \item if $\alpha \cap z = \emptyset$ we are done as $\alpha = \emptyset$ would be $\in$-least in $z$
+            \item if $\alpha \cap z \neq \emptyset$ then there is an $\in$-minimal element of $\alpha \cap z$, call this $\gamma$
+            \item $\gamma \in \alpha \cap z$ and for any $\beta \in \alpha (\beta \notin \alpha \cap z)$
+            \item if $\beta \in \gamma$ then $\beta \in \alpha$ hence $\beta \notin z$
+            \item Hence $\gamma$ is $\in$-minimal element of $z$ which is what we wanted
+        \end{itemize}
+    \end{enumerate}
+\end{proof}
+
+    \underline{Ex}
+    \begin{itemize}
+        \item $0=\emptyset$ is the least ordinal
+        \item $1 = \{\emptyset\}$ is the next biggest ordinal (no ordinal $\alpha$ with $0 < \alpha$ and $\alpha < 1$)
+    \end{itemize}
+
+    \emph{Note} If $\alpha \in ON$ then $\alpha = \{\gamma \in ON : \gamma < \alpha\}$
+
+    Recall $S(x) = x \cup \{x\}$
+
+    \underline{Lem} If $\alpha \in ON$ then $S(x) \in ON$.
+    \begin{proof}
+        If $\beta \in S(\alpha)$ then either $\beta \in \alpha$ or $\beta = \alpha$.
+        In both cases $\beta \subseteq \alpha$ hence $\beta \subseteq S(\alpha)$.
+        So $S(x)$ is transitive.
+        If $z \subseteq S(x)$ and $z \neq \emptyset$.
+        If $z = \{\alpha\}$ then $\alpha$ is an $\in$-minimal element of $z$ (since $\alpha \notin \alpha$)
+        Otherwise, $z \cap \alpha \neq \emptyset$ has an $\in$-minimal element since $\alpha \in ON$ which will be an $\in$-minimal element of $z$.
+    \end{proof}
+
+    \underline{Lemma} For $\alpha \in ON$, $S(\alpha)$ is the immediate succesor of $\alpha$, i.e. $\alpha < S(x)$ and there is no ordinal $\beta$ with $\alpha < \beta$ and $\beta < S(\alpha)$
+    \begin{proof}
+        $\alpha \in S(\alpha) = \alpha \cup \{\alpha\}$ so $\alpha < S(\alpha)$
+        If $\beta < S(alpha)$ then $\beta \in \alpha \cup \{alpha\}$
+        So either $\beta \in \alpha$ or $\beta = \alpha$
+        i.e. either $\beta < \alpha$ or $\beta = \alpha$ so can't have $\alpha < \beta$
+    \end{proof}
+
+    \textbf{Def} An ordinal $\beta$ is a \underline{successor ordinal} if $\beta = S(\alpha)$ for some $\alpha$.
+    Otherwise $\beta$ is a \underline{limit ordinal} if $\beta \neq 0$ and $\beta$ is not a successor ordinal.
+    A \underline{finite ordinal} or \underline{natural number} is if every $\alpha \subseteq \beta$ is either 0 or a successor ordinal.
+
+    \emph{Note:} Axioms so far only produce finite ordinal e.g. 0,1,2,....
+
+    \emph{Note:} $\beta \neq 0$ is a limit ordinal $\iff$ $\forall \alpha < \beta$ $S(\alpha) < \beta$
+
+    \subsection{Axiom 7: Axiom of Infinity}
+    $\exists X (\emptyset \in X \wedge \forall y (y \in X \rightarrow S(y) \in X))$
+
+    \emph{Note: } We want to see that this X is an infinite set containing every finite ordinal.
+
+    \underline{Lemma: } If $n$ is a natural number then $S(n)$ is a natural number.
+    \begin{proof}
+        $S(n)$ is an ordinal from earlier.
+        If $\alpha \leq S(n)$ then
+        If $\alpha = S(n)$ then $\alpha$ is a successor (done)
+        Otherwise if $\alpha < S(n)$ then $\alpha \in n \cup \{n\}$
+        So $\alpha \leq n$ so either $\alpha = 0$ or $\alpha$ is a successor.
+    \end{proof}
+
+    \underline{Theorem: } \underline{Principle of Ordinary Induction}
+    For any set $X$, if $\emptyset \in X$ and $\forall y \in X (S(y) \in X)$ then $X$ contains all natural numbers.
+
+    \begin{proof}
+        Suppose the above is true.
+        Suppose $n$ is a natural number with $n \notin X$.
+        Let $Y = S(n) \setminus X \neq \emptyset$ since $n \in Y$.
+        Y is a set of natural numbers.
+        Y has an $\in$-minimal element, call it $k$.
+        $k \leq n$
+        Either $k=0$ or $k = S(j)$ for some $j$.
+        $k \neq 0$ since $k \notin X$ and $0 \in X$
+        $k \neq S(j)$ since $j \notin Y$ ($j \in k$ and $k \in$-minimal in $Y$)
+        if $k \= S(j)$ then $j \in S(n)$ so $j \in X$ so $S(j) = k \in X$, contradiction
+        Hence no natural number $n \notin X$
+    \end{proof}
+
+    \textbf{Def} Let $\omega = \{n \in X: n is a natural number\}$ where $X$ is the set from the Axiom of Infinity.
+    So $\omega$ is the set of natural numbers sometimes denoted $\mathbb{N}$
+
+    \emph{Note:} we will see that $\omega$ is an ordinal.
+    $\omega$ is the least infinite ordinal.
+    $\omega$ is  the least limit ordinal.
 
 \end{document}
 

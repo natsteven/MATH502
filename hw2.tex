@@ -139,8 +139,10 @@ Therefore $y \in f``A \cup f``B \rightarrow f``(A \cup B) \subseteq f``A \cup f`
 
 Now let $y \in f``A \cup f``B$.
 This means $y \in f``A \vee y \in f``B$.
-If $y \in f``A$ then $\exists x \in A : y=f(x)$. Then, also $x \in A \cup B$ so $y \in f``(A \cup B)$.
-If $y \in f``B$ then $\exists x \in B : y=f(x)$. Then, also $x \in A \cup B$ so $y \in f``(A \cup B)$.
+If $y \in f``A$ then $\exists x \in A : y=f(x)$.
+Then, also $x \in A \cup B$ so $y \in f``(A \cup B)$.
+If $y \in f``B$ then $\exists x \in B : y=f(x)$.
+Then, also $x \in A \cup B$ so $y \in f``(A \cup B)$.
 Therefore $f``A \cup f``B \subseteq f``(A \cup B)$.
 
 So we have shown $f``(A \cup B) = f``A \cup f`` B$ as the two sets are subsets of each other.
@@ -187,8 +189,47 @@ and call the resulting relation the \emph{lexicopgraphic product}.
  Therefore for $(x_1,y_1), (x_2,y_2)$:
  Either $x_1 < x_2$, $x_2 < x_1$, or $x_1 = x_2$.
  And when $x_1 = x_2$, either $y_1 \prec y_2$, $y_2 \prec y_1$, or $y_1 = y_2$.
- Therefore $\forall (x,y) \in X \times Y$ $<_{lex}$ satisfies trichotomy.
- $\forall (x,y) \in X \times Y$
+ Therefore $\forall (x,y) \in X \times Y$ $<_{lex}$ satisfies trichotomy is either $(x_1,y_1) <_{lex} (x_2, y_2)$, or $(x_2,y_2) <_{lex} (x_1,y_1)$, or $(x_1,y_1) = (x_2,y_2)$.
+ $<_{lex}$ is also irreflexive due to $<$ and $\prec$ being irreflexive.
+ That is $(x_1,y_1) \nless_{lex} (x_1,y_1)$ because $x_1 \nless x_1$ and $y_1 \nprec y_1$.
+ Finally, $<_{lex}$ is transitive because $<$ and $\prec$ are transitive.
+ That is if $(x_1,y_1) <_{lex} (x_2,y_2)$ and $(x_2,y_2) <_{lex} (x_3,y_3)$ then $(x_1,y_1) <_{lex} (x_3,y_3)$
+ For $(x_1,y_1) <_{lex} (x_3,y_3)$ either $x_1 < x_3$ or $x_1 = x_3 \wedge y_1 \prec y_3$.
+ $x_1 < x_3$ when $x_1 < x_2 < x_3$ so $(x_1,y_1) <_{lex} (x_3,y_3)$
+ If $x_1 = x_2 = x_3$ then $y_1 \prec y_3$  because $y_1 \prec y_2 \prec y_3$.
+ Therefore $<_{lex}$ is a strict total order of $X \times Y$.
+
+% $(X,<)$ and $(Y,\prec)$ are strict total orders, so for all $x \in X$, $<$ is irreflexive, transitive, and satisfies trichotomy.
+% Similarly for $\prec$ on $Y$.
+% We will show that $<_{\text{lex}}$ is irreflexive, transitive, and satisfies trichotomy for $X \times Y$.
+%
+% Let $(x_1, y_1), (x_2, y_2) \in X \times Y$.
+% By trichotomy on $X$, exactly one of the following holds: $x_1 < x_2$, $x_2 < x_1$, or $x_1 = x_2$.
+% If $x_1 < x_2$, then $(x_1, y_1) <_{\text{lex}} (x_2, y_2)$.
+% If $x_2 < x_1$, then $(x_2, y_2) <_{\text{lex}} (x_1, y_1)$.
+% If $x_1 = x_2$, then by trichotomy on $Y$, exactly one of the following holds: $y_1 \prec y_2$, $y_2 \prec y_1$, or $y_1 = y_2$.
+% If $y_1 \prec y_2$, then $(x_1, y_1) <_{\text{lex}} (x_2, y_2)$.
+% If $y_2 \prec y_1$, then $(x_2, y_2) <_{\text{lex}} (x_1, y_1)$.
+% If $y_1 = y_2$, then $(x_1, y_1) = (x_2, y_2)$.
+% Therefore, for all $(x_1, y_1), (x_2, y_2) \in X \times Y$, exactly one of the following holds: $(x_1, y_1) <_{\text{lex}} (x_2, y_2)$, $(x_2, y_2) <_{\text{lex}} (x_1, y_1)$, or $(x_1, y_1) = (x_2, y_2)$.  Thus, $<_{\text{lex}}$ satisfies trichotomy.
+%
+% For any $(x, y) \in X \times Y$, we have $x \nless x$ and $y \nprec y$ because $<$ and $\prec$ are irreflexive.
+% Therefore, $(x, y) \nless_{\text{lex}} (x, y)$, so $<_{\text{lex}}$ is irreflexive.
+%
+% Suppose $(x_1, y_1) <_{\text{lex}} (x_2, y_2)$ and $(x_2, y_2) <_{\text{lex}} (x_3, y_3)$.
+% We need to show that $(x_1, y_1) <_{\text{lex}} (x_3, y_3)$.
+%
+% * Case 1: $x_1 < x_2$.  Then, regardless of the relationship between $y_1$ and $y_2$, we have $(x_1, y_1) <_{\text{lex}} (x_2, y_2)$. Since $(x_2, y_2) <_{\text{lex}} (x_3, y_3)$, either $x_2 < x_3$ or $x_2 = x_3$ and $y_2 \prec y_3$.
+% * If $x_2 < x_3$, then by transitivity of $<$, $x_1 < x_3$, so $(x_1, y_1) <_{\text{lex}} (x_3, y_3)$.
+% * If $x_2 = x_3$ and $y_2 \prec y_3$, then $x_1 < x_3$, so $(x_1, y_1) <_{\text{lex}} (x_3, y_3)$.
+%
+% * Case 2: $x_1 = x_2$ and $y_1 \prec y_2$. Since $(x_2, y_2) <_{\text{lex}} (x_3, y_3)$, either $x_2 < x_3$ or $x_2 = x_3$ and $y_2 \prec y_3$.
+% * If $x_2 < x_3$, then $x_1 < x_3$, so $(x_1, y_1) <_{\text{lex}} (x_3, y_3)$.
+% * If $x_2 = x_3$ and $y_2 \prec y_3$, then $x_1 = x_3$ and by transitivity of $\prec$, $y_1 \prec y_3$. Therefore, $(x_1, y_1) <_{\text{lex}} (x_3, y_3)$.
+%
+% In all cases, $(x_1, y_1) <_{\text{lex}} (x_3, y_3)$. Thus, $<_{\text{lex}}$ is transitive.
+%
+% Therefore, $<_{\text{lex}}$ is a strict total order on $X \times Y$.
  \end{proof}
 %\item Let $\omega$ be the set of all finite von Neumann ordinals, i.e., $\bbN$ (we have not yet seen that this set exists, but will shortly). Suppose $f$ is a function with $\text{dom}(f) = \omega$ with the property that $f(x)=f``(x)$ for all $x \in \omega$. Show that $f(x) = x$ for all $x \in \omega$.
 %
