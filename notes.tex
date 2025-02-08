@@ -761,7 +761,7 @@ Proof of Theorem:
         Either $k=0$ or $k = S(j)$ for some $j$.
         $k \neq 0$ since $k \notin X$ and $0 \in X$
         $k \neq S(j)$ since $j \notin Y$ ($j \in k$ and $k \in$-minimal in $Y$)
-        if $k \= S(j)$ then $j \in S(n)$ so $j \in X$ so $S(j) = k \in X$, contradiction
+        if $k = S(j)$ then $j \in S(n)$ so $j \in X$ so $S(j) = k \in X$, contradiction
         Hence no natural number $n \notin X$
     \end{proof}
 
@@ -770,7 +770,130 @@ Proof of Theorem:
 
     \emph{Note:} we will see that $\omega$ is an ordinal.
     $\omega$ is the least infinite ordinal.
-    $\omega$ is  the least limit ordinal.
+    $\omega$ is the least limit ordinal.
+
+    \underline{\emph{Feb 6.}}
+    Recall $\omega = \{n \in X : n is a natural number\}$ where $X$ is the set from the Axiom of Infinity so that $\emptyset \notin X \wedge \forall Y (Y \in X \rightarrow S(X) \in X)$
+
+    \underline{Lemma: } Suppose $X$ is a set of ordinals which is an initial segment of $ON$. i.e. $\forall \beta \in X \forall \alpha \in \beta (\alpha \in X)$ then $X \in  ON$
+
+    \begin{proof}
+        $X$ is well-ordered by $\in$ since any set of ordinals is well-ordered by $\in$
+
+        X is transitive since if $\alpha \in \beta$ and $\beta \in X$ then $\alpha < \beta$ so $\alpha \in X$
+
+        Hence $X$ is an ordinal.
+
+    \end{proof}
+
+    \underline{Lemma: } $\omega$ is the least-limit ordinal.
+    \begin{proof}
+        $\omega$ is an ordinal since if $n \in \omega$ then $n$ is a natural number and if $m < n$ then m is a natural number, hence $m \in \omega$
+
+        so $\omega$ is an initial segment of $ON$
+
+        $\omega \neq \emptyset$
+
+        suppose $\omega = S(y)$ for some $y$ then $y \in S(y) = \omega$ so $y$ is a natural number so $S(y) = \omega$ would be a natural number, so $\omega \in \omega$ contradicts that $\alpha \notin \alpha$ for any ordinal $\alpha$
+
+        hence $\omega$ is a limit ordinal.
+
+        every $\alpha < \omega$ is a natural number so either 0 or $S(n)$ some n
+
+        hence $\omega$ is the least limit ordinal
+
+    \end{proof}
+
+    \emph{Note: } Now we have $0,1,2,\dots,\omega,S(\omega), S(S(\omega)),\dots$.
+    Like the think of $S(\omega)$ as $\omega + 1$, etcetera.
+    Need to define ordinal arithmetic $\alpha + \beta$, $\alpha \dot \beta$, $\alpha^{\beta}$.
+    we will define these in terms of certain well-orderings we define.
+    See that every well-ordering corresponds to a unique ordinal.
+
+    \underline{Ex} subsets of $\mathbb{R}$ with the usual ordering <.
+    Let $A = \{1-\frac{1}{n} : n \geq 1\}$
+    $(A ; <) \cong (\omega,\in)$
+    Let $B = \{ 1-\frac{1}{n}: n \geq 1\}\cup \{1\}$
+    $(B;<) \cong (S(\omega); \in)$ where $S(\omega) = \omega + 1$
+    Let $C = \{1-\frac{1}{n}:n\geq1\}\cup\{2-1/n:n\geq1\}$
+    $(C;<) \cong (\omega + \omega;\in)$
+
+
+    \underline{Lemma} If $\alpha$ and $\beta$ are ordinals and $f : \alpha \leftrightarrow \beta$ is an isomorphism from $(\alpha,\in)$ onto $(\beta,\in)$ then $\alpha = \beta$ and $f$ is the identity function.
+
+    \begin{proof}
+        Fix $\xi \in \alpha$, sp $f(\xi) \in \beta$.
+        If $\zeta < \xi$ then $f(\zeta) < f(\xi)$ and vice versa.
+        Then $\{\nu \in \beta : \nu < f(\xi)\}=\{f(\mu) : \mu \in \alpha \wedge \mu < \xi\}$.
+        Hence $f(\xi) = f``\xi = \{f(\gamma) : \gamma \in \xi\}$
+        Claim that $f(\xi) = \xi$ for all $\xi \in \alpha$.
+        Let $X = \{\xi \in \alpha : f(\xi) \neq \xi\}$
+        If $X = \emptyset$ we are done so suppose not.
+        Let $X \neq \emptyset$ then $X$ is a set of ordinals so there is a least $\xi \in X$.
+        If $\mu < \xi$ then $f(\mu)=\mu$.
+        So $f(\xi)=\{f(\mu) : \mu < \xi\} = \{\mu : \mu < \xi\} = \xi$ contradicting that $f(\xi) \neq \xi$.
+        Hence $f(\xi) = \xi $ for every $\xi \in \alpha$ i.e. $f$ is the identity map, and $\beta = \alpha$.
+    \end{proof}
+
+    \emph{Note: } There can be bijections between unequal ordinals, but they won't be order preserving.
+
+    \underline{Ex: } $\omega = 0,1,2,\dots$ and $\omega + 1 = 0,1,2,\dots,\omega$.
+    Pairing $\omega$ with 0 and the rest with their successors, so we have a bijection
+
+    \emph{Note: } In the above proof we used the \underline{principle of transfinite induction}.
+    Every non-empty set of ordinals has a least element.
+    So fi $\varphi(x)$ is a formula and for all $\alpha \in ON$
+    $(\forall \beta < \alpha \varphi(\beta)) \rightarrow \varphi(\alpha)$
+    Then $\varphi(\alpha)$ holds for all ordinals $\alpha$
+
+    \emph{Note: } Often split into cases for $\alpha$.
+    show $\varphi(0)$.
+    show $\varphi(\beta) \rightarrow \varphi(S(\beta))$.
+    for a limit ordinal $\gamma$ show $(\forall \beta < \gamma \varphi(\beta)) \rightarrow \varphi(\gamma)$
+    (orders are rigid we cant have an order isomorphism? maybe?)
+
+    \underline{\textbf{Theorem}}: If R is a well-ordering of A then there is a unique ordinal $\alpha$ so that $(A;R) \cong (\alpha;\in)$
+    (ordinal gives a representation of all orderings up to isomorphism)
+
+    \begin{proof}
+        $\alpha$ is unique from the previous lemma since if $f : (A;R) \leftrightarrow (\alpha;\in)$ and $g : (A;R) \leftrightarrow (\beta;\in)$.
+        Then $g \of f^{-1} : (\alpha;\in) \leftrightarrow (\beta;\in)$.
+        So $g \of f^{-1} = identity$ i.e. $f=g$ and $\alpha = \beta$
+        For $a \in A$ let $a \downarrow = \{x\in A : x R a\}$.
+        Then $a \downarrow$ is also well-ordered by R.
+        Call $a \in A$ \underline{good} if $(a \downarrow;R) \cong (\xi; \in)$ for some ordinal $\xi$.
+        Let $G = \{a \in A : a is good\}$.
+        Define $f : G \rightarrow ON$ by setting $f(a) = $ the unique $\xi \in ON$ so that $(a\downarrow;R)\cong(\xi;\in)$
+        Also for $a \in G$ let $h_a$ be the unique isomorphism $h_a=(a\downarrow;R)\cong(f(a);\in)$ ($f(a)=\xi$)
+        This is justified by replacement
+        If $a\in G$ and $c R a$ (i.e. $c \in a\downarrow$) then $c \in G$ since $c \downarrow \subseteq a\downarrow$
+        $h_c = h_a \uprightharpoon(c\downarrow): (c\downarrow;R)\cong(h_a(c);\in)$
+        ($\upharpoonright$ is 'restricted')
+        (Lecture drawing 54 mins into class)
+        So $f(c) = h_a(c) < f(a)$
+        Hence $f : G \rightarrow ON$ is order-preserving, i.e. $cRa \leftrightarrow f(c) < f(a)$.
+        $ran(f)$ is an initial segment of $ON$ since if $\xi \in  ran(f)$ there is some $a \in G$ with $f(a) = \xi$
+        So if $\mu < \xi`$ there is $c \in a\downarrow$ with $h_a(c) = \mu$
+        But then $c \in G$ and $f(c) = h_a(c) = \mu$ so $\mu \in ran(f)$
+        Hence $ran(f)$ is an ordinal $\alpha$ and f is an isomorphism from $(G;R)$ onto $(\alpha;\in)$.
+        Want to show $G=A$.
+        Suppose not, then let $e$ be the R-least elements of $A \setminus G$
+        Then $e \downarrow = G$ since G is an R-initial segment of A.
+        Hence $(e \downarrow;R) = (G;R) \cong (\alpha;\in)$.
+        Hence $e \in G$, contradiction.
+        Hence $G=A$ so $(A;R)\cong(\alpha;\in)$
+    \end{proof}
+
+    \textbf{Def: } For a well-ordering $(A;R)$ the \underline{order type} of $(A;R)$ , $type(A;R)$ is the unique ordinal $\alpha$ such that (A;R)$\cong$($\alpha;\in$)
+
+    Recall: For (A;R) and (B;s) the \underline{lexicographic product} is the ordering of $A \times B$ given by $(a_1,b_1) <_{lex}(a_2,b_2) \leftrightarrow a_1 R a_2 \vee (a_1 = a_2 \wedge b_1 s b_2)$.
+
+    \tetxbf{Def: } \underline{Ordinal arithmetic}
+    For $\alpha,\beta \in ON$
+    $\alpha \dot \beta = type(\beta \times \alpha, <_{lex})$
+    $\alpha + \beta = type(\{0\}\times \alpha \cup \{1\} \times \beta, <_{lex})$
+
+    \underline{Ex: } $\omega + 1$: $\{0\} \times \omega \cup \{1\}\times 1$ (see drawing at feb 6. 72 mins)
 
 \end{document}
 
