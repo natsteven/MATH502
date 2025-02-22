@@ -1,0 +1,305 @@
+%! Author = nathanaelsteven
+%! Date = 2/18/25
+
+%% Preamble
+%\documentclass[11pt]{article}
+%
+%% Packages
+% file already inlcudes from parent:
+%
+%\usepackage{amsmath}
+%\usepackage{graphicx}
+%\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
+%\usepackage{upgreek}
+%\usepackage{amsthm}
+%% Document
+%\begin{document}
+
+\newcommand{\set}[1]{\{#1\}}
+
+\emph{Note: } If there is an injection $f : A \leftrightarrow B$ then there is a surjection $g : B \leftrightarrow A$ (A,B non-empty) (these arrows may be incorrect :)
+pick $a_0 \in A$
+define $g(b) = $ the unqiue $a \in A$ with $f(a) = b)$ if $b \in ran(f)$ $a_0$ if $b \notin ran(f)$
+
+\empth{Note: } (Without Axiom of Choice) Having a suhrection $g : B \twoheadrightarrow A$ does not necessarily imply that there is an injection $f : A \hookrightarrow B$
+
+\emph{Note: } we can have $A \subseteq B$ $A \neq B$ and $A \approx B$
+$B = \omega A = \omega \setminus \{0\}$
+$f : B \rightarrow A f(n) = n+1$
+$f$ is a bijection.
+
+\underline{Lemma: } If $B \subseteq A$ and $A \preceq B$ then $A \approx B$
+
+\begin{proof}
+    Let $f : A \hookrightarrow B$.
+    Note $A \subseteq B \subseteq f(A) = ran(f) = f``A$
+    $f^n = f \dot ... \dot f$ n times and $f^0 = identity$
+    Let $H_n = f^n(A) \setminus f^n(B)$
+    $K_n = f^n(B) \setminus f^{n+1}(A)$
+    (diagram in slides)
+    $B = f^0(B)$ and also for $A$
+    we get slices of A
+    Note that thr $H_n$'s and $K_n$'s are pairwise disjoint.
+    Let $P = \bigcap (n \in \omega) f^n(A) = \bigcup (n \in \omega) f^n(B)$
+    P disjoint from Hns and Kns
+    $P_1$ $H_n$ for $n \in \omega$ and Kn for $\n \in \omega$
+    partition $A$ into disjoint pieces.
+    $A = P \cup H_0 \cup H_1 \cup \dots \cup K_0 \cup K_1 \dots$
+    $B = P \cup H_1 \cup \dots K_0 \dots$
+    Define $g : A \leftrightarrow B$ by
+    $g(x) = \{f(x) if x \in \cup (n) H_n , x if x \in P \cup cup (n) K_n\}$
+    (diagram in slides)
+    $f(H_n) = H_{n+1}$
+    $f : H_n \leftrightarrow H_{n+1}$
+    So $g$ is a bijection from $A$ to $B$.
+\end{proof}
+
+\underline{Ex: } $A = [0,1] B = (0,1]$
+$f : A \hookrightarrow B$ by $f(x) = \frac{x+1}{2}$.
+$f$ is an injection.
+(diagram in slides)
+$H_0 = A \setminus B$
+$K_0 = B \setminus f(A)$
+$K_0 = (0,1/2)$
+$H_0 = f(A) \setminus f(B)$
+$H_0 = 0$
+$K_1 = (1/2,3/4)$
+$H_1 = 1/2$
+$H_2 = 3/4$
+$g(x) = \frac{x+1}{2}) if x = 1-\frac{1}{n} for n \geq 1, x if not$.
+
+
+\underline{\textbf{Schroder-Bernstein Theorem:}} $A \approx B$ if and only if $A \preceq B$ and $B \preceq A$
+\begin{proof}
+    $\implies$ is immediate.
+    $\impliedby$ is more difficult.
+    Let $f : A \hookrightarrow B$ and $g : B \hookrightarrow A$
+    Let $B^~ = h(B) \subseteq A$
+    $B \approx B^~$ via $h$.
+    $B^~ \subseteq A$ and $g \circ f : A \hookrightarrow B^~$
+    By Lemma there is a bijection $h : A \leftrightarrow B^~$
+    \end{proof}
+    (went ot bathroom)
+    an example and two notes missed
+\textbf{\underline{Cantor's Theorem:}} For any set $A$ $A \prec \mathbb{P}(A)$
+\begin{proof}
+    Let $f(x) = \set{x}$ $f : A \hookrightarrow \mathbb{P}(A)$ so $A \preceq \mathbb{P}(A)$
+    Show there is no bijection from $A$ to $\mathbb{P}(A)$
+    Let $f : A \rightarrow \mathbb{P}(x)$
+    show $f$ is not a surjection.
+    Let $D = \set{x \in A : x \notin f(x)}$
+    $D \in \mathbb{P}(A)$
+    claim $D \notin ran(f)$
+    Suppose $D = f(x)$ for some $x$.
+    $x \in D \iff x \notin f(x)$.
+    $\iff x \notin D$.
+    contradiction.
+    so $D \notin ran(f)$.
+    \end{proof}
+
+\underline{Ex: } $\mathbb{N} \prec \mathbb{P}(\mathbb{N})$ so $\mathbb{N} \prec \mathbb{R}$.
+
+\underline{Ex: } $ A = \mathbb{N}$.
+$f : \mathbb{N} \rightarrow \mathbb{P}(\mathbb{N})$
+(illustration)
+$D$ can'r appear as a row in table.
+
+\underline{Cantor's Paradox: } There is no universal set.
+Suppose $V$ were a universal set.
+Then $\mathbb{P}(V) \subseteq V$
+$\mathbb{P}(V) \preceq V$
+conradiction.
+
+\emph{Note: } $\mathbb{P}(A) \approx 2 (left super A) = \set{f : f is a function f: A \rightarrow \set{0,1}}$
+$X \subseteq A \hookrightarrow f_x(a) = \set{1 if a \in X, 0 if a \notin X}$
+
+\emph{Note: } $2^{\mathbb{N}}$
+
+\emph{Note: } $A (left super B) (all left super C) \approx A (left super C \times B)$ similar to $(x^y)^z = x^y^z$
+$A (left super B \cup C) \approx A (left super B) \times A (left super C)$ for (something)
+
+\defn A set $A$ is \underline{countable} if $A \preceq \omega$
+$A$ is \underline{finite} if $A \preceq n$ for some $n \in \omega$
+$A$ is \underline{infinite} if $A$ is not finite.
+$A$ is \underline{uncountable} if $A$ is not countable.
+
+\underline{Ex: } $\mathbb{Q}$ is countable.
+
+\underline{EX: } $\mathbb{P}(\omega)$ is uncountable
+
+\defn A (von-Neumann) \underline{cardinal} is an ordinal $\alpha$ so that $\xi \npreceq \preceq \alpha$ for all $\xi < \alpha$
+
+\emph{Note: } Equivalent to saying $\nexists \xi < \alpha (\xi \approx \alpha)$
+call these \underline{initial ordinals}
+
+\underline{Ex: } $n \in \omega$ 0,1,2 \dots are cardinals.
+$\omega$ is a cardinal.
+
+\underline{Ex: } $\omega + 1, \omega + \omega$ are not cardinals.
+
+
+\section{Feb 20}
+
+\underline{Def: } A \underline{Cardinal} is an ordinal $\alpha$ so that $\forall \xi < \alpha \xi \prec \alpha$
+
+\textbf{Thm}
+(1) Every cardinal $\geq \omega$ is a limit ordinal
+(2) Every natural number is a cardinal
+(3) If $A$ is a set of cardinal then $supA = \bigcup A$ is a cardinal
+(4) $\omega$ is a cardinal
+
+\begin{proof}
+(1) Suppose $\alpha \geq \omega$ is a cardinal
+    Suppose $\alpha$ is a successor $\alpha = \delta + 1$
+    So $\delta < \alpha$
+    Define $f: \alpha \rightarrow \delta$ ($\alpha = \delta \cup \set{\delta}$)
+    $f(\delta) = 0$
+    $f(n) = n+1$ for $n \in \omega$
+    $f(\xi) = \xi$ for $\omega \leq \xi < \delta$
+    $f$ is a bijection, so $\alpha \appox \delta$ contradicting that $\alpha$ is a cardinal.
+(2) use ordinary inducitno
+    $0 = \emptyset$ is a cardinal vacuously.
+    Suppose $n$ is a cardinal ($n \in \omega$).
+    Suppose $S(n)=n+1$ is not a cardinal.
+    Then there is some $\xi < n+1$ with $\xi \approx S(n)$
+    Let $f : \xi \leftrightarrow S(n) = n \cup \set{n}$
+    Can't have $\xi = 0$ so $\xi=S(m)$ for some $m$.
+    $f : S(m) =m \set{m} \leftrightarrow S(n) = n \set{n}$
+    Note $m < n$
+    Let $a$ be such that $f(a) = n$
+    If $a=m$ then $f \upharpoonright m : m \leftrightarrow n$ contradicting that $n$ is a cardinal.
+    If $a \neq m$ define $g : m \leftrightarrow n$ by $g(a) = f(m)$ and $g(b) = f(b)$ for $b \neq a$
+(diagram in slides)
+    so $g$ is a bijection fro m to n contradicting that $n$ is a cardinal.
+(3) Let $A$ be a set of  ardinal if $sup A$ is not a cardinal.
+    Let $\xi < sup A$ so that $\xi \approx sup A$ (Supremum of A is least upper bound)
+    There is $\alpha \in A$ with $\xi < \alpha \leq sup A$
+    $\xi \preceq \alpha$ and $\alpha \preceq sup A \approx \xi$ so $\alpha \preceq \xi$
+    By Schroder-Bernstein $\alpha \approx \xi$ so $\alpha$ is not a cardinal.
+(4) $\omega$ is a cardinal by (2) and (3)
+    Let A be $\omega$.
+    $sup A = \omega$ (omega least infinite ordinal)
+    so $\omega$ is a cardinal.
+\end{proof}
+
+\underline{Def:} A set is \underline{well-orderable} if there is a relation R so that R well-orders A.
+
+\emph{Note:} A is well-orderable if and only if there is an ordinal $\alpha$ so that $A \approx \alpha$
+For $\leftarrow$ If $A \approx \alpha$ let $f : A \leftrightarrow \alpha$
+Define R on A by $a_1 R a_2 \leftrightarrow f(a_1) < f(a_2)$
+Then $(A;R) \cong (\alpha, \in)$
+So A is well-ordered by R.
+
+\emphe{Note:} Every ordinal is in bijection with some unique cardinal.
+Given $\alpha \in Ord$ let $\beta$ be the $\in$-least element of
+\set{\xi \leq \alpha : \alpha \approx \xi}
+So $\alpha \approx \beta$ and $\beta$ is a cardinal.
+If $\xi < \beta$ then $\xi \notint$ (above set) so $\beta \neg \approx \xi$
+
+\underline{Def:} If A is well-orderable, let $|A|$ be the least ordinal $\alpha$ so that $A \approx \alpha$ call $|A|$ the \underline{cardinality} of A.
+
+\underline{Ex: } If $\alpha$ is a cardinal $|\alpha| = \alpha$
+$|omega + omega| = \omega$
+
+\underline{Ex: } Any set of ordinals is well-orderable.
+
+\textbf{Lemma: } Let $A,B$ be well-orderable sets then:
+(1) $|A|$ is a cardinal
+(2) $A \preceq B \iff |A| \leq |B|$
+(3) $A \approx B \iff |A| = |B|$
+(4) $A \prec B \iff |A| < |B|$
+
+\begin{proof}
+(1) above
+(2) $\implies$ suppose $f : A \hookrightarrow B$
+    Let $g : B \approx |B|$
+    then $g \circ f : A \hookrightarrow |B|$
+    $(g \circ f)`` A \subseteq |B|$
+    so well-orderable
+    Type $((g \circ f)``A;\in) \leq type(|B|,\in) = |B|$
+    $\impliedby$ suppose $|A| \leq |B|$
+    $A \approx |A| \subseteq |B| \approx B$
+    So $A \preceq B$ (an injection exists).
+(3) $\implies$ Suppose $A \approx B$
+    $|A| \approx A \approx B \approx |B|$
+    can't have $|A| < |B|$ or $|B| < |A|$
+    so $|A| = |B|$
+    $\impliedby$ if $|A| = |B|$ then $A \approx |A| = |B| \approx B$
+(4) Follows from (2) and (3).
+\end{proof}
+
+\emph{Lemma:} If $A$ is well-orderable and there is a surjection $f: A \twoheadrightarrow B$ then $B$ is well-orderable.
+\emphe{proof} Let R be a well-ordering of A.
+Define S on B by $b_1 S b_2 \iff min(f^-1(\set{b_1})) R min(f^-1(\set{b_2}))$
+Then S is a well-ordering of B.
+
+\emph{Note:} We haven't yet seen that there are uncountable cardinals.
+We saw $\omega \prec \mathbb{P}(\omega)$ so $\mathbb{P}(\omega)$ is uncountable, but we don't know $\mathbb{P}(\omega)$ is well-orderable.
+Need axiom of choice to see that $\mathhbb{P}(\omega)$ is well-orderable.
+
+\textbf{Thm \underline{Hartog's Theorom} : } For every set $A$ there is a cardinal $k$ so that $k \npreceq A.$
+Hence if A is a well-orderable set then there is a cardinal $k$ so that $|A| < k$.
+
+\begin{proof}
+    Let $W$ be the set of pairs of the form $(x,R)$ in $\mathbb{P}(A) \times \mathbb{P(A \times A)}$ so that $x \subseteq A, R \subseteq \A \times \A$
+    and $R$ well-orders $x$.
+    Thus $W$ is the set of all well-orderings of subsets of $A$.
+    Note for $\alpha \in ON$
+    $\alpha \preceq A \iff \alpha = type(x;R)$ for some $(x,R) \in W$
+    Let $\beta = sup \set{type(x,R) + 1 : (x,R) \in W}$
+    If $\alpha \preceq A$ then $\alpha < \beta$
+    Let $\kappa = |\beta|$ then $\kappa \approx \beta$, $\kapp$ is a cardinal
+    $\kappa \npreceq A$
+\end{proof}
+
+\underline{Def: } Let $\aleph(A)$ be the least cardinal $k$ so that $k \npreceq A$
+Called the \underline{Hartog's number or aleph} of A.
+
+\underline{Def: } For an ordinal $\alpha$ let $\alpha^+ = \aleph(\alpha)$
+
+\emph{Note: } $|\alpha| < \alpha^+$
+For a cardinal $\kappa$, $\kappa^+$ is the next biggest cardinal.
+
+\textbf{Def: } \underline{The Aleph Sequence}
+Define by recursion of $\xi \in ON$
+$\aleph_0 = \omega_0 = \oemga$
+$\aleph_{\xi+1} = \omega_{\xi + 1} = (\aleph_\xi)^+$
+$\aleph_\lambda = \omega_\lambda = sup \set{\aleph_\xi : \xi < \lambda}$ for $\lambda$ a limit ordinal.
+
+\emph{Note:} Generally use $\aleph_\xi$ when talking about cardinality, use $\omega_\xi$ when talking about order type (they are the same).
+
+We shall see that all infinite cardinal appear in this sequence somewhere
+
+\emph{Note:} $\aleph_1$ is the least uncountable ordinal/cardinal.
+$\omega_1 = \set{\alpha : \alpha is a countable ordinal}$
+
+\emph{Note:} ordinal arithmetic does not increase cardinality for infinite ordinals.
+For $\alpha, \beta \geq \omega$
+$|\alpha + \beta| = |\alpha \dot \beta| = |\alpha^\beta| = max(|\alpha|,|\beta|)$
+cardinal exponentiation will be different than ($2^omega = 2 \dot 2 \dots = \omega$)
+
+\textbf{Thm:} If $\alpha \geq \omega$ then $|\alpha \times \alpha| = |\alpha|$
+
+\emph{Note:} $\alpha \times \alpha$ is well-orderable by $<_{lex}$
+
+\begin{proof}
+    It suffices to prove that when $\kappa$ is a cardinal.
+    Since if $|\alpha| = \kappa$ then $\alpha \approx \kappa$
+    and $\alpha \times \alpha \approx \kappa \times \kappa$
+    $\kappa \preceq \kappa \times \kappa$ by $f(\xi) = (\xi, \xi)$ for $\xi < \kappa$
+    Need to show $|\kappa \times \kappa | \leq \kappa$ for $\kappa$ a cardinal.
+    Produce a well-ordering of $\kappa \times \kappa$ of order type $\kappa$.
+    Define a relation on $ON \times ON, \triangleleft$ that is a well-ordering of $ON \times ON$
+    in the sense $\in$ is a well-ordering of $ON$.
+    Such that $type(\kappa \times \kappa, \triangleleft) = \kappa$ when $\kappa \subseteq \omega$ is a cardinal
+    Define $(\xi_1,\xi_2) \triangleleft (\eta_1,\eta_2)$
+    if $max(\xi_1,\xi_2) < max(\eta_1,\eta_2)$ \vee
+    $[max(\xi_1,\xi_2) = max(\eta_1,\eta_2) \wedege max(\xi_1,\xi_2) <_{lex} max(\eta_1,\eta_2)]$
+    (diagram in slides).
+    $\triangleleft$ is different thean $<_{lex}$
+
+
+
+%\end{document}

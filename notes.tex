@@ -20,6 +20,8 @@
 \title{Set Theory and Logic Notes}
 \author{Nat}
 
+\newcommand{\defn}{\textbf{Def: }}
+
 \begin{document}
     \maketitle
 
@@ -642,7 +644,7 @@
     \end{proof}
 
     \underline{Lem 3} If $\alpha, \beta \in ON$ then $\alpha \cap \beta \in ON$.
-    (we will see $\alpha \cap \beta = min(\alpha, \beta)$)
+    (we will see $\alpha \cap \beta = \min(\alpha, \beta)$)
 
     \begin{proof}
         $\alpha \cap \beta \subseteq \alpha$ so $\alpha \cap \beta$ is well-ordered by $\in$.
@@ -894,6 +896,356 @@ Proof of Theorem:
     $\alpha + \beta = type(\{0\}\times \alpha \cup \{1\} \times \beta, <_{lex})$
 
     \underline{Ex: } $\omega + 1$: $\{0\} \times \omega \cup \{1\}\times 1$ (see drawing at feb 6. 72 mins)
+
+    Recall \underline{Ordinal Arithmetic}
+    - $\alpha \dot \beta = type(\beta \times \alpha, <_{lex})$
+    - $\alpha + \beta = type(\set{0} \times X \cup..??)$
+
+    \underline{Ex: }
+    $\omega \dot \omega = \langle 0,0 \rangle < \langle 1 , 0 \rangle < ....$
+
+    multiplication and addition not commutative
+
+    $\omega \dot 2 = \omega + \omega$
+    $2 \dot \omega = 2 + 2 + ... = \omega$
+
+    \emph{Note: } We can give recursive definitions.
+    \textbf{Def: }
+    - $\alph + 0 = \alpha$
+    - $\alpha + S(\beta) = S(\alpha + \beta)$
+    - $\alpha + \lambda = Sup_{\beta < x} \alpha + \beta, \lambda limit$
+
+    \textbf{Def: }
+    - $\alpha \dot 0 = 0$
+    - $\alpha \dot S(\beta) = \alpha \dot \beta + \alpha$
+    - $\alpha \dot 2 = Sup(\beta < \lambda) (\alpha \dot \beta)$
+
+    \textbf{Def: } \underline{Ordinal Exponentiation}
+    - $\alpha^0 = 1$
+    - $\alpha^{S(\beta)} = \alpha^\beta \dot \alpha$
+    - $\alpha^\lambda = Sup(\beta < \lambda) \alpha^\beta$
+
+    \underline{Ex: }
+    - $\alpha^1 = 1 \dot \alpha = \alpha$
+    - $\omega^2 = \omega \dot \omega$
+
+    \subsection{Properties of Ordinal Arithmetic}
+    \underline{Lemma}: addition and multiplicaiton are associative (distribute only on the left)
+    - $(\alpha + \beta) + \gamma = \alpha + (\beta + \gamma)$
+    - $(\alpha \dot \beta) \dot \gamma = \alpha \dot (\beta \dot \gamma)$
+    - $\alpha \dot (\beta + \gamma) = \alpha \dot \beta + \alpha \dot \gamma$
+    - $\alpha + \beta = \alpha + \gamma \rightarrow \beta = \gamma$
+    - $\alpha \leq \beta \rightarrow \exists! \gamma (\alpha + \gamma = \beta)$
+    - $\alpha > 0 \rightarrow \exists! \gamma, \delta \beta= \alpha \dot \gamma + \delta \wedge \delta < \alpha)$
+    - $\alpha^{\beta + \alpha}$.... etc. seee feb 11. 15 mins
+
+    But:
+    $\omega + 1 \neq 1 + \omega = \omega$
+    $\omega \dot 2 = \omega + \omega \neq 2 \dot \omega = \omega$
+    $(1+1) \dot \omega = 2 \dot \omega = \omega \neq 1 \dot \omega + 1 \dot \omega = \omega + \omega$
+    $1 + \omega = \omega = 2 + \omega$ but $1 \neq 2$
+
+    \emph{Note:} We can prove these i n a couple ways.
+    Transfinite induction (later).
+    Comparing Order Types.
+
+    \underline{Ex: } Show multiplicaiton is associative:
+    $ (\alpha \dot \beta) \dot \gamma = \alpha \dot (\beta \dot \gamma)$
+    \begin{proof}
+        Find order-preserving bijection between two orderings.
+        $\alpha \dot \beta = type(\beta \times \alpha, <_{lex})$
+        $(\alpha \dot \beta) \dot \gamma = type(\gamma \times (\beta \times \alpha), <_{lex})$
+        $a_1, a_2 \in \alpha b_1, b_2 \in \beta c_1,c_2 \in \gamma$
+        $\langle c_1 \langle b_1, a_1 \rangle \rangle R < \langle c_2, \langle b_2,a_2 \rangle \rangle$
+        $\iff c_1 < c_2 \vee ( c_1 = c_2 \wedge \langle \langle b_1, a_1 \rangle <_{lex} \langle b_2, a_2 \rangle ))$
+        $iff c_1 < c_2 \vee ( c_1 = c_2 \wedge (b_1 < b_2 \vee (b_1 = b_2 \wedge a_1 < a_2)))$
+        R corresponds to $(\alpha \dot \beta) \dot \gamma$
+        Now $\alpha \dot (\beta \dot \gamma) = type ((\beta \times \gamma, <_{lex})\times \alpha, <_{lex})$
+        $\langle \langle c_1,b_1\rangle,a_1\rangle S \langle\langle c_2,b_2,\rangle a_2\rangle$
+        $iff (\langle c_1,b_1\rangle <_{lex})$ \dots etcetera
+
+        (*) $\langle c_1,\langle b_1, a_1 \rangle \rangle R \langle c_2, \langle b_2, a_2 \rangle \rangle$
+        $\iff \langle \langle c_1, b_1 \rangle , a_1 \rangle S \langle \langle c_2, b_2 \rangle , a_2 \rangle$
+
+        Let $f : \gamme \times (\beta \times \alpha) \rightarrow (\gamma \times \beta) \times \alpha$
+        be defined by:
+        $f(\langle c, \langle b, a \rangle \rangle) = \langle \langle c, b \rangle , a \ranlge$
+        f is a bijection.
+        f is order-preserving i.e. * from above
+        shows $\langle c_1, \langle b_1, a_1 \rangle \rangle R \langle c_2, \langle b_2, a_2 \rangle \rangle$
+        $\iff f(\langle c_1, \langle b_1, a_1 \rangle \rangle) S f(\langle c_2, \langle b_2, a_2 \rangle \rangle )$
+    \end{proof}
+
+    \subsection{Induction and Recursion on the Ordinals}
+    \underline{induction:} used to prove statements.
+    \underline{recursion:} used to define functions.
+
+    \underline{Ex: } (natural numbers).
+    Prove with induction that $\sum{i=1}{n} i = \frac{n(n+1)}{2}$
+    $n=0 0=0$
+    assume $\sum{i=1}{n} = \frac{n(n+1)}{2}$
+    show $\sum{i=1}{n+1} = \frac{(n+1)(n+2)}{2}$
+
+    define $n!$ by recursions
+    $0! = 1$
+    $(n+1)! = (n+1) \dot n!$
+
+    \underline{\textbf{Theorem} Transfinite Induction on ON}
+    For each formula $\varphi (x)$ if $\varphi(\alpha)$ holds for some ordinal $\alpha$, then there is a least ordinal $\xi$ so that $\varphi(\xi)$ holds
+
+    \emph{Note: } We can replace \" holds \" by \" fails \"
+    \begin{proof}
+        Fix $\alpha$ sp that $\varphi(alpha)$ holds
+        Let $x = \set{\xi \in \alpha : \varphi(\xi)}$
+        If $ x = \emptyset$ then $\alpha$ is the least ordinal with $\varphi(\alpha)$
+        If $x \neq \emptyset$ then $x$ has an $\in$-least elements $\xi$, which is the least ordinal with $\varphi(\xi)$
+        \end{proof}
+
+    \underline{Corr} Suppose $\varphi(\x)$ satisfies:
+    (*) $\forall a \in ON (( \forall \beta < \alpha \varphi(\beta)) \rightarrow \varphi(\alpha))$
+    Then $\varphi(\alpha)$ holds for every $\alpha \in ON$
+
+    \begin{proof}
+        If $\varphi(\alpha)$ fails for some $\alpha$ then there is a least $\alpha$ so $\varphi(\alpha)$ fails.
+        Then $\forall \beta < \varphi(\alpha)$
+        So by (*) we have $\varphi(\alpha)$ holds, a contradiction
+        \end{proof}
+
+    \emph{Note: } Odten we split (*) into cases
+    $\alpha = 0$
+    $\alpha = S(\beta)$ show if $\varphi(\alpha)$ holds then $\varphi(S(\beta))$ holds.
+    $\alpha = \lambda$ is a limite: Show if $\varphi(\beta)$ holds for all $\beta < \alpha$ then $\varphi(\alpha)$ holds.
+
+    \underline{Ex: } Show for every $\alpha \in ON$
+    There are unique $\lambda$ and $n$ so that either $\lambda = 0$ or $\lambda$ is a limit ordinal.
+    n is a natural number, and $\alpha = \lambda + n$
+    prove by transfinite induction
+    \begin{proof}
+        base case:
+        $\alpha = 0 = 0 + 0$
+        So $\lambda = 0$ and $n = 0$
+        case:
+        $\alpha = S(\beta)$ Assume $\beta = \lambda + n$ some unique $\lambda$ and $n$
+        $S(\beta) = \lambda + n + 1 = \lambda + S(n)$, $S(n)$ is a natural number.
+        case:
+        $\alpha = \lambda$ is a limit ordinal
+        $\alpha = \lambda + 0$ 0 is a natural number.
+        \end{proof}
+
+    \underline{Transfinite Recursion on ON}
+    We want to define funcitons on ON.
+    we mean to find a formula $\varphi(x,y)$ so that $\forall x \exists! y \varphi(x,y)$.
+    We can define $G(x) = !y \varphi(x,y)$ (not literallt a function)
+    For any ordinal $\xi$ $G \upharpoonright \xi$ is a function (G restricted to xi)
+
+    \underline{\textbf{Theorem} Primitive Recursion on ON}
+    Suppose $\varphi(x,y)$ is a formula so that $\forall x \exists! y \varphi(x,y)$.
+    Let $G(s) = $ the unique $y$ with $\varphi(s,y)$.
+    We can define a formula $\psi(x,y)$ so that
+    (1) $\forall x \exists! y \psi(x,y)$
+    (2) $\forall \xi \in ON F(\xi) = G(F \upharpoonright \xi)$ where $F(\xi)$ is the unique $y$ with $\psi(\xi, y)$
+
+    \underline{Ex: } Fix an ordinal $\alpha \in ON$
+    Define $E_\alpha(\beta) = \alpha^\beta$
+    Let $\varphi(x,y)$ be :
+    ($x$ is not a function with $dom(x) \in ON \wedge y = 0 ) \vee$
+    ($x$ is a function with $dom(x) = \xi \in ON \wedge$
+    $((\xi = 0 \wedge y=1)) \vee (\exists \beta (\xi = S(\beta) \wedge y = x(\beta) \dot \alpha) \vee (\xi is a limit ordinal \wedge y = \set{x(\beta) : \beta < \xi})))$ (?)
+
+    Then there is a formula $\psi(x,y)$ so that setting $F(\xi) = G(F \upharpoonright \xi)$ where $G(x) = !y$ with $\varphi(x,y)$ (x is a function)
+    Then $F(\xi) = \alpha^\xi$ as we defined earlier $E_\alpha(\xi)$
+
+    \emph{Note: } $F \upharpoonright \xi$ will be a function and equals $\set{\langle \beta ,F(\beta) \rangle : \beta < \xi}$ a function with domain $\xi$
+
+
+    \section{Feb 13}
+    \underline{\textbf{Theorom:} Primitive Recursion on ON}
+    (See slides)
+    \begin{proof}
+        For $\delta \in ON$ let $App(\delta,h)$ be the formula that says that $h$ is a $\delta$-approximation to $F$, i.e.
+        $h$ is a funciton
+        $dom(h)=\delta$
+        $h(\xi)=G(h \upharpoonright \xi)$ for all $\xi < \delta$
+        where $G(s)$ is the unique $y$ with $\varphi(s,y)$
+
+        Let $\psi (x,y)$ be: $(x \notin ON \wedge y = \emptyset) \vee (x \in ON \wedge \exists \delta > X \exists h(App(\delta,h) \wedge h(x) = y))$.
+        (We need to see that there are enough of the approximiation and that if we have diff approxes that go up to different things, we need ot see that hey agree?
+        that for every x there is a unique y so that psi of x,y.)
+
+        Need to see that this $\psi$ works.
+        Verify $\forall x \exists! y \psi(x,y)$.
+
+        \underline(Show two claims:)
+        \underline{Claim(unique)}: $(\delta \leq \delta` \wedge App(\delta,h) \wedge App(\delta`,h`)) \rightarrow h=h` \upharpoonright \delta$
+        \underline{Claim(Exist)}: $\forall \delta \exists h App(\delta,h)$
+
+        Granting these two claims:
+        We have $\forall x \exist! y \psi(x,y)$.
+        Given $\xi \in ON$ let $\delta > \xi$ and let $h$ be the unique function with $App(\delta,h)$.
+        Then $F \upharpoonright \delta = h$ so $F \upharpoonright \xi = h \upharpoonright \xi$.
+        So $F(\xi) = h(\xi) = G(h \upharpoonright \xi) = G(F \upharpoonright \xi)$.
+        as wanted so we need to verify these two claims.
+
+        \underline{Proof of claim(u)} using transfinite induction
+        Assuming $\delta \leq \delta` \wedge App(\delta,h) \wedge App(\delta`,h`)$ that $h(\xi)=h`(\xi) \forall \xi < \delta$
+        (doing this by induction on $\xi$)
+        Suppose not (there cant be a least failure)
+        Let $\xi$ be the least element of $\set{\alpha < \delta : h(a) \neq h`(\alpha)}$ (want this to be empty)
+        Then $h \upharpoonright \xi = h` \upharpoonright \xi$.
+        Hence $h(\xi) = G(h \upharpoonright \xi) = G(h` \upharpoonright \xi) = h`(\xi)$
+        since $App(\delta,h)$ and $App(\delta`,h`)$
+        contradiction $\xi$ satisfied $h(\xi) \neq h`(\xi)$
+
+        \underline{Proof of claim(e)} (also by transfinit induction)
+        Show $\forall \delta \exists h App(\delta,h)$
+        Suppose not and let $\delta \in ON$ be least so that $\neg \exists h App(\delta,h)$
+
+        Three Cases:
+        $\delta = 0$ is impossible since $App(0,\emptyset)$
+
+        $\delta = S(\beta)$ for some $\beta$.
+        There is $g_{\beta}$ so that $App(\beta,g_{\beta})$.
+        Let $f = g_{\beta} \cup \set{\langle \beta, G(g_{\beta})}$
+        Notice $g_{\beta} = f \upharpoonright \beta$ so $f(\beta) = G(g_{\beta}) = G(f \upharpoonright \beta)$.
+        So $f(\xi) = G(f \upharpoonright \xi)$ for all $\xi < S(\beta) = \delta$
+        Hence $App(\delta,f)$ holds, contradicting that $\neg \exists h App(\delta,h)$
+
+        $\delta$ is a limit ordinal.
+        For all $\beta < \delta$ there is a unique $g_{\beta}$ with $App(\beta,g_{\beta})$ since claim(u) holds.
+        Let $f = \bigcup \set{g_{\beta} : \beta < \delta}$
+        Because of claim(u), $f$ is a function. (unique valued determined)
+        $dom(f) = \delta$
+        Since for every $\xi < \delta$ there is a $\beta$ with $\xi < \beta < \delta$ ($\delta$ is a limit ordinal)
+        $f(\xi) = g_{\beta}(\xi) = G(g_{\beta} \wedge \xi) = G(f \upharpoonright \xi)$.
+        Hence $App(\delta,f)$ contradiction.
+
+        \end{proof}
+
+
+    \textbf{Def:} For $\alpha \in ON$ an \underline{$\alpha$-sequence} is a fucntion with domain $\alpha$.
+    Write $S_{\beta}$ for $S(\beta)$ for $\beta < \alpha$ and $S$ is an $\alpha$-sequence.
+
+    \underline{Ex:} $\alpha = \omega$ $S_0,S_1,S_2, \dots$
+
+    \textbf{Def:} Let $\bigcup^0 x = x$
+    $\bigcup^{n+1} x = \bigcup \bigcup^n x$ for $n \in  \omega$
+    The \underline{transitive closure} of $x$, $trcl(x)$ or $TC(x)$, as
+    $TC(x) = \bigcup \set{\biccup^n x : n \in \omega}$
+
+    \underline{Ex:} $ x = \set{\set{\emptyset,}\set{\set{\emptyset}}}$
+    $\bigcup^0 x = x$
+    $\bigcup^1 x = \set{\emptyset,\set{\set{\emptyset}}}$
+    $\bigcup^2 x = \emptyset \cup \set{\set{\emptyset}} = \set{\set{\emptyset}}$
+    $\bigcup^3 x = \set{\emptyset}$
+    $\bigcup^4 x = \emptyset$
+    $\biccup^n x = \emptyset$ for all $n > 4$
+    $TC(x) = \set{\emptyset , \set{\set{\emptyset}},\set{\emptyset}}$
+
+    \underline{Lemma:}
+    (1) $x \subseteq TC(x)$
+    (2) $TC(x)$ is a transitive set
+    (3) $TC(x)$ is the smallest transitive set $t$ with $x \leq t$
+    (4) If $y \in x$ then $TC(y) \subseteq TC(x)$
+
+    \begin{proof}
+    (1) True since $x = \biccup^0 x \subseteq TC(x)$
+    (2) If $y \in TC(x)$ then there is $n \in \omega$ with $y \in \bigcup^n x$ so $y \subseteq \bigcup \bigcup^n x$
+        So $y \subseteq \biccup ^n+1 x \subseteq TC(x)$.
+        So $TC(X)$ is transitive.
+    (3) Suppose $x \subseteq t$ and $t$ is a transitive set.
+        Suppose for contradiction $TC(x) \nsubseteq t$.
+        Let $n$ be least so that $\biccup^n x \nsubseteq t$.
+        $n \neq 0$ since $x \subseteq t$ $x=\biccup^0 x$.
+        So $n=k+1$ for some $k$.
+        if $y \in \biccup^n x$ then $y \in \biccup^{k+1} x = \bigcup \bigcup^k x$.
+        So there is $z \in \bigcup^k x$ with $y \in z$.
+        $\bigcup^k x \subseteq t$ since $n$ was least.
+        So $y \in z \in \bigcup^k x \subseteq t$.
+        $t$ is transitive so $y \in t$.
+        Hence $\biccup^n x \subseteq t$ contradiction.
+        Hence $t$ is the smallest transitive set with $x \subseteq t$.
+    (4) Holds since if $y \in x$ then $\bigcup^n y \subseteq \bigcup^{n+1} x$ for all $n \in \omega$.
+        So $TC(y) \subseteq TC(x)$.
+    \end{proof}
+
+
+    \subsection{Power Sets}
+    Want to see that we can collect all subsets of a given set.
+    This will allow us to build "bigger" sets in terms of cardinality.
+
+    \textbf{Axiom 8: Power Set Axiom}
+    $\forall x \exists y \forall z (z \subseteq x \rightarrow z \in y)$
+
+    \textbf{Def:} The \underline{power set} of a set $x$ is $\mathcal{P}(x) = \set{z : z \subseteq x}$
+
+    \underline{Ex:} $x = \set{0,1,2}$ then $\mathcal{P} = \set{\emptyset, \set{0}, \set{1}, \set{2}, \set{0,1}, \set{0,2}, \set{1,2}, \set{0,1,2}}$
+
+    \emph{Note:} If x is a finite set with $n$ elements then $\mathcal{P}(x)$ has $2^n$ elements.
+
+    \underline{Ex:} $\mathcal{P}(\omega)$ is the set of all sets of natural numbers.
+
+    \emph{Note:} If $f : A \rightarrow B$ is a function then $f \subseteq A \times B$ so $f \in \mathcal{P}(A \times B)$.
+    So we can make the following definitions.
+
+    \textbf{Def:} $B^A$ or $\prescript{A}B$ is the set of all functions $f$ with $dom(f) = A$ and $ran(f) \subseteq B$
+
+    \emph{Note} $B^A \subseteq \mathcal{P}(A \times B)$
+
+    \emph{Note: } When $A$ and $B$ are ordinals, this is not the same as ordinal exponentiation.
+    In this case usually write $\prescript{\beta}\alpha$ for functions $f : \beta \rightarrow \alpha$ different from the ordinal $\alpha^{\beta}$
+
+    \underline{Ex: } Ordinal exponentiation $\omega^{\omega} = \omega \dot \omega \dot \omege \dots = Sup(n < \omega) \omega \dot \omega \dots \omega$ (n times)
+    $\prescript{\omega}\omega = $ all functions $f : \omega \rightarrow \omega$
+
+    \textbf{Def:} When $\alpha$ is an ordinal,. $A^{<\alpha} = \bigcup(\xi < \alpha) A^{\xi}$
+    this is the set of all sequences of elements of A of length $<\alpha$.
+
+    \underline{Ex: } $A^{<\omega}$ is the set of all finite sequences of elements of A.
+
+    \textbf{Def: } For $a_0,a_1,\dots,a_{m-1} \in A$ we write $(a_0,a_1,\dots,a_{m-1})$ for the sequence of length $m$ $S$ with $S \in A^m$ with $S(i) = a_i$ for $i<m$.
+
+    \emph{Note: } Direct product can be justified using poer set axiom without needing replacement axiom.
+
+
+    \section{Feb 18}
+
+    \underline{Cardinality}
+
+    \defn $X \preceq Y$ if there is an injection $f: X \rightarrow Y$.
+    $X \approx Y$ if there is a bijection if $X \leftrightarrow Y$.
+    $X \prec Y$ if $X \preceq Y$ but $Y \neq X$.
+
+    \underline{Ex: } $\omega \approx \omega + 1 = \omega \cup \set{\omega}$
+    $f(0) = \omega$
+    $f(n) = n-1$ for $n \geq 1$
+
+    \underling{Ex: } $\omega \approx \omega + \omega$
+    $f(2n) = n$
+    $f(2n +1) = \omega + n$ for $n \in \omega$
+
+    \underline{Ex: } $\omega \times \omega \approx \omega$
+    $f(n,m) = \frac{(n+m)(n+m+1)}{2} + n$
+    they have the same cardinality
+
+    (see graph in slides)
+
+    \underline{Ex: } $\mathbb{P}(\mathbb{N}) \preceq \mathbb{R}$
+    for $A \leq \mathbb{N} f(A) = \sum{n \in A} \frac{1}{3^n}$
+
+    \underline{Ex: } $\mathb{R} \preceq \mathbb{P}(\mathbb{N})$
+    Let $\langle q_n : n \in \omega \rangle$ enumerate $\mathbb{Q}$
+    Let $f(x) = \set{\n \in \mathbb{N} : q_n < x}$
+    If $x \neq y$ there is some $q_n$ with either $x < q_n < y$ or $y < q_n < x$
+    So either $n \notin f(x) n \in f(y)$ or the opposite, so $f(x) \neq f(y)$
+
+    \underline{\textbf{Question}} is there a bijection between $\mathbb{R}$ and $\mathbb{P}(\mathbb{N})$?
+
+    \underline{Lemma: }
+    (1) $\preceq$ is transitive
+    (2) If $X \subseteq Y$ then $X \preceq Y$
+    (3) $\approx$ is an equivalence relation
+
+    \input{notes-part2}
 
 \end{document}
 
