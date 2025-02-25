@@ -298,8 +298,144 @@ cardinal exponentiation will be different than ($2^omega = 2 \dot 2 \dots = \ome
     if $max(\xi_1,\xi_2) < max(\eta_1,\eta_2)$ \vee
     $[max(\xi_1,\xi_2) = max(\eta_1,\eta_2) \wedege max(\xi_1,\xi_2) <_{lex} max(\eta_1,\eta_2)]$
     (diagram in slides).
-    $\triangleleft$ is different thean $<_{lex}$
+    $\triangleleft$ is different than $<_{lex}$
+
+    \section{Feb 25}
+    want to show $\triangleleft$ is a well-ordering on $ON \times \ON$ so rthat $type(\kappa \times \kappa, \triangleleft) = \kappa$ for $\kappa \subseteq \omega$ a cardinal.
+
+    Straightforward to show $\triangleleft$ is a well-ordering of $ON \times ON$ (in the sense that $\in$ well-orders $ON$)
+
+    Let $S \subseteq ON \times ON$ let $type(S) = type(S, \triangleleft \upharpoonright S \times S)$
+
+    \underline{Ex:} $type(omega \times \omega) = \omega$ (drawing in slides, the weird moving around where max element is limit)
+    Now for $type(\omega + 1 \times \omega + 1) = \omega \cdot 3 + 1$ (similar at first during omega. final pair is omega,omega)
+
+    Show $type(\kappa \times \kappa) = \kappa$
+    Suppose not and let $\kappa$ be the least infinite cardinal so that $\delta=type(\kappa \times \kappa) \neq \kappa$
+    If $\alpha < \kappa$ is an ordinal then $|\alpha \times \alpha| < \kappa$
+    Let $F : \delta \leftrightarrow \kappa \times \kappa$ be the isomorphism $(\delta ; \in)$ to $(\kappa \times \kappa, \triangleleft)$
+    If $\delta > \kappa$ let $(\xi_1, \xi_2) = F(\kappa)$ (dis)
+    Let $\alpha = max(\xi_1,\xi_2) + 1 < \kappa$ since $\kappa$ is a limit ordinal.
+    $F``\kappa$ (image of kappa under F) is a subset of $\alpha \times \alpha$ from definition of $\triangleleft$
+    So $\kappa \preceq \alpha \times \alpha \prec \kappa$ (injection in to alpha x alpha)
+    Contradiction.
+    If $\delta < \kappa$ then $\kappa \npreceq \kappa \times \kappa \approx \delta \prec \kappa$ another contradiction
+    So $\delta = \kappa$
+\end{proof}
 
 
+Ordinal arithmetic doesnt increase cardinality for infinite cardinals
+
+\underline{Question} Is every set well-orderable?
+Alot are but not simple to show.
+
+ZF e.g.\ ($\neg$ AC) does not prove that every set is well-orderable.
+
+\subsection{Axiom 9: Axiom of Choice}
+$\forall F [[\emptyset \notin F \wedge \forall x ,y \in F (x \neq y \rightarrow x \cap y \neq \emptyset)]$
+(F is a family fo disjoint non-empty sets)
+$\rightarrow \exists C \forall x \in F \exists! y (y \in C \cap X]$
+(there is a choice set for F)
+(dis)
+
+\dfn For a family F of sets, a \underline{choice set} for F is a set C so that $C \cap X$ is a singleton for each $X \in F$
+
+\emph{Note:} If ,e.g., UF is well-orderable (example of getting AC from well-orderable)
+We don't need AC to find a choice set.
+
+We want to see various other statements follow from and are equivalent to AC.
+
+\underline{Lemma}
+AC implies: if there is a surjection $f: A \twoheadrightarrow B$ then there is an injection $g: B \hookrightarrow A$
+
+\begin{proof}
+    Let $F = \set{f^{-1}(\set{b}): b \in B}$ (dis)
+    F is a family of disjoint of non-empty sets.
+    AC implies there is a choice set C for F so that $C \cap f^{-1}(\set{b})$ is a singleton for each $b \in B$
+    Define $g: B \hookrightarrow A$ by $g(b) = $ the unique element of $C \cap f^{-1}(\set{b})$
+
+\end{proof}
+
+\dfn We say two statements are $\Phi$ and $\Psi$ are \underline{equivalent in ZF} if
+$ZF + \Phi$ proves $\Psi$ and $ZF+\Psi$ proves $\Phi$
+
+\underline{Theorem} The following are equivalent in ZF:
+(1) Axiom of Choice
+(2) Every family of non-empty sets has a choice function.
+(2`) The direct product of any family of non-empty sets  is non-empty.
+(2``) Every set has a choice function.
+(3) Every set is well-orderable.
+(4) $\forall x \forall y (x \preceq y \vee y \preceq x)$.
+(5) Tukey's Lemma.
+(6) The Hausdorf maximality principal.
+(7) Zorn's Lemma.
+
+\dfn Let F be a family of non-empty sets.
+A \underline{choice funciton} for F is a function g with $dom(g) = F$ and so $g(x) \in x$ for ecah $x \in F$
+
+\dfn A choice function for a set X is a choice function fro the family $F = \mathcal{P}(x) \setminus\set{\emptyset}$
+
+\dfn For a family of sets F the \underline{direct product} of F, $\Pi F$ consists of all function whose $dom(f) = F$ and $f(x) \in X$ for all $x \in F$
+
+\underline{Ex: } $\Pi \set{X, Y} = $ all function f where $dom(f) = \set{X,Y}$ with $f(z) \in Z for z \in \set{X,Y}$
+i.e.\ $f(x) \in X f(y) \in Y$
+$f = \set{\langle X, f(x) \rangle,\langle y, f(y) \rangle} \approx \langle f(x), f(y) \rangle$
+There is a natural bijection betwwn this and $X \times Y$
+
+\define{\RR}{\mathbb{R}}
+
+\underline{Ex:} For $x \in \RR$ let $[x] = \set{y \in \RR : y-x \in \mathbb{Q}}$
+Let $F = \set{[x] : x \in \RR}$
+F is a family of disjoint non-empty sets.
+Let C be a choice set for $\neq$.
+C contains exactly one element from each $[x]$.
+Known as a Vitali set.
+No explicitly definable such set.
+
+\textbf{\underline{Thm}} $(1) \leftrightarrow (2) \leftrightarrow (2`) \leftrightarrow (2``)$
+\begin{proof}
+$(1) \implies (2)$ Let F be a family of non-empty sets.
+    Show F has a chocie function.
+    Let $A = \set{\set{x} \times X : X \in F}$
+    A is a family of non-empty sets disjoint sets.
+    Using AC there is a choice set for A.
+    $C \cap \set{x}\times X$ is a singleton $\langle x, y \rangle$ with $y \in X$ for each $x \in F$.
+    C is a function since for each $x \in F$ there is a unique y with $\langle x, y \rangle \in C$.
+    $dom(X) = F$
+    $f(x) \in X$ for each $x \in F$
+    Hence C is a choice function for F.
+$(2) \leftrightarrow (2`)$ is immediate just in different terminology.
+    elements of $\Pi F$ are exactly the choice functions for F.
+$(2) \implies (2``)$ Let X be a set.
+    Show there is achocie fucntion for x, i.e. a choice function for $F = \mathcal{P} \setminus \set{\emptyset}$.
+    immediate from $(2)$.
+$(2``) \implies (1)$ Let F be a family of disjoint non-empty sets.
+    Show that there is a choice set for F.
+    Let $A = \bigcup F$
+    By (2``) there is a choice funciton for $A: g : \mathcal{P}\setminus \set{\emptyset} \rightarrow A$.
+    $g(x) \in X$ for $x \in \mathcal{P}(A)\setminus \set{\emptyset}$
+    Let $C = \set{g(x) : x \in F}$
+    $C \cap X$ is a singleton for each $X \in F$.
+    So C is a choice set for F.
+\end{proof}
+
+\textbf{\underline{Thm}} AC is equivalent to "every set is well-orderable".
+\begin{proof}
+    Show for any set $A$ that A is well-orderable $\iff$ there is a choice function for $\mathcal{P}(A) \setminus \set{\emptyset}$
+    $\implies$ Let R be a well-ordering of A.
+    Define $g$ by $g(x) = R-least$ element of x for $x \in \mathcal{P}(A)\setminus \set{emptyset}$.
+    So g is a choice function for $\mathcal{P}(A) \setminus \set{\emptyset}$.
+    $\impliedby$ Let g be a choice function for $\mathcal{P}(A) \setminus \set{\emptyset}$.
+    Show A is well-orderable (by bijection with an ordinal).
+    Let $\kappa = \aleph(A)$ (i.e.\ $\kappa$ is athe least cardinal with $k \neq A$)
+    Let S be any set $S \notin A$. "stop".
+    Let $f: \kappa \rightarrow A \cup \set{S}$ be defined by transfininte induction.
+    $f(\alpha) = $ \begin{cases} $g(A \setminus \set{f(\xi) : \xi < \alpha})$  $\alpha < \kappa$\\ S \text{otherwise} \end{cases}
+    Note if $\alpha < \beta$ and $f(\beta) \neq S$ then $f(alpha) \neq S$ and $f(\alpha) \neq f(\beta)$
+    Note $\kappa \npreceq A$ there is some least $\alpha < \kappa$ with $f(\alpha) = S$.
+    But then $\set{f(\xi) : \xi < \alpha} = A$
+    and $f \upharpoonright \alpha : \alpha \leftrightarrow A$
+    So $\alpha \approx A$ so A is well-orderable.
+    \end{proof}
 
 %\end{document}
