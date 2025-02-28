@@ -1,0 +1,149 @@
+% Math 402/502 Homework
+
+
+
+\documentclass[11pt]{amsart}
+
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsopn}
+\usepackage{amsthm}
+
+\def\bbN{{\mathbb N}}
+\def\bbR{{\mathbb R}}
+\def\bbQ{{\mathbb Q}}
+\def\bbZ{{\mathbb Z}}
+\def\bbF{{\mathbb F}}
+\def\bbE{{\mathbb E}}
+\def\bbP{{\mathbb P}}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+
+\DeclareMathOperator{\type}{type}
+\DeclareMathOperator{\TC}{TC}
+\newcommand{\leftsuperscript}[2]{{\vphantom{{#1}}}^{#2}{#1}}
+
+\usepackage{bbold}
+
+
+\newcommand{\hint}[1]{{\small \em \noindent [Hint: #1]}}
+
+
+\begin{document}
+
+\begin{center}
+{\Large Math 402/502 Homework 6 -- due Friday, February 28}
+\ \\
+\end{center}
+
+\ \\
+ 
+ \begin{enumerate}
+
+\item A set $X$ is  \emph{finite} if $X \preccurlyeq n$ for some $n \in \omega$; a set if \emph{infinite} if it is not finite. A set $X$ is \emph{Dedekind infinite} if there is an injection from $X$ into a proper subset of itself, i.e., there is $Y \subseteq X$ with $Y \neq X$ such that $X \preccurlyeq Y$. A set is {\it Dedekind finite} if it is not Dedekind infinite.
+
+\ 
+\begin{enumerate}
+\item Show that if $X$ is Dedekind infinite, then $X$ is infinite.
+We have $X \preceq Y \text{and} Y \subset X$.
+To show that $X$ is infinite we will show that $X \npreceq n$ for some $n \in \omega$.
+Let us assume that $X$ is finite so $X \preceq n$ for some $n \in \omega$.
+Since $Y \subset X$ and $X$ is finite than so is $Y$.
+However if $Y$ is finite then $Y \preceq m$ for some $m \in \omega$.
+and since $Y \subset X$ then $m < n$ and $Y \prec X$
+Leading to a contradiction as $X$ is Dedekind infinite.
+So $X$ is infinite.
+
+\vfill
+\item Show that $\omega$ is Dedekind infinite.
+The definition of Dedekind infinite is that there is an injection from $X$ into a proper subset of itself.
+In this case we can take the function $f: \mathbb{N} \rightarrow \mathbb{N}\setminus \set{0}$ i.e. $f(x) = x+1 \forall x \in \omega$.
+This function is injective and maps $\omega$ to a proper subset of itself.
+$f(n) = f(m) \forall n,m \in \omega$ implies that $n = m$.
+Therefore $\omega$ is Dedekind infinite.
+
+\vfill
+\item Show (without using the Axiom of Choice) that $X$ is Dedekind infinite if and only if $\omega \preccurlyeq X$.
+$\implies$: If $X$ is Dedekind infinite then there exists some $a \in X\setminus Y : Y \subset X \preceq Y$.
+We can define $X$ recursively as $x_0 = a$ and $x_{n+1} = f(x_n) \forall n \in \omega$.
+Here $a \notin Y$ and $f(x_n) \in Y \forall n \geq 1$
+And if $0<i<j$ then if $x_i = x_j$ implying $f(x_{i-1}) = f(x_{j-1})$ implying $x_{i-1} = x_{j-1}$
+But this gives us $x_1 = x_{j-i+1}$ implying $x_0 = x_{j-1}$ which is a contradiction.
+Therefore we can define some function $g: \omega \rightarrow X$ implying $\omega \preceq X$.
+$\impliedby$: If $\omega \preceq X$ then there exists some function $g: \omega \rightarrow X$.
+Let $A = g(\omega)$
+We can define $f: X \rightarrow X$ for $x = g(n) \in A$ as $f(x) = g(n+1)$ and for $x \in X \setminus A$ as $f(x) = x$.
+$g(0) \notin ran(f)$ so $ran(f) \subset X$ and $f$ is injective because for $x,y \in X$ either:
+$x,y \in X\setminus A$ then $f(x) = f(y)$ implies $x = y$
+or $x \in A, y \in X \setminus A$ then $f(x)\in A$ and $f(y)=y\notin A$ so $f(x) \neq f(y)$
+or $x,y \in A$ then $f(x) = g(n+1) = f(y) = g(m+1)$ implies $g(n) = g(m)$ implying $n = m$ and $x = y$
+Therefore $f$ is an injection from $X$ to a proper subset of itself and $X$ is Dedekind infinite.
+\vfill
+\end{enumerate}
+
+
+\newpage
+
+\item Show that ordinal arithmetic does not increase cardinality. That is, suppose that $\alpha$ and $\beta$ are ordinals with $2 \leq \alpha$ and $\omega \leq \beta$. Show the following, where the operations are ordinal arithmetic:
+We know if $\alpha \geq \omega$ then $|\omega \times \omega| = |\omega|$.
+Hence, if $\kappa \geq \omega$ is a cardinal, then $\kappa \times \kappa = \kappa$.
+\ 
+\begin{enumerate}
+\item $|\alpha + \beta| = \max(|\alpha|, |\beta|)$
+If $|\alpha| \leq |\beta|$ then $|\alpha + \beta| \leq |\beta + \beta| = |\beta| = max(|\alpha|,|\beta|)$
+and similarly if $|\beta| \leq |\alpha|$ then $\alpha \geq \omega$ so $|\alpha + \beta| \leq |\alpha| = max(|\alpha|,|\beta|)$
+So $|\alpha + \beta| \leq max(|\alpha|,|\beta|)$
+Finally $|\alpha + \beta| \geq max(|\alpha|,|\beta|)$ as $\alpha, \beta$ both $\subseteq \alpha + \beta$
+So $|\alpha + \beta| = max(|\alpha|,|\beta|)$
+\vfill
+\item $|\alpha \cdot \beta| = \max(|\alpha|, |\beta|)$
+Using the definition of $\cdot$ we have $|\alpha \cdot \beta| = |\beta \times \alpha| = |\beta| \cdot |\alpha|$
+For any cardinals $\kappa, \lambda$ we have $\kappa \cdot \lambda = max(\kappa,\lambda)$
+So $|\alpha \cdot \beta| = max(|\alpha|,|\beta|)$
+\vfill
+\item $|\alpha^\beta| = \max(|\alpha|, |\beta|)$
+$|\alpha^\beta| = |\set{f : \beta \rightarrow \alpha}| \leq |\alpha|^{|\beta|}$
+And we have |$\alpha|^{|\beta|} = max(|\alpha|,|\beta|)$
+Then we know $|\alpha^\beta| \geq |alpha|$ and $|\alpha^\beta| \geq |\beta|$
+Hence, $|\alpha^\beta| = max(|\alpha|,|\beta|)$
+\vfill
+\end{enumerate}
+
+\newpage
+
+\item Show that there is an $\aleph$-fixed point, i.e., there is an ordinal $\gamma$ (which is necessarily a cardinal), so that $\aleph_{\gamma} = \gamma$.
+
+\newpage
+
+\item  Suppose $A$ is well-orderable, and there is a surjection $f$ from $A$ onto $B$. Show (without using the Axiom of Choice) that there is an injection $g$ from $B$ into $A$.
+
+\newpage
+
+\item Recall that $\omega_1$ is the least uncountable ordinal. Without using the Axiom of Choice, show that there is a surjection from $\mathcal{P}(\omega)$ onto $\omega_1$.
+
+\ 
+
+\noindent
+{\small [Hint: First, show that $\mathcal{P}(\omega) \times \mathcal{P}(\omega \times \omega) \approx \mathcal{P}(\omega)$, so it suffices to find a surjection from $\mathcal{P}(\omega) \times \mathcal{P}(\omega \times \omega)$ onto $\omega_1$. To show this, consider the set
+\[ W= \{ (X,R) \in \mathcal{P}(\omega) \times \mathcal{P}(\omega \times \omega) : \text{$R$ is a well-ordering of $X$} \} \]
+from the proof of Hartogs' Theorem.] }
+
+
+\end{enumerate}
+
+
+
+\end{document}
