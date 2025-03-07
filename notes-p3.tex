@@ -1,0 +1,473 @@
+%! Author = nathanaelsteven
+%! Date = 2/27/25
+
+\section{Feb 27}
+
+Recall Axiom of Choice: Every family of disjoint non-empty sets has a choice set.
+Equivalent to: Every set is well-orderable.
+
+\textbf{Theorem} AC is equivalent to:
+\[\forall x \forall y (x \preceq y \vee y preceq x)\]
+
+\begin{proof}
+    $\implies$ Every set can be well-ordered so there are cardinal $|x| \approx x$ and $|y| \approx y$
+    Either $|x| \leq |y|$ or $|y| \leq |x|$, so either $x \preceq y$ or $y \preceq x$.
+    $\impliedby$ Given a set $x$ let $\kappa = \aleph(x)$ so $\kappa \npreceq x$
+    Then $x \preceq \kappa$ so x is well-orderable
+\end{proof}
+
+\dfn For $\mathcal{F} \subseteq \mathcal{P}(A)$, say $X \in \mathcal{F}$ is \underline{maximal in $\mathcal{F}$} if x is maximal wirth respect to $\subseteq$
+i.e. $\neg \exists Y (Y \in \mathcal{F} \wedge X \subseteq Y \wedge X \neq Y)$
+
+\underline{EX:} $\mathcal{F} = \mathcal{P}(A)$.
+$X=A$ is the unique maximal element in $\mathbb{F}$
+
+\underline{EX:} $\mathcal{F} \subseteq \mathcal{P}(\omega)$ consists of all finite subsets of $\omega$.
+No maximal element in $\mathbb{F}$
+
+\underline{Ex:} Let $V$ be a vector space $\dim(V) \geq 1$
+Let $\mathcal{F} \subseteq \mathcal{P}(V)$ consist of all linearly independent subsets of $V$.
+$X \in \mathbb{F}$ is maximal iff X is a basis for V.
+Many different maximal elements.
+
+\dfn A family $\mathcal{F} \subseteq \mathcal{P}(A)$ is of \underline{finite character} if for any
+$X \subseteq A$ $X \in \mathbb{F} \iff$ every finite subset of X is in $\mathbb{F}$
+
+\underline{Ex: } $\mathcal{F} = \mathcal{P}(A)$ trivially of finite character
+\underline{Ex: } $\mathcal{F} \subseteq \mathcal{P}(\omega)$ not of finite character
+\underline{Ex: } $\mathcal{F} \subseteq \mathcal{P}(V)$ consists of all linearly independent subsets of $V$ is of finite character
+
+
+\underline{Ex:} Let $K \subseteq \mathbb{R}$ be compact
+Let $A = $ open subsets pf $\mathbb{R}$
+Let $\mathbf{F} = \set{g \in \mathcal{P}(A) : \bigcup g \text{does not cover} K}$
+$\mathcal{F}$ is of finite character
+
+\emph{Note: } If $\mathcal{F}$ is of finite character and $X in \mathcal{F}$ and $Y \subseteq X$ then $Y \in \mathcal{F}$
+
+\dfn \textbf{Tukey's Lemma} Whenever $\mathcal{F} \subseteq \mathcal{P}(A)$ is of finite character and $X \in \mathcal{F}$
+then there is a maximal $Y \in \mathcal{F}$ with $X \leq Y$
+
+\underline{Ex: } Tukey's Lemma implies that any linearly independent set of vectors can be extneded to a basis
+
+\textbf{Thm} AC is equivalent to Tukey's Lemma.
+
+\newcommand{\FF}{\mathcal F}
+\newcommand{\PP}{\mathcal{P}}
+
+\begin{proof}
+    \textbf{$AC \implies TL$}
+    Let \FF $\subseteq$ \PP$(A)$ be of finite character.
+    A can be well-ordered, so let
+    $\kappa = |A|$ anf let $f: \kappa \letrightarrow A$
+    $A = \set{ x_\alpha : \alpha < \kappa}$ where $x_\alpha = f(\alpha)$ for $\alpha < kappa$
+    Define sets $Y_\alpha$ for $\alpha < \kappa$ by transfinite recursion:
+    Given $X \in \FF$, let
+    $Y_0 = X$
+    $Y_{\xi +1} = \begin{cases} Y_\alpha \cup \set{x_\alpha} && if Y_{\alpha} \cup \set{X_\alpha} \in \FF \\ Y_\alpha && otherwise \end{cases}$
+    $Y_\lambda = \bigcup \set{Y_\alpha : \alpha < \lambda}$ for $\lambda$ a limit ordinal.
+    Let $Y =  \bigcup_{\alpha < \kappa} Y_\alpha$
+    Then $X \leq Y$
+    Each $Y_\alpha \in \FF$ because $\FF$ is of finite character.
+    If $Y_{\lambda} \notin \FF$ there is some fininte subset $Z \subseteq Y_\lambda$ with $Z \notin \FF$ there would
+    be some $\alpha < \lambda$ with $Z \subseteq Y_\alpha$ contradicting $Y_\alpha \in \FF$
+    Y is maximal in $\FF$
+    Suppose not, let $Z \in \FF$ with $Y \subseteq Z$ but $Y \neq Z$
+    some element $X \in Z \setminus Y$
+    $X = X_\alpha$ for some ordinal $\alpha$
+    $Y_{\alpha+1} = Y_{alpha} \cup \set{x_\alpha} \in \FF$ subset of Z.
+    Contradicting $x_\alpha \notin Y$
+    \textbf{$TL \implies AC$}
+    Let $\FF$ be a family of disjoint non-empty sets.
+    See ther eis a choice set for $\FF$.
+    Let $A = \bigcup \FF$ and let $\mathcal{G} \subseteq \PP(A)$ consist of all partial choice sets for $\FF$.
+    i.e. $D \in \mathcal{G} \iff D \subseteq \bigcup \FF$ and $|X \cap D| \geq 1$ for all $X \in \FF$
+    Note $\emptyset \in \mathcal{G}$
+    $\mathcal{G}$ is of finite character since $D \in \PP(A)$ and $D \notin \mathcal{G}$ then there is $X \in \FF$ with $|X \cap D| > 1$
+    Let $B \subseteq X \cap D$ contain 2 elements of $X \cap D$ then $B$ si a finite subset of $D$ with $B \notin \mathcal{G}$.
+    By Tukey's Lemma there is a maximal $C \in \mathcal{G}$.
+    Then C is a choice set for $\mathcal{G}$
+    Since if there were $X \in \FF$ with $C \cap X = \emptyset$  then
+    let $z \in X$ then $C \cup \set{z} \in \mathcal{G}$
+    contradicting that C was maximal.
+\end{proof}
+
+\dfn Let < be a strict partial order of a set A.
+Then $C \subseteq A$ is a \underline{chain} if C is totally ordered by <.
+We say that a chain $C \subseteq A$ is a \underline{maximal chain} if there is no chain $D$ with $C \leq D$ and $C \neq D$
+
+\underline{Ex: } $A = \mathbb{N} \setminus \set{0}$ set $n \prec m$ if m is a proper multiple of n.
+$\set{3,6,30}$ is a chain.
+not maximal since $\set{3,6,30,60}$ is a chain with $C \leq D$ and $C \neq D$
+$\set{2^k : k \geq 0}$ is a maximal chain since $n \neq 2^k$ for any $k \geq 0$
+let k so $n < 2^k$ n is not a multiple of $2^k$ and $2^k$ is not a multiple of n
+Hence neither $n \prec 2^k$ not $2^k \prec n$ and $n \neq 2^k$
+So $\set{2^k : k \geq 0} \cup \set{n}$ is not a chain.
+
+\dfn \underline{Hausdorff Maximal Principle}.
+Whenever < is a strict partial order of a set A, there is a maximal chain $C \subseteq A$ with $C \leq A$
+(probably missing stuff)
+
+\dfn \underline{Zorn's Lemma} ?If every chain in a partially ordered set has an upper bound, then there is a maximal element.?
+(missing stuff)
+
+\underline{Ex: } $n < m$ if m is a proper multiple doesn't satisfy (*)
+
+\underline{Ex: } $A = \PP(\omega)$ x<y if $x \subset Y$
+Let C be a chain in A
+Let $Z = \bigcup C$ then Z is an upper bound for C.
+so this satisfies (*)
+
+\textbf{Thm} AC is equivalent in ZF to both Hausdorff Maximality Principle and Zorn's Lemma.
+
+\begin{proof}
+    \textbf{Tukey's Lemma $\implies$ HMP}
+    Given a strict partial order of set A.
+    Let $\FF$ consist of all chains in A.
+    $\FF$ is of finite character.
+    If C is not a chian there are $x,y \in C$ s.t. $x < y, y < x, y \neq x$ then $n=\set{x,y}$ is not a chain
+    By Tukey's Lemma there is a maximal element of $\FF$.
+    i.e. a maximal chain in A.
+    \textbf{HMP $\implies$ Zorn's Lemma}
+    < is a strict partial order of a set A satisfying (*) (every chain has an upper bound)
+    Let $a \in A$
+    Let $A` = \set{\text{all} b \in A \text{with} a \leq b}$
+    Apply HMP to A` and <.
+    We get a maximal chain $C \in A`$.
+    By (*) there is an upper bound b for chain.
+    so $a \leq b$ and b is a maximal element of A` and hence of A.
+    Since if b < d then d is an upper bound for C and b is not maximal.
+    so $C \cup \set{d}$ would be a chain contradicting C is a maximal chain.
+    \textbf{Zorn's Lemma $\implies$ Tukey's Lemma}
+    Let $\FF \subseteq \PP(A)$ be of finite character.
+    Let X < Y if $X \subset Y$.
+    This satisfies (*)
+    Given a chain its union is an upper bound
+    C in $\FF$ since $\FF$ is of finite character.
+    by Zorn's Lemma there is a maximal element w.r.t. <.
+    i.e. a maximal element in $\FF$.
+\end{proof}
+
+\textbf{Thm} (AC) Let $\kappa \geq \omega$ be a cardinal.
+If $\FF$ is a family of sets wtih $|\FF| \leq \kappa$ and $|X| \leq \kappa$ for each $X \in \FF$ then $|\bigcup \FF| \leq \kappa$
+\underline{Cor} the union of countably many countable sets is countable.
+
+\begin{proof}
+    We can assume $\FF \neq \emptyset$ and $\emptyset \notin \FF$
+    Have $f : \kappa \twoheadrightarrow \FF$
+    Using AC we can choose $g_\alpha : \kappa \twoheadrightarrow f(\alpha) \in \FF$
+    well-order $\leftsuperscript{\kappa}{(\bigcup \FF)}$ and let $g_\alpha$ be least with $ran(g_\alpha)=f(\alpha)$
+    Define $h: \kappa \times \kappa \twoheadrightarrow \bigcup \FF$ by
+    $h(a,b) = g_{f(a)}(b)$
+    Proveing $|\kappa \times \kappa| = \kappa$ so there is a surjection for $\kappa$ onto $\bigcup \FF$ so $|\bigcup \FF| \leq \kappa$
+    \end{proof}
+
+\section{March 4th}
+
+\subsection{Cardinal Arithmetic}
+\emph{Note:} We'll be assuming AC throughout.
+Every set can be well ordered.
+$\forall x |x|$ exists i.e. $|x|$ is a cardinal with $|x| \approx x$
+
+Define $\kappa + \lambda, \kappa \cdot \lambda, \kappa^\lambda$
+use boxes to distinguish cardinal arithmetic from ordinal arithmetic.
+
+\dfn For cardinal $\kappa$ and $\lambda$:
+$\kappa + \lambda = | \set{0} \times \kappa \cap \set{1} \times \lambda |$
+similar ot ordinal but now instead of lookign at the order type we look at the cardinality
+
+$\kappa \cdot \lambda = |\kappa \times \lambda|$
+
+\newcommand{\leftsuperscript}[2]{{\vphantom{{#1}}}^{#2}{#1}}
+
+$\kappa^\lambda = |\leftsuperscript{\lambda}{\kappa} $
+The set of all function $f : \lambda \rightarrow \kappa$
+
+\emph{Note:} $2^\omega$ the ordinal $= \sup\set{2^n : n < \omega} = \omega$
+the cardinal = $\leftsuperscript{\omega}{2} = |\PP(\omega)| > \omega$
+
+\emph{Note: } cardinal $\leftsuperscript{0}{0} = | \set{f : \emptyset \rightarrow \emptyset}| = |\set{\emptyset}| = 1$
+
+\textbf{Lemma}
+For Cardinals $\kappa \leq \kappa`$ and $\lambda \leq \lambda`$
+(1) $\kappa + \lambda \leq \kappa` + \lambda`$
+(2) $\kappa \cdot \lambda \leq \kappa` \cdot \lambda`$
+(3) $\kappa^\lambda \leq \kappa`^{\lambda`}$ unless $\kappa = \kappa` = \lambda = 0$
+
+
+    Straightwforward proof, produce injections from the underlying sets.
+    e.g. $f : \kappa \times \lambda \hookrightarrow \kappa` \times \lambda`$
+
+\textbf{Lemma}
+For cardinal $\kappa, \lambda, \theta$
+(1) $\kappa + \lambda = \lambda + \kappa$
+(2) $\kappa \cdot \lambda = \lambda \cdot \kappa$
+(3) ($\kappa \cdot \lambda) \cdot \theta = \kappa \cdot \theta + \lambda \cdot \theta$
+(5) $\kappa^{\lambda \cdot \theta} = \kappa^{\lambda^\theta}$
+(6) $\kappa^{\lambda + \theta} = \kappa^\lambda \cdot \kappa^\theta$
+
+proof: produce bijection
+
+\textbf{Lemma}
+For ordinals $\alpha, \beta$
+(1) $|\alpha + \beta| = |\alpha| + |\beta|$
+(2) $|\alpha \cdot \beta| = |\alpha| \cdot |\beta|$
+
+proof: immediately from the definitions, bijection
+
+\textbf{Lemma}
+For finite ordinals or cardinals
+arithemetic is the same but not for infinite ordinal. i.e. cardinal + equals ordinal +
+
+\textbf{Lemma}
+For cardinals $\kappa, \lambda$ with at least one infinite
+(1) $\kappa + \lambda = \max(\kappa,\lambda)$
+(2) $\kappa \cdot \lambda = \max(\kappa,\lambda)$ if neither 0.
+
+proof: say $\kappa \leq \lambda$ so $\lambda$ is infinite.
+(1) $\kappa + \lambda = |\set{0} \times \kappa \cup \set{1} \time \lambda | \leq |\set{0}\times\lambda \cup \set{1} \times \lambda$ = $|\set{0,1}\times \lambda| \leq |\lambda \times \lambda| = |\lambda| = \max(\kappa,\lambda)$
+(2) similar
+
+\textbf{Lemma}
+For $\kappa$ cardinal
+$2^\kappa = |\PP(\kappa)| > \kappa$
+pf: $f : \kappa \rightarrow 2 \mapsto \set{\alpha < \kappa : f(\alpha) = 1} \in \PP(\kappa)$ gives a bijection
+Cantor's theoremL $|\PP(\kappa)| \npreceq \kappa$ so $|\PP(\kappa)| \nleq \kappa$
+So $|\PP(\kappa)| > \kappa$
+
+Recall $\aleph(\kappa) =$ least cardinal $\lambda$ so that $\lambda \npreceq \kappa$.
+with AC $\aleph(\kappa) = $ least cardinal $> \kappa$
+$\kappa^+ = \aleph(\kappa)$
+$\aleph_0 = \omega$
+$\alpeh_{\alpha + 1} = \aleph_\alpha^+$
+$\aleph_\lambda = \sup\set{\aleph_\alpha : \alpha < \lambda}$ for limit ordinal $\lambda$
+
+\emph{Note: } $2^{\aleph_0}$ is uncountable
+$2^{\aleph_0} > \aleph_0$
+$2^{\aleph_0} \geq \aleph_1$
+ZFC doesn't determine whether or not $2^{\aleph_0} = \aleph_1$
+AC needed to define $2^{\aleph_0}$
+
+\dfn \underline{The Continuum Hypothesis}(CH) is the statement $2^{\aleph_0} = \aleph_1$
+\underline{The Generalized CH} is the statement that for every ordinal $\alpha$ $2^{\aleph_\alpha} = \aleph_{\alpha+1}$
+
+\emph{Note:} CH is independent of ZFC
+
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+
+\emph{Note: } $|\RR| = 2^{\aleph_0}, |\NN| = \aleph_0$
+CH is equivalent to: every set of real numbers is either countable or has the same cardinality as $\RR$
+
+\emph{Note: } Knowing $2^\lambda$ for all infinite $\lambda$ allows us to compute $\kappa^\lambda$ for many other $\kappa$.
+Assuming GCH we can give an explicit formula for $\aleph_\alpha^{\aleph_\beta}$
+
+\textbf{Lemma} If $2 \leq \kappa \leq 2^\lambda$ and assume $\lambda$ is infinite
+then $\kappa^\lambda = 2^\lambda$
+
+pf: $2^\lambda \leq \kappa^\lambda \leq (2^\lambda)^\lambda = 2^{\lambda \cdot \lambda} = 2^\lambda$ so $\kappa^\lambda = 2^\lambda$
+
+What about $\kappa^\lambda$ when $\kappa > 2^\lambda$ ?
+
+\emph{Note: } we will see that under GCH $\aleph_1^0 = \aleph_1, \aleph_5^0 = \aleph_5$
+$\aleph_{\omega_1}^{\aleph_0} = \aleph_{\omega_1}$
+but $\aleph_\omega^{\aleph_0} = \aleph_{\omega + 1}$.
+So what is difference about $\aleph_\omega$ from the others?
+$\aleph_\omega = \sup\set{\aleph_0, aleph_1, \dots , \aleph_n n \in \omega}$
+
+\dfn For a limit ordinal $\gamma$, the \underline{cofinality} of $\gamma$, $cf(\gamma)$ is
+$cf(\gamma) = \min\set{type(x) : x \subseteq \gamma \wedge \sup x = \gamma}$
+
+\emph{Note: } $cf(\gamma) =\min\set{\xi \in ON : \text{there is a function} f : \xi \rightarrow \gamma \text{so that} ran(f) \text{ is unbounded in } \gamma}$
+
+\emph{Note: } $cf(\gamma) \leq \gamma$ for any $\gamma$
+Ex: $cf(\omega) = \omega$
+Ex: $cf(\omega_1) = \omega_1$
+Any countable subset of $\omega_1$ is bounded (supremum is countable)
+
+Ex: $cf(\omega + \omega) = \omega$
+$x = \set{\omega + n : n \in \omega}, type(x) = \omega$
+
+Ex: $cf(\aleph_\omega) = \omega$
+$x = \set{\aleph_n : n \in \omega}, type(x) = \omega$
+
+\dfn $\gamma$ is \underline{regular} if $cf(\gamma) = \gamma$
+A cardinal $\kappa$ is \underline{singular} if $cf(\kappa) < \kappa$
+
+Ex: $\aleph_0, \aleph_1$ are both regular.
+$\aleph_\omega$ is singular.
+
+\textbf{Lemma}
+(1) If $A \subseteq \gamma$ and $\sup(A) = \gamma$ then $cf(\gamma) = cf(type(A))$ (supA equals gamma means A unbounded in gamma?)
+(2) $cf(cf(\gamma)) = cf(\gamma)$ i.e. $cf(\gamma)$ is regular
+(3) $\omega \leq cd(\omega) \leq |\gamma| \leq \gamma$
+(4) If $\gamma$ is regular then $\gamma$ is a cardinal, so $cf(\gamma)$ is a cardinal
+(5) If $\gamma = \aleph_\alpha$ where either $\alpha = 0$ or $\alpha$ is a successor ordinal, then $\gamma$ is regular.
+(6) If $\gamma = \aleph_\alpha$ where $\alpha$ is a limit ordinal then $cf(\aleph_\alpha) = cf(\alpha)$
+
+\begin{proof}
+(1) show $cf(\gamma) = cf(type(A))$
+    Let $\alpha = type(A) \leq \gamma$.
+    $\alpha$ is a limit ordinal since A is unbounded in $\gamma$.
+    Let $f : \alpha \leftrightarrow A$ an isomorphism.
+    show $cf(\gamma) \leq cf(\alpha)$.
+    If $Y \subseteq \alpha$ is unbounded, then $f``Y$ is an unbounded subset of A of the same order type.
+    Hence $f``Y$ is an unbounded subset of $Y$ of the same order type.
+    Consider $Y$ unbounded in $alpha$ of order type $cf(\alpha)$ then $f``Y$ is unbounded subset of $\gamma$ of order type $=cf(\alpha)$
+    So $cf(\gamma) \leq cf(\alpha)$
+    Now show $cf(\alpha) \leq cf(\gamma)$
+    Let $X \subseteq \gamma$ of order type $cf(\gamma)$ (unbounded in $\gamma$)
+    For $\xi \in X$ let $h(\xi) = $ least element of $A \geq \xi$
+    If $\xi < \eta$ then $h(\xi) \leq h(\eta)$
+    Let $X` = \set{\eta \in X : \forall \xi \in X \cap \eta : h(\xi) < h(\eta)}$
+    So $h \upharpoonright X` : X` \hookrightarrow A$ is order-preserving.
+    $h``X`$ is unbounded in A and has order type $\alpha$ so $cf(\alpha) \leq type(X`) \leq type(X) \leq cf(\gamma)$
+
+    \end{proof}
+
+\section{March 6}
+For a limit ordinal $\gamma$, the \underline{cofinality} of $\gamma$, $cf(\gamma)$ is
+$cf(\gamma) = \min\set{type(x):x \subseteq \gamma and \sup x = \gamma}$
+
+Ex: $cf(\aleph_0) = \omega$
+$cf(\aleph_1) = \aleph_1$
+$cf(\aleph_\omega)=\aleph_0$
+
+Last time we proved:
+(1) If $A \subseteq \gamma$ and $\sup(A) = \gamma$ then $cf(\gamma) = cf(type(A))$
+
+Now
+(2) $cf(cf(\gamma)) = cf(\gamma)$, so $cf(\gamma)$ is regular when $cf(\gamma) = \gamma$ (is a lmiit ordinal?)
+pf:
+    Let $A \subseteq \gamma$ be unbounded so $type(A) = cf(\gamma)$
+    Applying (1) $cf(\gamma) = cf(type(A)) = cf(cf(\gamma))$
+
+
+(3) $\omega \leq cf(\omega) \leq |\gamma| \leq \gamma$
+\begin{proof}
+    $\omega \leq cf(\omega)$ because if A is unbounded in $\gamma$ then type(A) can't be a successor ordinal.
+    $|\gamma| \leq \gamma$ is immediate
+    To show $cf(\gamma) \leq |\gamma|$:
+    Let $\kappa = |\gamma|$ (because cardinality of an ordinal we know there is a bijection)
+    Let $f: \kappa \twoheadrightarrow \gamma$ ber a surjection
+    Define by recursion $g : \kappa \rightarrow ON$:
+    $g(\eta) = \max\set{f(\eta), \sup\set{g(\xi) + 1 : \xi < \eta}}$
+    So $g(\eta) \geq f(\eta)$
+    If $\xi < \eta$ then $g(\xi) < g(eta)$
+    So g is an isomorphism from $\kappa$ to $ran(g)$
+    If $A = ran(g) \subseteq \gamma$ of order type $\kappa$ which is unbounded in $\gamma$ since $g(\eta) \geq f(\eta) \forall \eta$ and f is surjective.
+    So $cf(\gamma) \leq type(A) = \kappa$
+    If $ran(g) \nsubseteq \gamma$.
+    So let $\eta$ be the least ordinal < $\kappa$ so $g(\eta) \geq \gamma$
+    $\eta$ will be a limit ordinal, since if $g(\xi) < \gamma$ then $g(\xi) + 1 = \max(f(\xi+1), g(\xi)+1) < \gamma$
+    So $g``\eta$ is unbounded subset of $\gamma$ of order type $\eta < \kappa$
+    So $cf(\gamma) \leq \eta < \kappa$
+
+\end{proof}
+
+(4) If $\gamma$ is regular then $\gamma$ is a cardinal, so $cf(\gamma)$ is always a cardinal
+pf:
+    By (3) $\gamma = cf(\gamma) \leq |\gamma| \leq \gamma$ so $\gamma = |\gamma|$ so $\gamma$ is a cardinal
+
+Recall $\alpeh_0 = \omega, \aleph_{\xi + 1} = \aleph_\xi^+, \aleph_\lambda = \sup\set{\aleph_\xi : \xi < \lambda} \text{ for } \lambda$  is a limit ordinal
+
+(5) If $\gamma = \aleph_\alpha$ where either $\alpha = 0$ or $\alpha$ is a successor ordinal, then $\gamma$ is regular
+\begin{proof}
+    Let $\alpha = \beta + 1$ be a successor ordinal.
+    Suppose $A \subseteq \aleph_{beta+1} $ with $type(A) < \aleph_{\beta + 1}$
+    Then $|A| \leq \aleph_\beta$
+    $\sup(A) = \bigcup A$ is the union of $\leq \aleph_\beta$ sets each of cardinality $\leq \aleph_\beta$
+    So $|\sup(A)| \leq \aleph_\beta < \aleph_{\beta+1}$
+    So A is not unbounded in $\aleph_{\beta + 1}$
+    So $cf(\aleph_{\beta + 1}) = \aleph_{\beta + 1}$
+\end{proof}
+
+(6) If $\gamma = \aleph_\alpha$ where $\alpha$ is a limit ordinal then $cf(\aleph_\alpha) = cf(\alpha)$
+pf:
+    Apply (1) to $A=\set{\aleph_\xi : \xi < \lambda}$
+    So $cf(\aleph_\alpha) = cf(type(A)) = cf(\gamma)$
+
+
+\textbf(Theorem) Let $\Theta$ be a cardinal
+(1) If $\Theta$ is regular and $\mathbb{F}$ is a family of sets with $|\mathbb{F}| < \Theta$ and $|S|<\Theta$ for all $S \in \mathbb{F}$
+then $|\bigcup \mathbb{F}| < \Theta$
+(2) If $\Theta$ is singular (not regular) and $cf(\Theta) = \lambda < \Theta$ then there is a family $\mathbb{F}$ of sets with
+$|\mathbb{F}| = \lambda$ and $|S| < \Theta$ for all $S \in \mathbb{F}$ with $\bigcup \mathbb{F} = \Theta$
+
+\begin{proof}
+(1) Let $X = \set{|S| : S \in \mathbb{F}} \subseteq \Theta$ and $|X| < \Theta$.
+    So $type(X) < \Theta$ hence $\sup(X) < \Theta$ (type has same size as cardinality, then use that theta is regular)
+    Let $\kappa=\ax(\sup(x), |\mathbb{F}) < \Theta$.
+    If $\kappa$ is finite then $\bigcup \mathbb{F}$ is as well.
+    If $\kappa$ is infinite then $|\bigcup \mathbb{F}| \leq \kappa$
+    So $|\bigcup \mathbb{F}| \leq \kappa < \Theta$ in both cases.
+(2) Let $cf(\Theta) = \lambda < \Theta$.
+    Let $\mathbb{F}$ be a subset of $\Theta$ with $type(\mathbb{F}) = \lambda$ and $\sup(\mathbb{F}) = \Theta$
+    Then $|\mathbb{F}| = \lambda$ and $|S| < \Theta$ for all $S \in \mathbb{F}$
+    and $\bigcup \mathbb{F} = \Theta$
+\end{proof}
+
+\textbf{Theorem (Koenig)}
+If $\kappa \geq 2$ and $\lambda$ is infinite then $cf(\kappa^\lambda) > \lambda$
+\underline(corr) $2^\kappa$ for any cardinal $\kappa$
+since $cf(2^\kappa)>\kappa$ and $2^\kappa \geq cf(2^\kappa)$
+
+\begin{proof}
+    Let $\Theta = \kappa^\lambda$ (lambda is infinite so always infinte even when kappa is finite)
+    Then $\Theta > \lambda$ by Cantor's Theorem since $\kappa^\lambda \geq 2^\lambda > \lambda$
+    $\Theta^\lambda = (\kappa^\lambda)^\lambda = \kappa^{\lambda \cdot \lambda} = \kappa^\lambda = \Theta$
+    Enumerate $\leftsuperscript{\lambda}{\Theta} = \set{f_\alpha : \alpha < \Theta}$
+    If $cf(\Theta) \leq \lambda$ then we would have (2)
+    $\Theta = \bigcup(\xi < \lambda) S_{\xi} with |S_\xi| < \Theta$.
+    Can define $g: \lambda \rightarrow \Theta$ by (maybe error here? check slides)
+    $g(\xi) = \min(\Theta \setminus \set{f_\alpha(\xi) : \alpha \in S_\xi})$
+    (diagram in slides, uses diagonalization)
+    (the minned set is not empty because...)
+    Thenfor each $\alpha < \Theta$ $g(\xi) \neq f_\alpha(\xi)$where $\alpha \in S_\xi$
+    Since $g(\xi) \neq f_\alpha(\xi)$ for all $\alpha \in S_\xi$
+    Hence $g \neq f_\alpha$ for any $\alpha < \Theta$
+    Contradiction that $\lambda_\Theta = \set{f_\alpha : \alpha < \Theta}$
+    so $cf(\kappa^\lambda) > \lambda$
+
+\end{proof}
+
+\textbf{Cor} $\kappa^{cf(\kappa)}>\kappa$
+if $\kappa^{cf(\kappa)}\geq cf(\kappa^{cf(\kappa)}) > cf(\kappa)$
+So $\kappa^{cf(\kappa)} \neq \kappa$ in fact is >
+
+Ex:
+$\aleph_\omega ^ {\aleph_0} > \aleph_\omega$
+$\aleph_2 ^ {\alpeh_0} = \aleph_2$ under GCH
+$\aleph_{\omega_1}^{\aleph_0} = \aleph_{\omega_1}$ under GCH
+
+
+(missing stuff)
+
+\textbf{Thm} Assuming GCH. Let $\kappa, \lambda$ be cardinal with $\max(\kappa,\lambda)$ infinite then
+(1) If $2 \leq \kappa \leq \lambda^+$ then $\kappa^\lambda = \lambda^+$
+(2) If $1 \leq \lambda \leq \kappa$ then $\kappa^\lambda =\begin{cases} \kappa & \text{if } cf(\kappa) > \lambda \\ \kappa^+ & \text{if } cf(\kappa) \leq \lambda \end{cases}$
+Note If $\kappa = \lambda$ or $\kappa  = \lambda^+$ then
+overlap $\kappa = \lambda$ (1) $\kappa^\lambda = \lambda^+$ (2) $\kappa^\lambda = \lambda+$
+$\kappa=\lambda^+$ (1) $\kappa^\lambda = \lambda^+$ (2) $= \kappa = \lambda^+$
+
+\begin{proof}
+(1) $\kappa^\lambda > \lambda$ so $\kappa^\lambda \geq \lambda^+$
+    $\kappa^\lambda \leq (\lambda^+)^\lambda = (2^\lambda)^\lambda = 2^\lambda = \lambda^+$
+(2) $1 \leq \lambda \leq \kappa$
+    $\kappa \leq \kappa^\lambda \leq \kappa^\kappa = 2^\kappa = \kappa^+$
+    So $\kappa^\lambda$ is eihter $\kappa$ or $\kappa^+$
+    If $cf(\kappa) \leq \lambda$ then $\kappa^\lambda \geq \kappa^{cf(\kappa)} > \kappa$ so $\kappa^\lambda = \kappa^+$
+    If $cf(\kappa) > \lambda$ then every $f: \lambda \rightarrow \kappa$ is bounded
+    $\leftsuperscript{\lambda}{\kappa} = \bigcup(\alpha<\kappa) \leftsuperscript{lambda}{\alpha}$
+    $\leftsuperscript{\lambda}{\alpha} \subseteq \PP(\lambda \times \alpha)$
+    $|\lambda \times \alpha| < \kappa$
+    So $|\PP(\lambda \times \alpha)| \leq \kappa$ by GCH
+    So $|\leftsuperscript{\lambda}{\alpha}| \leq \kappa$ for $\alpha < \kappa$
+    $|\leftsuperscript{\lambda}{\kappa} \leq \kappa$ so $= \kappa$
+\end{proof}
+
+Ex: $\aleph_\omega^{aleph_{omega}}$ under GCH
+$\kappa = \lambda$
+$=\aleph_\omega^+=\aleph_{\omega+1}$
+(check left super is correct)
