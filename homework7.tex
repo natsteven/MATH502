@@ -1,0 +1,89 @@
+% Math 402/502 Homework
+
+
+
+\documentclass[11pt]{amsart}
+
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsopn}
+\usepackage{amsthm}
+
+\def\bbN{{\mathbb N}}
+\def\bbR{{\mathbb R}}
+\def\bbQ{{\mathbb Q}}
+\def\bbZ{{\mathbb Z}}
+\def\bbF{{\mathbb F}}
+\def\bbE{{\mathbb E}}
+\def\bbP{{\mathbb P}}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+
+\DeclareMathOperator{\type}{type}
+\DeclareMathOperator{\TC}{TC}
+\newcommand{\leftsuperscript}[2]{{\vphantom{{#1}}}^{#2}{#1}}
+
+\usepackage{bbold}
+
+
+\newcommand{\hint}[1]{{\small \em \noindent [Hint: #1]}}
+\newcommand{\note}[1]{{\small \em \noindent [Note: #1]}}
+
+
+\begin{document}
+
+\begin{center}
+{\Large Math 402/502 Homework 7 -- due Friday, March 7}
+\ \\
+\end{center}
+
+\ 
+ 
+ \begin{enumerate}
+
+\item Show that the Axiom of Choice implies that for every relation $R$ there is a partial function $F$ so that $F \subseteq R$ and $\text{dom}(F)=\text{dom}(R)$. 
+
+\note{Such a function is called a {\it selector} for $R$.}
+
+\newpage
+
+\item
+\begin{enumerate}
+\item Show that the Axiom of Choice implies that every infinite set is Dedekind infinite.
+\vfill
+\item It is consistent with ZF that there are infinite sets which are Dedekind finite. Suppose $X$ is such a set, and let 
+\[ Y = \{ A \subseteq X : \text{$A$ is finite}\}.\]
+Show that $Y$ is also infinite and Dedekind finite.
+\vfill
+\end{enumerate}
+
+\newpage
+
+
+\item Show that the Axiom of Choice is equivalent to the statement:
+\begin{quotation}
+For any two sets $X$ and $Y$, there is either a surjection from $X$ onto $Y$ or a surjection from $Y$ onto $X$.
+\end{quotation}
+
+\hint{For one direction, use that AC is equivalent to the analogous statement for injections, and the existence of an injection from $X$ into $Y$ implies a surjection from $Y$ onto $X$. For the other direction, let $A$ be any set; Hartogs Theorem says that there is an ordinal $\kappa$ so that $\kappa \not\preccurlyeq A$. Use the given statement to show that $A$ can be well-ordered. }
+
+
+
+\end{enumerate}
+
+
+
+\end{document}

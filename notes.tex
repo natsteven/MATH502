@@ -22,6 +22,9 @@
 
 \newcommand{\defn}{\textbf{Def: }}
 
+\newcommand{\set}[1]{\{#1\}}
+
+
 \begin{document}
     \maketitle
 
@@ -859,8 +862,8 @@ Proof of Theorem:
 
     \begin{proof}
         $\alpha$ is unique from the previous lemma since if $f : (A;R) \leftrightarrow (\alpha;\in)$ and $g : (A;R) \leftrightarrow (\beta;\in)$.
-        Then $g \of f^{-1} : (\alpha;\in) \leftrightarrow (\beta;\in)$.
-        So $g \of f^{-1} = identity$ i.e. $f=g$ and $\alpha = \beta$
+        Then $g \circ f^{-1} : (\alpha;\in) \leftrightarrow (\beta;\in)$.
+        So $g \circ f^{-1} = identity$ i.e. $f=g$ and $\alpha = \beta$
         For $a \in A$ let $a \downarrow = \{x\in A : x R a\}$.
         Then $a \downarrow$ is also well-ordered by R.
         Call $a \in A$ \underline{good} if $(a \downarrow;R) \cong (\xi; \in)$ for some ordinal $\xi$.
@@ -869,7 +872,7 @@ Proof of Theorem:
         Also for $a \in G$ let $h_a$ be the unique isomorphism $h_a=(a\downarrow;R)\cong(f(a);\in)$ ($f(a)=\xi$)
         This is justified by replacement
         If $a\in G$ and $c R a$ (i.e. $c \in a\downarrow$) then $c \in G$ since $c \downarrow \subseteq a\downarrow$
-        $h_c = h_a \uprightharpoon(c\downarrow): (c\downarrow;R)\cong(h_a(c);\in)$
+        $h_c = h_a \upharpoonright (c\downarrow): (c\downarrow;R)\cong(h_a(c);\in)$
         ($\upharpoonright$ is 'restricted')
         (Lecture drawing 54 mins into class)
         So $f(c) = h_a(c) < f(a)$
@@ -890,7 +893,7 @@ Proof of Theorem:
 
     Recall: For (A;R) and (B;s) the \underline{lexicographic product} is the ordering of $A \times B$ given by $(a_1,b_1) <_{lex}(a_2,b_2) \leftrightarrow a_1 R a_2 \vee (a_1 = a_2 \wedge b_1 s b_2)$.
 
-    \tetxbf{Def: } \underline{Ordinal arithmetic}
+    \textbf{Def: } \underline{Ordinal arithmetic}
     For $\alpha,\beta \in ON$
     $\alpha \dot \beta = type(\beta \times \alpha, <_{lex})$
     $\alpha + \beta = type(\{0\}\times \alpha \cup \{1\} \times \beta, <_{lex})$
@@ -911,7 +914,7 @@ Proof of Theorem:
 
     \emph{Note: } We can give recursive definitions.
     \textbf{Def: }
-    - $\alph + 0 = \alpha$
+    - $\alpha + 0 = \alpha$
     - $\alpha + S(\beta) = S(\alpha + \beta)$
     - $\alpha + \lambda = Sup_{\beta < x} \alpha + \beta, \lambda limit$
 
@@ -967,9 +970,9 @@ Proof of Theorem:
         (*) $\langle c_1,\langle b_1, a_1 \rangle \rangle R \langle c_2, \langle b_2, a_2 \rangle \rangle$
         $\iff \langle \langle c_1, b_1 \rangle , a_1 \rangle S \langle \langle c_2, b_2 \rangle , a_2 \rangle$
 
-        Let $f : \gamme \times (\beta \times \alpha) \rightarrow (\gamma \times \beta) \times \alpha$
+        Let $f : \gamma \times (\beta \times \alpha) \rightarrow (\gamma \times \beta) \times \alpha$
         be defined by:
-        $f(\langle c, \langle b, a \rangle \rangle) = \langle \langle c, b \rangle , a \ranlge$
+        $f(\langle c, \langle b, a \rangle \rangle) = \langle \langle c, b \rangle , a \rangle$
         f is a bijection.
         f is order-preserving i.e. * from above
         shows $\langle c_1, \langle b_1, a_1 \rangle \rangle R \langle c_2, \langle b_2, a_2 \rangle \rangle$
@@ -993,15 +996,15 @@ Proof of Theorem:
     \underline{\textbf{Theorem} Transfinite Induction on ON}
     For each formula $\varphi (x)$ if $\varphi(\alpha)$ holds for some ordinal $\alpha$, then there is a least ordinal $\xi$ so that $\varphi(\xi)$ holds
 
-    \emph{Note: } We can replace \" holds \" by \" fails \"
+    \emph{Note: } We can replace `` holds `` by `` fails ``
     \begin{proof}
-        Fix $\alpha$ sp that $\varphi(alpha)$ holds
+        Fix $\alpha$ sp that $\varphi(\alpha)$ holds
         Let $x = \set{\xi \in \alpha : \varphi(\xi)}$
         If $ x = \emptyset$ then $\alpha$ is the least ordinal with $\varphi(\alpha)$
         If $x \neq \emptyset$ then $x$ has an $\in$-least elements $\xi$, which is the least ordinal with $\varphi(\xi)$
-        \end{proof}
+    \end{proof}
 
-    \underline{Corr} Suppose $\varphi(\x)$ satisfies:
+    \underline{Corr} Suppose $\varphi(\xi)$ satisfies:
     (*) $\forall a \in ON (( \forall \beta < \alpha \varphi(\beta)) \rightarrow \varphi(\alpha))$
     Then $\varphi(\alpha)$ holds for every $\alpha \in ON$
 
@@ -1009,7 +1012,7 @@ Proof of Theorem:
         If $\varphi(\alpha)$ fails for some $\alpha$ then there is a least $\alpha$ so $\varphi(\alpha)$ fails.
         Then $\forall \beta < \varphi(\alpha)$
         So by (*) we have $\varphi(\alpha)$ holds, a contradiction
-        \end{proof}
+    \end{proof}
 
     \emph{Note: } Odten we split (*) into cases
     $\alpha = 0$
@@ -1030,7 +1033,7 @@ Proof of Theorem:
         case:
         $\alpha = \lambda$ is a limit ordinal
         $\alpha = \lambda + 0$ 0 is a natural number.
-        \end{proof}
+    \end{proof}
 
     \underline{Transfinite Recursion on ON}
     We want to define funcitons on ON.
@@ -1080,7 +1083,7 @@ Proof of Theorem:
         \underline{Claim(Exist)}: $\forall \delta \exists h App(\delta,h)$
 
         Granting these two claims:
-        We have $\forall x \exist! y \psi(x,y)$.
+        We have $\forall x \exists! y \psi(x,y)$.
         Given $\xi \in ON$ let $\delta > \xi$ and let $h$ be the unique function with $App(\delta,h)$.
         Then $F \upharpoonright \delta = h$ so $F \upharpoonright \xi = h \upharpoonright \xi$.
         So $F(\xi) = h(\xi) = G(h \upharpoonright \xi) = G(F \upharpoonright \xi)$.
@@ -1119,7 +1122,7 @@ Proof of Theorem:
         $f(\xi) = g_{\beta}(\xi) = G(g_{\beta} \wedge \xi) = G(f \upharpoonright \xi)$.
         Hence $App(\delta,f)$ contradiction.
 
-        \end{proof}
+    \end{proof}
 
 
     \textbf{Def:} For $\alpha \in ON$ an \underline{$\alpha$-sequence} is a fucntion with domain $\alpha$.
@@ -1130,7 +1133,7 @@ Proof of Theorem:
     \textbf{Def:} Let $\bigcup^0 x = x$
     $\bigcup^{n+1} x = \bigcup \bigcup^n x$ for $n \in  \omega$
     The \underline{transitive closure} of $x$, $trcl(x)$ or $TC(x)$, as
-    $TC(x) = \bigcup \set{\biccup^n x : n \in \omega}$
+    $TC(x) = \bigcup \set{\bigcup^n x : n \in \omega}$
 
     \underline{Ex:} $ x = \set{\set{\emptyset,}\set{\set{\emptyset}}}$
     $\bigcup^0 x = x$
@@ -1138,7 +1141,7 @@ Proof of Theorem:
     $\bigcup^2 x = \emptyset \cup \set{\set{\emptyset}} = \set{\set{\emptyset}}$
     $\bigcup^3 x = \set{\emptyset}$
     $\bigcup^4 x = \emptyset$
-    $\biccup^n x = \emptyset$ for all $n > 4$
+    $\bigcup^n x = \emptyset$ for all $n > 4$
     $TC(x) = \set{\emptyset , \set{\set{\emptyset}},\set{\emptyset}}$
 
     \underline{Lemma:}
@@ -1148,21 +1151,21 @@ Proof of Theorem:
     (4) If $y \in x$ then $TC(y) \subseteq TC(x)$
 
     \begin{proof}
-    (1) True since $x = \biccup^0 x \subseteq TC(x)$
+    (1) True since $x = \bigcup^0 x \subseteq TC(x)$
     (2) If $y \in TC(x)$ then there is $n \in \omega$ with $y \in \bigcup^n x$ so $y \subseteq \bigcup \bigcup^n x$
-        So $y \subseteq \biccup ^n+1 x \subseteq TC(x)$.
+        So $y \subseteq \bigcup ^n+1 x \subseteq TC(x)$.
         So $TC(X)$ is transitive.
     (3) Suppose $x \subseteq t$ and $t$ is a transitive set.
         Suppose for contradiction $TC(x) \nsubseteq t$.
-        Let $n$ be least so that $\biccup^n x \nsubseteq t$.
-        $n \neq 0$ since $x \subseteq t$ $x=\biccup^0 x$.
+        Let $n$ be least so that $\bigcup^n x \nsubseteq t$.
+        $n \neq 0$ since $x \subseteq t$ $x=\bigcup^0 x$.
         So $n=k+1$ for some $k$.
-        if $y \in \biccup^n x$ then $y \in \biccup^{k+1} x = \bigcup \bigcup^k x$.
+        if $y \in \bigcup^n x$ then $y \in \bigcup^{k+1} x = \bigcup \bigcup^k x$.
         So there is $z \in \bigcup^k x$ with $y \in z$.
         $\bigcup^k x \subseteq t$ since $n$ was least.
         So $y \in z \in \bigcup^k x \subseteq t$.
         $t$ is transitive so $y \in t$.
-        Hence $\biccup^n x \subseteq t$ contradiction.
+        Hence $\bigcup^n x \subseteq t$ contradiction.
         Hence $t$ is the smallest transitive set with $x \subseteq t$.
     (4) Holds since if $y \in x$ then $\bigcup^n y \subseteq \bigcup^{n+1} x$ for all $n \in \omega$.
         So $TC(y) \subseteq TC(x)$.
@@ -1187,15 +1190,15 @@ Proof of Theorem:
     \emph{Note:} If $f : A \rightarrow B$ is a function then $f \subseteq A \times B$ so $f \in \mathcal{P}(A \times B)$.
     So we can make the following definitions.
 
-    \textbf{Def:} $B^A$ or $\prescript{A}B$ is the set of all functions $f$ with $dom(f) = A$ and $ran(f) \subseteq B$
+    \textbf{Def:} $B^A$ or $prescript(A)B$ is the set of all functions $f$ with $dom(f) = A$ and $ran(f) \subseteq B$
 
     \emph{Note} $B^A \subseteq \mathcal{P}(A \times B)$
 
     \emph{Note: } When $A$ and $B$ are ordinals, this is not the same as ordinal exponentiation.
-    In this case usually write $\prescript{\beta}\alpha$ for functions $f : \beta \rightarrow \alpha$ different from the ordinal $\alpha^{\beta}$
+    In this case usually write $prescript(\beta)\alpha$ for functions $f : \beta \rightarrow \alpha$ different from the ordinal $\alpha^{\beta}$
 
-    \underline{Ex: } Ordinal exponentiation $\omega^{\omega} = \omega \dot \omega \dot \omege \dots = Sup(n < \omega) \omega \dot \omega \dots \omega$ (n times)
-    $\prescript{\omega}\omega = $ all functions $f : \omega \rightarrow \omega$
+    \underline{Ex: } Ordinal exponentiation $\omega^{\omega} = \omega \dot \omega \dot \omega \dots = Sup(n < \omega) \omega \dot \omega \dots \omega$ (n times)
+    $prescript(\omega)\omega = $ all functions $f : \omega \rightarrow \omega$
 
     \textbf{Def:} When $\alpha$ is an ordinal,. $A^{<\alpha} = \bigcup(\xi < \alpha) A^{\xi}$
     this is the set of all sequences of elements of A of length $<\alpha$.
@@ -1219,7 +1222,7 @@ Proof of Theorem:
     $f(0) = \omega$
     $f(n) = n-1$ for $n \geq 1$
 
-    \underling{Ex: } $\omega \approx \omega + \omega$
+    \underline{Ex: } $\omega \approx \omega + \omega$
     $f(2n) = n$
     $f(2n +1) = \omega + n$ for $n \in \omega$
 
@@ -1232,9 +1235,9 @@ Proof of Theorem:
     \underline{Ex: } $\mathbb{P}(\mathbb{N}) \preceq \mathbb{R}$
     for $A \leq \mathbb{N} f(A) = \sum{n \in A} \frac{1}{3^n}$
 
-    \underline{Ex: } $\mathb{R} \preceq \mathbb{P}(\mathbb{N})$
+    \underline{Ex: } $\mathbb{R} \preceq \mathbb{P}(\mathbb{N})$
     Let $\langle q_n : n \in \omega \rangle$ enumerate $\mathbb{Q}$
-    Let $f(x) = \set{\n \in \mathbb{N} : q_n < x}$
+    Let $f(x) = \set{n \in \mathbb{N} : q_n < x}$
     If $x \neq y$ there is some $q_n$ with either $x < q_n < y$ or $y < q_n < x$
     So either $n \notin f(x) n \in f(y)$ or the opposite, so $f(x) \neq f(y)$
 

@@ -17,13 +17,13 @@
 %% Document
 %\begin{document}
 
-\newcommand{\set}[1]{\{#1\}}
+
 
 \emph{Note: } If there is an injection $f : A \leftrightarrow B$ then there is a surjection $g : B \leftrightarrow A$ (A,B non-empty) (these arrows may be incorrect :)
 pick $a_0 \in A$
 define $g(b) = $ the unqiue $a \in A$ with $f(a) = b)$ if $b \in ran(f)$ $a_0$ if $b \notin ran(f)$
 
-\empth{Note: } (Without Axiom of Choice) Having a suhrection $g : B \twoheadrightarrow A$ does not necessarily imply that there is an injection $f : A \hookrightarrow B$
+\emph{Note: } (Without Axiom of Choice) Having a suhrection $g : B \twoheadrightarrow A$ does not necessarily imply that there is an injection $f : A \hookrightarrow B$
 
 \emph{Note: } we can have $A \subseteq B$ $A \neq B$ and $A \approx B$
 $B = \omega A = \omega \setminus \{0\}$
@@ -44,7 +44,7 @@ $f$ is a bijection.
     Note that thr $H_n$'s and $K_n$'s are pairwise disjoint.
     Let $P = \bigcap (n \in \omega) f^n(A) = \bigcup (n \in \omega) f^n(B)$
     P disjoint from Hns and Kns
-    $P_1$ $H_n$ for $n \in \omega$ and Kn for $\n \in \omega$
+    $P_1$ $H_n$ for $n \in \omega$ and Kn for $n \in \omega$
     partition $A$ into disjoint pieces.
     $A = P \cup H_0 \cup H_1 \cup \dots \cup K_0 \cup K_1 \dots$
     $B = P \cup H_1 \cup \dots K_0 \dots$
@@ -76,10 +76,10 @@ $g(x) = \frac{x+1}{2}) if x = 1-\frac{1}{n} for n \geq 1, x if not$.
     $\implies$ is immediate.
     $\impliedby$ is more difficult.
     Let $f : A \hookrightarrow B$ and $g : B \hookrightarrow A$
-    Let $B^~ = h(B) \subseteq A$
-    $B \approx B^~$ via $h$.
-    $B^~ \subseteq A$ and $g \circ f : A \hookrightarrow B^~$
-    By Lemma there is a bijection $h : A \leftrightarrow B^~$
+    Let $B^{~} = h(B) \subseteq A$
+    $B \approx B^{~}$ via $h$.
+    $B^{~} \subseteq A$ and $g \circ f : A \hookrightarrow B^{~}$
+    By Lemma there is a bijection $h : A \leftrightarrow B^{~}$
     \end{proof}
     (went ot bathroom)
     an example and two notes missed
@@ -117,7 +117,7 @@ $X \subseteq A \hookrightarrow f_x(a) = \set{1 if a \in X, 0 if a \notin X}$
 
 \emph{Note: } $2^{\mathbb{N}}$
 
-\emph{Note: } $A (left super B) (all left super C) \approx A (left super C \times B)$ similar to $(x^y)^z = x^y^z$
+\emph{Note: } $A (left super B) (all left super C) \approx A (left super C \times B)$ similar to $(x^y){^z} = x^{y^z}$
 $A (left super B \cup C) \approx A (left super B) \times A (left super C)$ for (something)
 
 \defn A set $A$ is \underline{countable} if $A \preceq \omega$
@@ -158,7 +158,7 @@ $\omega$ is a cardinal.
     $f(\delta) = 0$
     $f(n) = n+1$ for $n \in \omega$
     $f(\xi) = \xi$ for $\omega \leq \xi < \delta$
-    $f$ is a bijection, so $\alpha \appox \delta$ contradicting that $\alpha$ is a cardinal.
+    $f$ is a bijection, so $\alpha \approx \delta$ contradicting that $\alpha$ is a cardinal.
 (2) use ordinary inducitno
     $0 = \emptyset$ is a cardinal vacuously.
     Suppose $n$ is a cardinal ($n \in \omega$).
@@ -192,11 +192,11 @@ Define R on A by $a_1 R a_2 \leftrightarrow f(a_1) < f(a_2)$
 Then $(A;R) \cong (\alpha, \in)$
 So A is well-ordered by R.
 
-\emphe{Note:} Every ordinal is in bijection with some unique cardinal.
+\emph{Note:} Every ordinal is in bijection with some unique cardinal.
 Given $\alpha \in Ord$ let $\beta$ be the $\in$-least element of
-\set{\xi \leq \alpha : \alpha \approx \xi}
+$\set{\xi \leq \alpha : \alpha \approx \xi}$
 So $\alpha \approx \beta$ and $\beta$ is a cardinal.
-If $\xi < \beta$ then $\xi \notint$ (above set) so $\beta \neg \approx \xi$
+If $\xi < \beta$ then $\xi \notin$ (above set) so $\beta \neg \approx \xi$
 
 \underline{Def:} If A is well-orderable, let $|A|$ be the least ordinal $\alpha$ so that $A \approx \alpha$ call $|A|$ the \underline{cardinality} of A.
 
@@ -231,26 +231,26 @@ $|omega + omega| = \omega$
 \end{proof}
 
 \emph{Lemma:} If $A$ is well-orderable and there is a surjection $f: A \twoheadrightarrow B$ then $B$ is well-orderable.
-\emphe{proof} Let R be a well-ordering of A.
+\emph{proof} Let R be a well-ordering of A.
 Define S on B by $b_1 S b_2 \iff min(f^-1(\set{b_1})) R min(f^-1(\set{b_2}))$
 Then S is a well-ordering of B.
 
 \emph{Note:} We haven't yet seen that there are uncountable cardinals.
 We saw $\omega \prec \mathbb{P}(\omega)$ so $\mathbb{P}(\omega)$ is uncountable, but we don't know $\mathbb{P}(\omega)$ is well-orderable.
-Need axiom of choice to see that $\mathhbb{P}(\omega)$ is well-orderable.
+Need axiom of choice to see that $\mathbb{P}(\omega)$ is well-orderable.
 
 \textbf{Thm \underline{Hartog's Theorom} : } For every set $A$ there is a cardinal $k$ so that $k \npreceq A.$
 Hence if A is a well-orderable set then there is a cardinal $k$ so that $|A| < k$.
 
 \begin{proof}
-    Let $W$ be the set of pairs of the form $(x,R)$ in $\mathbb{P}(A) \times \mathbb{P(A \times A)}$ so that $x \subseteq A, R \subseteq \A \times \A$
+    Let $W$ be the set of pairs of the form $(x,R)$ in $\mathcal{P}(A) \times \mathcal{P}(A \times A)$ so that $x \subseteq A, R \subseteq A \times A$
     and $R$ well-orders $x$.
     Thus $W$ is the set of all well-orderings of subsets of $A$.
     Note for $\alpha \in ON$
     $\alpha \preceq A \iff \alpha = type(x;R)$ for some $(x,R) \in W$
     Let $\beta = sup \set{type(x,R) + 1 : (x,R) \in W}$
     If $\alpha \preceq A$ then $\alpha < \beta$
-    Let $\kappa = |\beta|$ then $\kappa \approx \beta$, $\kapp$ is a cardinal
+    Let $\kappa = |\beta|$ then $\kappa \approx \beta$, $\kappa$ is a cardinal
     $\kappa \npreceq A$
 \end{proof}
 
@@ -264,7 +264,7 @@ For a cardinal $\kappa$, $\kappa^+$ is the next biggest cardinal.
 
 \textbf{Def: } \underline{The Aleph Sequence}
 Define by recursion of $\xi \in ON$
-$\aleph_0 = \omega_0 = \oemga$
+$\aleph_0 = \omega_0 = \omega$
 $\aleph_{\xi+1} = \omega_{\xi + 1} = (\aleph_\xi)^+$
 $\aleph_\lambda = \omega_\lambda = sup \set{\aleph_\xi : \xi < \lambda}$ for $\lambda$ a limit ordinal.
 
@@ -295,10 +295,11 @@ cardinal exponentiation will be different than ($2^omega = 2 \dot 2 \dots = \ome
     in the sense $\in$ is a well-ordering of $ON$.
     Such that $type(\kappa \times \kappa, \triangleleft) = \kappa$ when $\kappa \subseteq \omega$ is a cardinal
     Define $(\xi_1,\xi_2) \triangleleft (\eta_1,\eta_2)$
-    if $max(\xi_1,\xi_2) < max(\eta_1,\eta_2)$ \vee
-    $[max(\xi_1,\xi_2) = max(\eta_1,\eta_2) \wedege max(\xi_1,\xi_2) <_{lex} max(\eta_1,\eta_2)]$
+    if $\max(\xi_1,\xi_2) < \max(\eta_1,\eta_2) \vee$
+    $[\max(\xi_1,\xi_2) = \max(\eta_1,\eta_2) \wedge \max(\xi_1,\xi_2) <_{lex} \max(\eta_1,\eta_2)]$
     (diagram in slides).
     $\triangleleft$ is different thean $<_{lex}$
+\end{proof}
 
 
 

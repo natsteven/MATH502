@@ -1,0 +1,180 @@
+% Math 402/502 Homework
+
+
+
+\documentclass[11pt]{amsart}
+
+
+\pagestyle{empty}
+\thispagestyle{empty}
+
+\usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsopn}
+\usepackage{amsthm}
+
+\def\bbN{{\mathbb N}}
+\def\bbR{{\mathbb R}}
+\def\bbQ{{\mathbb Q}}
+\def\bbZ{{\mathbb Z}}
+\def\bbF{{\mathbb F}}
+\def\bbE{{\mathbb E}}
+\def\bbP{{\mathbb P}}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\RR}{\mathbb R}
+
+\DeclareMathOperator{\type}{type}
+\DeclareMathOperator{\TC}{TC}
+\newcommand{\leftsuperscript}[2]{{\vphantom{{#1}}}^{#2}{#1}}
+
+\usepackage{bbold}
+
+
+\newcommand{\hint}[1]{{\small \em \noindent [Hint: #1]}}
+
+
+\begin{document}
+
+\begin{center}
+{\Large Math 402/502 Homework 5 -- due Friday, February 21}
+\ \\
+\end{center}
+
+\ \\
+ 
+ \begin{enumerate}
+
+
+
+\item  Let $\alpha, \beta, \gamma$ be ordinals. Show that
+\[ (\alpha + \beta) + \gamma = \alpha + (\beta + \gamma) \]
+by giving an order-preserving bijection between the two orderings.
+\\
+\\
+\begin{proof}
+We have
+$\alpha + \beta = type((\set{0} \times \alpha ) \cup (\set{1} \times \beta, <_{lex}))$ \\
+So $(\alpha + \beta) + \gamma = type((\set{0} \times (\set{0} \times \alpha \cup \set{1} \times \beta) \cup \set{1} \times \gamma, <_{lex}))$ \\
+Where for $a \in \alpha, b \in \beta, c \in \gamma$, $\langle 0, \langle 0, a \rangle \rangle <_{lex} \langle 0, \langle 1, b \rangle \rangle <_{lex} \langle 1, \langle c \rangle$ \\
+So we preserve the order of $(\alpha + \beta) + \gamma$\\
+Then $\alpha + (\beta + \gamma) = type((\set{0} \times \alpha \cup \set{1} \times (\set{0} \times \beta \cup \set{1} \times \gamma), <_{lex}))$ \\
+And we have $\langle 0, a \rangle <_{lex} \langle 0, \langle 0, b \rangle \rangle <_{lex} \langle 1, \langle 1, c \rangle$ \\
+Then we can define $f : (\alpha + \beta) + \gamma \rightarrow \alpha + (\beta + \gamma)$ \\
+As: $f(\langle 0, \langle 0, a \rangle \rangle) = \langle 0, a \rangle$ \\
+$f(\langle 0, \langle 1, b \rangle \rangle) = \langle 0, \langle 0, b \rangle \rangle$ \\
+$f(\langle 1, \langle c \rangle) = \langle 1, \langle 1, c \rangle$ \\
+Which is a bijection as each element in the domain is mapped to a unique element in the range and vice verse.
+And since the order is preserved, we have $(\alpha + \beta) + \gamma = \alpha + (\beta + \gamma)$
+\end{proof}
+
+\newpage
+
+\item Recall that ordinal exponentiation is defined by transfinite recursion:
+\begin{align*}
+\alpha^0 &=1 \\
+\alpha^{S(\beta)} &= a^{\beta} \cdot \alpha \\
+\alpha^{\lambda} &= \sup \{ \alpha^{\beta} : \beta < \lambda\} \text{ for limit ordinals $\lambda$}  
+\end{align*}
+Use transfinite induction to show the following:
+
+\ 
+\begin{enumerate}
+\item $\alpha^{\beta+\gamma} = \alpha^{\beta} \cdot \alpha^{\gamma}$
+
+\begin{proof}
+Base Case:\\
+$\0^{\beta+0}=\alpha^{\beta}=\alpha^{\beta} \cdot 1 = \alpha^\beta \cdot \alpha^0$\\
+Successor Case:\\
+Assume $\alpha^{\beta+\gamma}=\alpha^{\beta} \cdot \alpha^{\gamma}$\\
+Then $\alpha^{\beta+S(\gamma)}=(\alpha^{\beta} \cdot \alpha^{\gamma}) \cdot \alpha$ \\
+and by associativity $= \alpha^{\beta} \cdot (\alpha^{\gamma} \cdot \alpha) = \alpha^\beta \cdot \alpha^{S(\gamma()}$\\
+Limit Case:\\
+Assume $\alpha^{\beta+\gamma}=\alpha^{\beta} \cdot \alpha^{\gamma}$ for all $\gamma < \lambda$\\
+Then $\alpha^{\beta+\lambda}=\sup \{ \alpha^{\beta+\gamma} : \gamma < \lambda\}$\\
+$=\sup \{ \alpha^{\beta} \cdot \alpha^{\gamma} : \gamma < \lambda\}$\\
+$=\alpha^{\beta} \cdot \sup \{ \alpha^{\gamma} : \gamma < \lambda\}$\\
+$=\alpha^{\beta} \cdot \alpha^{\lambda}$\\
+\end{proof}
+\vfill
+\item $\alpha^{\beta \cdot \gamma} = \left(\alpha^{\beta}\right)^{\gamma}$
+\begin{proof}
+ Base Case:\\
+$\alpha^{\beta \cdot 0}=\alpha^0=1=(\alpha^\beta)^0$\\
+Successor Case:\\
+Assume $\alpha^{\beta \cdot \gamma}=(\alpha^\beta)^\gamma$\\
+Then $\alpha^{\beta \cdot S(\gamma)}=\alpha^{\beta \cdot \gamma + \beta}=\alpha^{\beta \cdot \gamma} \cdot \alpha^\beta$\\
+$=(\alpha^\beta)^\gamma \cdot \alpha^\beta=(\alpha^\beta)^{S(\gamma)}$\\
+Limit Case:\\
+Assume $\alpha^{\beta \cdot \gamma}=(\alpha^\beta)^\gamma$ for all $\gamma < \lambda$\\
+Then $\alpha^{\beta \cdot \lambda}=\sup \{ \alpha^{\beta \cdot \gamma} : \gamma < \lambda\}$\\
+$=\sup \{ (\alpha^\beta)^\gamma : \gamma < \lambda\}$\\
+$=(\alpha^\beta)^\lambda$\\
+
+ \end{proof}
+\vfill
+\end{enumerate}
+
+\newpage
+
+\item An \emph{$\epsilon$-chain} from $z$ to $x$ is a sequence $(a_0,a_1,\ldots,a_n)$ for $n \geq 1$ so that $a_0=z$, $a_n=x$, and $a_i \in a_{i+1}$ for $0 \leq i < n$.
+
+Show that $z \in \TC(x)$ if and only if there is an $\epsilon$-chain from $z$ to $x$, where $\TC(x)$ is the transitive closure of $x$.
+\\
+\\
+
+\begin{proof}
+ For the forward direction we will show that $a_i \in \TC(x)$\\
+ We already have $a_n = x \in \TC(x)$
+ If we assume $a_{i+1} \in \TC(x)$ then since $a_i \in a_{i+1}$ we have $a_i \in \TC(x)$\\
+ And by our $\in$-chain we have $z \in \TC(x)$\\
+ For the reverse direction we will show that if $z \in \TC(x)$ then there is an $\epsilon$-chain from $z$ to $x$\\
+ By definition, $\TC(x)$ contains all elements that can be reached by a finite number of applications of the $\in$ relation starting from $x$\\
+ Meaning there is so some finite sequence $(a_0, a_1, \dots , a_n)$ or membership relations such that $a_0 = x$ and $a_n = z$\\
+ Which is the definition of an $\epsilon$-chain from $z$ to $x$\\
+ \end{proof}
+
+\newpage 
+
+\item Recall that for sets $A$ and $B$, $\leftsuperscript{B}{A}$ denotes the set of all functions from $A$ to $B$. Let $\alpha$ and $\beta$ be ordinals, and define an ordering $\prec$ on $\leftsuperscript{\alpha}{\beta}$ as follows:
+
+For $f, g \in \leftsuperscript{\alpha}{\beta}$ with $f \neq g$, let $\xi(f,g)$ be the least $\xi < \beta$ for which $f(\xi) \neq g(\xi)$, and set
+\[ f \prec g \leftrightarrow (f \neq g \wedge f(\xi(f,g)) < g(\xi(f,g))) .\]
+
+\ 
+\begin{enumerate}
+\item Show that $\prec$ is a strict total ordering on $\leftsuperscript{\alpha}{\beta}$ for any ordinals $\alpha$ and $\beta$.
+\\
+Irreflexivity is ensured immediately by definition.\\
+For Transitivity we show that if $f \prec g$ and $g \prec h$ then $f \prec h$\\
+Let $\xi = \min(\xi(f,g),\xi(g,h))$\\
+If $\xi = \xi(f,g) < \xi(g,h)$ then $f(\xi) < g(\xi)$ and $g(\xi) = h(\xi)$ so $f(\xi) < h(\xi)$\\
+If $\xi = \xi(g,h) < \xi(f,g)$ then $g(\xi) < h(\xi)$ and $f(\xi) = g(\xi)$ so $f(\xi) < h(\xi)$\\
+So $f \prec h$\\ in either case\\
+For Trichotomy we see from the definition that because $f(\xi) < g(\xi)$ or $g(\xi) < f(\xi)$ then either $f(\xi(f,g)) < g(\xi(f,g))$ or vice verse \\
+So $\prec$ is a strict total ordering on $\leftsuperscript{\alpha}{\beta}$\\
+
+\vfill
+\item Show that $\prec$ is not a well-ordering on $\leftsuperscript{2}{\omega}$ by finding a sequence of functions $f_i$ for $i \in \omega$ with $f_{i+1} \prec f_i$ for all $i \in \omega$, so that the set $\{f_i : i \in \omega\}$ has no $\prec$-least element.
+\\
+ Choose $f_i(n) = \begin{cases} 1 & \text{if } n = i \\ 0 & \text{otherwise} \end{cases}$\\
+ We have $\xi(f_{i+1},f_i)$ at $i$ as $f_{i+1}(i) = 0 < 1 = f_i(i)$ so $f_{i+1} \prec f_i$\\
+ Assume there is a $\prec$-least element $f_k$ in the set $\{f_i : i \in \omega\}$\\
+ But $f_k(k) = 1$ and $f_{k+1}(k) = 0$ so $f_{k+1} \prec f_k$\\
+
+\vfill
+\end{enumerate}
+
+\end{enumerate}
+
+
+
+\end{document}
