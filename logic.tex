@@ -1,0 +1,91 @@
+%! Author = nathanaelsteven
+%! Date = 4/1/25
+
+\documentclass[11pt]{amsart}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\begin{document}
+
+    Missing definitions of lexicon, atomic formula, terms, structure, etcetera.
+
+    closure with quantifiers? universal clsoures
+    \\ \\
+    \newcommand{\FF}{\mathcal{F}}
+    \newcommand{\LL}{\mathcal{L}}
+    \newcommand{\TT}{\mathcal{T}}
+
+    \underline{terms} built from $\FF \cup VAR$
+    \underline{atomic formulas} $P^{\TT_0 ...}$ or $= \TT_1 \TT_2$
+    \underline{formulas} use connectives, quantifiers, etc.
+
+
+    - $V(\TT)$ is the set of variables which occur in $\TT$.
+    - $\varphi$, let $V(\varphi)$ be the set of variables which have a free occurrence $\varphi$.
+    \\
+    For an $\LL$-structure $\mathfrak{A}=(A,I)$, a term $\TT$, and an assignment $\sigma$ for $\TT$ in $A$, define $val_{\mathfrak{A}(\TT)[\sigma]}$
+    \\
+    $\LL = \{+,\cdot\},\{<\}$ \\
+    $\mathfrak{A}: A = \mathbb{R}$ \\
+    $\TT: \cdot z + x y$ \\
+    $V(\TT) = \{x,y,z\}$ \\
+    $\sigma: [x y z][3 4 5]$ \\
+    $val_\mathfrak{A}(x)[\sigma]=3$ \\
+
+    For an $\LL$-structure $\mathfrak{A}$, an atomic formula $\varphi$, and an assignment $\sigma$ for $\varphi$ in $A$, define $val_{\mathfrak{A}(\varphi)[\sigma]}$ in $\{F,T\}=\{0,1\}$ by \\
+    $val_\mathfrak{A}(P)[\sigma] = P_\mathfrak{A}$ if $P \in P_0$
+    etcetera
+
+    $\mathfrak{A}$ satisfies $\varphi$, $\mathfrak{A} \models \varphi$ when $V(\varphi) = \emptyset$?
+    \\
+    A set $\Sigma$ of $\LL$-sentences is semantically consistent or satisfiable $con_\models(\Sigma)$, if there is an $\LL$-structure $\mathfrak{A}$ such that $\mathfrak{A} \models \Sigma$
+    \\
+    Reductio ad Absurdum: Let $\Sigma$ be a set of $\LL$-sentences and $\Psi$ an $\LL$-sentence then:
+    (1) $\Sigma \models \Psi \iff \Sigma \cup \{\neg \Psi\}$ is semantically inconsistent.
+
+    A formula is logically valid if a structure $\mathfrak{A}$ satisfies it for $\sigma$ or all strucutre and assignment for psi in the structure
+    if two formulas are both universal closures of a formula then they are logically equivalent (irrelevant what assignments are used)
+    formula are equivalent with respect to a set of logical sentences if the universal closure is true in all models of the sentences.
+    two terms are equivalent with respect ot logical sentences if for all structures that satisfy the sentences and all assignment for the two terms in the structure, the two terms have the same value.
+
+    \\ axiom of choise and zorn's lemma are equivalenet with respect to ZF.
+    supppse sigma includes associativity and the two terms are the sides of the equivalence, then they are equivalent with respect to the set of sentences.
+    \\
+    let beta and tau be terms and x a variable.
+    then beta of x to tau, or beta of x / tau, is the result of replcing all occurences of x in beta with tau.
+    \\
+    let psi be a formula, x a variable, tau a term, then psi x assigned to tau, is the resutl of replacing all free occurences of x by tau in psi.
+    example problem is if exists y where x < y, and we substitute in y for x we get a potential problem.
+    if we tried ot replace y itself nothing would change because it isn't free, it has a quantifier.
+    \\
+    a term tau is free for x in a formula phi if no free occurrence of x is inside the scope of a quantifier exists y or forall y, where y is a variable in tau.
+    tau is y for above is not free for x because there is an occurence of x inside the scope of a quantifier applied to y.
+    If tau is free for x in phi, then the following are logically valid: forall x, phi(x) implies phi(tau), phi(tau) implies exists x, phi(x).
+    note that the above example that was not free for x fails.
+    \\
+    a reduct of the originsl strucutre is a restriction to the symbols in some other structure that is a substructure of the original and vice verse an expansion.
+    \\
+    isomporhpisms and shit.
+    \\
+    a set of axiom (L-sentences) sigma is complete with respect to the strucutre(L) if sigma is semantically consistent and for all L-sentences, phi, either sigma logically implies(models/satisfies) phi or not phi.
+    \\
+    ZFC is not complete.
+    there are some natural complete theories.
+    any `sufficiently complicated` (able to interpret arithmetic) and `nicely axiomatized` (finite list or sufficiently concrete) set of axioms will not be complete.
+    \\
+    let a be an l-structure.
+    the theory of a, Th(a) is the set of all l-sentences true in a.
+    Th(a) is complete.
+    for any formula(l-sentence) phi exactly one : a satisfies phi or a satisfies not phi.
+    \\
+    \subsection{Tautologies}
+    a basic formula is one which (when expressed in polish/prefix notation) does not begin with a propositional connective. \\
+    ex: forall x P(x): forall x P x, or forall x (P(x) then q(x)) : forall x implies p x q x, are both basic\\
+    ex (otoh): p(x) implies q(x) : implies p x q x is not basic.
+    \\ A truth assignment for L is a function wich assigns a truth value to every basic formula.
+    given such a function, we can extend it to all formulas by recursion.
+    note that we don't require consistency so truth assignments can be semantically inconsistent (no structures or meaning to symbols).
+    \\ a formula phi is a propositional tautology if it is true under every truth assignment.
+
+\end{document}
