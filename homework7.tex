@@ -31,6 +31,7 @@
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\QQ}{\mathbb Q}
 \newcommand{\RR}{\mathbb R}
+\newcommand{\PP}{\mathbb P}
 
 \DeclareMathOperator{\type}{type}
 \DeclareMathOperator{\TC}{TC}
@@ -57,16 +58,47 @@
 \item Show that the Axiom of Choice implies that for every relation $R$ there is a partial function $F$ so that $F \subseteq R$ and $\text{dom}(F)=\text{dom}(R)$. 
 
 \note{Such a function is called a {\it selector} for $R$.}
+\\
+
+Any relation $R$ is a set of ordered pairs, so we can consider the set of all $x$ such that there is a $y$ so that $xRy$.
+And specifically $dom(R) = \set{x | \exists y : xRy}$
+Then for each $x \in dom(R)$ we define $Y = \{ y | \exists x: xRy\}$.
+AC gives us a choice function so that $y = g(Y) \in Y$ for each $x \in dom(R)$.
+Then we can define $F = \set{x,g(Y)| x \in dom(R)}$
+Then $f$ is a selector for $R$ where $F \subseteq R$and $dom(R) = X$.
 
 \newpage
 
 \item
 \begin{enumerate}
 \item Show that the Axiom of Choice implies that every infinite set is Dedekind infinite.
+\\
+Let A be an infinite set.
+Then define $f: \NN \rightarrow \PP(\PP(A))$ as $f(n) = \set{B \subseteq A | |B| = n}$.
+Then by AC we have a choice function $g$ so that we select a $g(n) \in f(n)$ for each $n \in \NN$.
+And we have $G = \set{g(n) | n \in \NN})$
+Then define $H = \bigcup G$
+and can define a bijection $h: \NN \rightarrow H$.
+Then we define a bijection $B: A \rightarrow \setminus h(0))$ as $B(a) = \begin{cases} a & \text{if } a \notin G \\ h(n+1) & \text{if } a = h(n) \end{cases}$
+Then $B$ is an injection from $A$ into $A \setminus h(0)$ which is a proper subset of $A$, so $A$ is Dedekind infinite.
+
 \vfill
 \item It is consistent with ZF that there are infinite sets which are Dedekind finite. Suppose $X$ is such a set, and let 
 \[ Y = \{ A \subseteq X : \text{$A$ is finite}\}.\]
 Show that $Y$ is also infinite and Dedekind finite.
+\\
+
+X is infinite and contains every finite subset of itself.
+So for each $n \in \NN$ there is a subset $A_n$ of size $n$.
+Each finite subset of $X$ is an element of $Y$ and there are infinitely many so $Y$ is infinite.
+Now suppose Y is Dedekind infinite.
+Then there is an injection $f: Y \rightarrow Y$ so that $f(Y) \subset Y$.
+and there exists $Z = \set{x : x \in Y \wedge x \notin f(Y)}$
+But then there exists some Dedekind infinite subset of $Y$ within $Y$.
+And since $Y$ is composed of all subsets of $X$ then there would be a Dedekind infinite subset of $X$.
+Contradicting the original assumption about $X$ so $Y$ is Dedekind finite.
+
+
 \vfill
 \end{enumerate}
 
@@ -79,8 +111,23 @@ For any two sets $X$ and $Y$, there is either a surjection from $X$ onto $Y$ or 
 \end{quotation}
 
 \hint{For one direction, use that AC is equivalent to the analogous statement for injections, and the existence of an injection from $X$ into $Y$ implies a surjection from $Y$ onto $X$. For the other direction, let $A$ be any set; Hartogs Theorem says that there is an ordinal $\kappa$ so that $\kappa \not\preccurlyeq A$. Use the given statement to show that $A$ can be well-ordered. }
-
-
+\\
+  AC is equivalent to the statement that for any two sets $X$ and $Y$ there is either an injection from $X$ into $Y$ or an injection from $Y$ into $X$.
+  If there is an injection from $X$ into $Y$ then there is a surjection from $Y$ onto $X$.
+  When $f$ is our injection, define $g(y) = \begin{cases} x & \text{if } y \in f(x) \\ \text{some fixed } x_0 \in X & \text{ when } y \notin f(x) \end{cases}$
+  Similarly for the case where there is an injection from $Y$ into $X$.
+  Now we will show that the surjection statemtn is equivalent to AC.
+  Let A be any set and let $\kappa$ be an ordinal so that $\kappa \not\preccurlyeq A$.
+  Applying the surjection statement to $A$ and $\kappa$.
+  If there is a surjection $f$ from $A$ onto $\kappa$.
+  For each $\beta < \kappa$, let $A_\beta = \set{a \in A | f(a) = \beta}$
+  $\kappa$'s well-ordering gives us a well-ordering of $A$.
+  For $a,b \in A$ we have $a < b$ if $f(a) < f(b)$ or $f(a) = f(b)$ and a precedes $b$ in the well-ordering of $A_\beta$ and so on.
+  If there is a surjection $g$ from $\kappa$ onto $A$.
+  Consider $B = \set{\beta < \kappa | g(\beta) = a}$
+  We can construct an injection from $ran(g)$ into $\kappa$ as the $\min(B)$
+  But $ran(g) = A$ giving us a contradiction to the assumption that $\kappa \not\preccurlyeq A$.
+  So there is a surjection from $A$ onto $\kappa$ and $A$ can be well-ordered so AC holds.
 
 \end{enumerate}
 

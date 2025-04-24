@@ -7,7 +7,7 @@ Recall Axiom of Choice: Every family of disjoint non-empty sets has a choice set
 Equivalent to: Every set is well-orderable.
 
 \textbf{Theorem} AC is equivalent to:
-\[\forall x \forall y (x \preceq y \vee y preceq x)\]
+\[\forall x \forall y (x \preceq y \vee y \preceq x)\]
 
 \begin{proof}
     $\implies$ Every set can be well-ordered so there are cardinal $|x| \approx x$ and $|y| \approx y$
@@ -57,19 +57,19 @@ then there is a maximal $Y \in \mathcal{F}$ with $X \leq Y$
 
 \begin{proof}
     \textbf{$AC \implies TL$}
-    Let \FF $\subseteq$ \PP$(A)$ be of finite character.
+    Let $\FF$ $\subseteq$ $\PP(A)$ be of finite character.
     A can be well-ordered, so let
-    $\kappa = |A|$ anf let $f: \kappa \letrightarrow A$
+    $\kappa = |A|$ anf let $f: \kappa \leftrightarrow A$
     $A = \set{ x_\alpha : \alpha < \kappa}$ where $x_\alpha = f(\alpha)$ for $\alpha < kappa$
     Define sets $Y_\alpha$ for $\alpha < \kappa$ by transfinite recursion:
     Given $X \in \FF$, let
     $Y_0 = X$
-    $Y_{\xi +1} = \begin{cases} Y_\alpha \cup \set{x_\alpha} && if Y_{\alpha} \cup \set{X_\alpha} \in \FF \\ Y_\alpha && otherwise \end{cases}$
+    $Y_{\xi +1} = \begin{cases} Y_\alpha \cup \set{x_\alpha} & \text{ if } Y_{\alpha} \cup \set{X_\alpha} \in \FF \\ Y_\alpha & \text{ otherwise } \end{cases}$
     $Y_\lambda = \bigcup \set{Y_\alpha : \alpha < \lambda}$ for $\lambda$ a limit ordinal.
     Let $Y =  \bigcup_{\alpha < \kappa} Y_\alpha$
     Then $X \leq Y$
     Each $Y_\alpha \in \FF$ because $\FF$ is of finite character.
-    If $Y_{\lambda} \notin \FF$ there is some fininte subset $Z \subseteq Y_\lambda$ with $Z \notin \FF$ there would
+    If $Y_{\lambda} \notin \FF$ there is some finite subset $Z \subseteq Y_\lambda$ with $Z \notin \FF$ there would
     be some $\alpha < \lambda$ with $Z \subseteq Y_\alpha$ contradicting $Y_\alpha \in \FF$
     Y is maximal in $\FF$
     Suppose not, let $Z \in \FF$ with $Y \subseteq Z$ but $Y \neq Z$
@@ -152,11 +152,14 @@ so this satisfies (*)
 If $\FF$ is a family of sets wtih $|\FF| \leq \kappa$ and $|X| \leq \kappa$ for each $X \in \FF$ then $|\bigcup \FF| \leq \kappa$
 \underline{Cor} the union of countably many countable sets is countable.
 
+
+\newcommand{\leftsuperscript}[2]{{\vphantom{{#1}}}^{#2}{#1}}
+
 \begin{proof}
     We can assume $\FF \neq \emptyset$ and $\emptyset \notin \FF$
     Have $f : \kappa \twoheadrightarrow \FF$
     Using AC we can choose $g_\alpha : \kappa \twoheadrightarrow f(\alpha) \in \FF$
-    well-order $\leftsuperscript{\kappa}{(\bigcup \FF)}$ and let $g_\alpha$ be least with $ran(g_\alpha)=f(\alpha)$
+    well-order $\leftsuperscript{\kappa}{\left(\bigcup \FF\right)} $ and let $g_\alpha$ be least with $ran(g_\alpha)=f(\alpha)$
     Define $h: \kappa \times \kappa \twoheadrightarrow \bigcup \FF$ by
     $h(a,b) = g_{f(a)}(b)$
     Proveing $|\kappa \times \kappa| = \kappa$ so there is a surjection for $\kappa$ onto $\bigcup \FF$ so $|\bigcup \FF| \leq \kappa$
@@ -178,7 +181,7 @@ similar ot ordinal but now instead of lookign at the order type we look at the c
 
 $\kappa \cdot \lambda = |\kappa \times \lambda|$
 
-\newcommand{\leftsuperscript}[2]{{\vphantom{{#1}}}^{#2}{#1}}
+
 
 $\kappa^\lambda = |\leftsuperscript{\lambda}{\kappa} $
 The set of all function $f : \lambda \rightarrow \kappa$
@@ -239,7 +242,7 @@ Recall $\aleph(\kappa) =$ least cardinal $\lambda$ so that $\lambda \npreceq \ka
 with AC $\aleph(\kappa) = $ least cardinal $> \kappa$
 $\kappa^+ = \aleph(\kappa)$
 $\aleph_0 = \omega$
-$\alpeh_{\alpha + 1} = \aleph_\alpha^+$
+$\aleph_{\alpha + 1} = \aleph_\alpha^+$
 $\aleph_\lambda = \sup\set{\aleph_\alpha : \alpha < \lambda}$ for limit ordinal $\lambda$
 
 \emph{Note: } $2^{\aleph_0}$ is uncountable
@@ -256,7 +259,7 @@ AC needed to define $2^{\aleph_0}$
 \newcommand{\NN}{\mathbb N}
 \newcommand{\ZZ}{\mathbb Z}
 \newcommand{\QQ}{\mathbb Q}
-
+\newcommand{\RR}{\mathbb R}
 \emph{Note: } $|\RR| = 2^{\aleph_0}, |\NN| = \aleph_0$
 CH is equivalent to: every set of real numbers is either countable or has the same cardinality as $\RR$
 
@@ -370,7 +373,7 @@ pf:
 pf:
     By (3) $\gamma = cf(\gamma) \leq |\gamma| \leq \gamma$ so $\gamma = |\gamma|$ so $\gamma$ is a cardinal
 
-Recall $\alpeh_0 = \omega, \aleph_{\xi + 1} = \aleph_\xi^+, \aleph_\lambda = \sup\set{\aleph_\xi : \xi < \lambda} \text{ for } \lambda$  is a limit ordinal
+Recall $\aleph_0 = \omega, \aleph_{\xi + 1} = \aleph_\xi^+, \aleph_\lambda = \sup\set{\aleph_\xi : \xi < \lambda} \text{ for } \lambda$  is a limit ordinal
 
 (5) If $\gamma = \aleph_\alpha$ where either $\alpha = 0$ or $\alpha$ is a successor ordinal, then $\gamma$ is regular
 \begin{proof}
@@ -398,7 +401,7 @@ $|\mathbb{F}| = \lambda$ and $|S| < \Theta$ for all $S \in \mathbb{F}$ with $\bi
 \begin{proof}
 (1) Let $X = \set{|S| : S \in \mathbb{F}} \subseteq \Theta$ and $|X| < \Theta$.
     So $type(X) < \Theta$ hence $\sup(X) < \Theta$ (type has same size as cardinality, then use that theta is regular)
-    Let $\kappa=\ax(\sup(x), |\mathbb{F}) < \Theta$.
+    Let $\kappa=\max(\sup(x), |\mathbb{F}) < \Theta$.
     If $\kappa$ is finite then $\bigcup \mathbb{F}$ is as well.
     If $\kappa$ is infinite then $|\bigcup \mathbb{F}| \leq \kappa$
     So $|\bigcup \mathbb{F}| \leq \kappa < \Theta$ in both cases.
@@ -438,7 +441,7 @@ So $\kappa^{cf(\kappa)} \neq \kappa$ in fact is >
 
 Ex:
 $\aleph_\omega ^ {\aleph_0} > \aleph_\omega$
-$\aleph_2 ^ {\alpeh_0} = \aleph_2$ under GCH
+$\aleph_2 ^ {\aleph_0} = \aleph_2$ under GCH
 $\aleph_{\omega_1}^{\aleph_0} = \aleph_{\omega_1}$ under GCH
 
 
