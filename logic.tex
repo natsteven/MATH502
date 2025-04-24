@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{mathrsfs}
 
 \begin{document}
 
@@ -38,9 +39,9 @@
     etcetera
 
     $\mathfrak{A}$ satisfies $\varphi$, $\mathfrak{A} \models \varphi$ when $V(\varphi) = \emptyset$?
-    \\
-    A set $\Sigma$ of $\LL$-sentences is semantically consistent or satisfiable $con_\models(\Sigma)$, if there is an $\LL$-structure $\mathfrak{A}$ such that $\mathfrak{A} \models \Sigma$
-    \\
+
+    A set $\Sigma$ of $\LL$-sentences is semantically consistent or satisfiable $con_{\models}(\Sigma)$, if there is an $\LL$-structure $\mathfrak{A}$ such that $\mathfrak{A} \models \Sigma$
+
     Reductio ad Absurdum: Let $\Sigma$ be a set of $\LL$-sentences and $\Psi$ an $\LL$-sentence then:
     (1) $\Sigma \models \Psi \iff \Sigma \cup \{\neg \Psi\}$ is semantically inconsistent.
 
@@ -49,7 +50,7 @@
     formula are equivalent with respect to a set of logical sentences if the universal closure is true in all models of the sentences.
     two terms are equivalent with respect ot logical sentences if for all structures that satisfy the sentences and all assignment for the two terms in the structure, the two terms have the same value.
 
-    \\ axiom of choise and zorn's lemma are equivalenet with respect to ZF.
+    axiom of choise and zorn's lemma are equivalenet with respect to ZF.
     supppse sigma includes associativity and the two terms are the sides of the equivalence, then they are equivalent with respect to the set of sentences.
     \\
     let beta and tau be terms and x a variable.
@@ -79,6 +80,7 @@
     Th(a) is complete.
     for any formula(l-sentence) phi exactly one : a satisfies phi or a satisfies not phi.
     \\
+
     \subsection{Tautologies}
     a basic formula is one which (when expressed in polish/prefix notation) does not begin with a propositional connective. \\
     ex: forall x P(x): forall x P x, or forall x (P(x) then q(x)) : forall x implies p x q x, are both basic\\
@@ -88,4 +90,144 @@
     note that we don't require consistency so truth assignments can be semantically inconsistent (no structures or meaning to symbols).
     \\ a formula phi is a propositional tautology if it is true under every truth assignment.
 
+    \subsection{April 8th}
+
+    \textbf{Logical Axioms}
+    \\ (1) Propositional tautologies
+    \\ (2) $\varphi \rightarrow \forall x \varphi$if $x$ is not free in $\varphi$
+    \\ (3) $\forall x (\varphi \rightarrow \psi) \rightarrow (\forall x \varphi \rightarrow \forall x \psi)$
+    \\ (4) $\forall x \varphi \rightarrow \varphi(x / \tau)$ where $\tau$ is free for $x$ in $\varphi$
+    \\ (5) $\varphi(x / \tau) \rightarrow \exists x \varphi$ where $\tau$ is free for $x$ in $\varphi$
+    \\ (6) $\forall x \neg \varphi \leftrightarrow \neg \exists x \varphi$
+    \\ (7) $x=x$
+    \\ (8) $x=y \leftrightarrow y=x$
+    \\ (9) $(x=y \wedge y = z) \rightarrow x=z$
+    \\ (10)$ (x_1=y_1 \wedge \dots \wedge x_n =y_n) \rightarrow f(x_1 \dots x_n) = f(y_1 \dots y_n)$ where $f \in \mathscr(F_n)$ for some $n \geq 1$
+    \\ (11) same but for predicates
+
+    Note all of these are logically valid
+
+    Def: For $\Sigma$ a set of $\mathcal{L}$-sentences and $\varphi$ an $\mathcal{L}$-senetence, a \underline{formal proof} of $\varphi$ from $\Sigma$ is a finite sequnce of $\mathcal{L}$-sentences $\varphi_1, \dots, \varphi_n$
+    where for each $i = 0 \dots n$ $\varphi_i$ is either a lgoical axiom, a memeber of $\Sigma$ or there are $j,k < i$ so that $\varphi_i$ follows from $\varphi_j$ and $\varphi_k$ by modus ponens i.e. $\varphi_k$ is $\varphi_j \implies \varphi_i$ and $\varphi_n = \varphi$
+    \\
+    Def: We say ``$\Sigma$ proves $\varphi$``, written $\Sigma \vdash \varphi$ if there is a formal proof of $\varphi$ from $\Sigma$.
+    \\
+    \newcommand{\set}[1]{\{#1\}}
+    Ex: $\Sigma = \set{\forall x (p(x) \wedge q(x))}$ \\
+    $varphi : \forall x p(x)$ \\
+    Show $\Sigma \vdash \varphi$ \\
+    $\varphi_0: \forall x (p(x) \wedge q(x))$ \\
+    $\varphi_1: \forall x ((p(x) \wedge q(x) \rightarrow p(x)) \rightarrow (\forall x (p(x) \wedge q(x)) \rightarrow \forall x p(x)))$ \\
+    \\ this is one of the logical axioms \\
+    $\varphi_2: \forall x ((p(x) \wedge q(x)) \rightarrow p(x))$ - universal closure of propositional tautology: $(p(x) \wedge q(x)) \rightarrow p(x)$
+    \\ $\varphi_3: \forall x (p(x) \wedge q(x)) \rightarrow \forall x p(x)$ - modus ponens from $\varphi_1$ and $\varphi_2$ \\
+    $\varphi_4: \forall x p(x)$ - modus ponens from $\varphi_0$ and $\varphi_3$ \\ q.e.d.
+
+    \emph{\underline{Soundness Theorem}}: If $\Sigma \vdash_{\LL} \varphi$ then $\Sigma \models \varphi$.
+
+    \begin{proof}
+        Assume $\Sigma \vdash_{\LL} \varphi$ and let $\mathfrak{A}$ be an $\LL$-structure such that $\mathfrak{A} \models \Sigma$.
+        Show that $\mathfrak{A} \models \varphi$.
+        Let $\varphi_1, \dots, \varphi_n$ be a formal proof of $\varphi$ from $\Sigma$.
+        By induction on $i$ show that $\mathfrak{A} \models \varphi_i$ for all $i = 0, \dots, n$.
+        If $\varphi_i \in \Sigma$ then $\mathfrak{A} \models \varphi_i$ by assumption.
+        If $\varphi_i$ is a logical axiom, then $\varphi_i$ is logically valid, so true in any $\LL$-structure.
+        If $\varphi_i$ is obtained from $\varphi_j$ and $\varphi_k$ by modus ponens, then $\mathfrak{A} \models \varphi_j$ and $\mathfrak{A} \models \varphi_k$, so $\mathfrak{A} \models \varphi_i$.
+        Finally, if $\varphi_n = \varphi$, then $\mathfrak{A} \models \varphi$.
+    \end{proof}
+
+    Note: Logical axioms are chosen from:
+    (1) All are valid (needed for soundness)
+    (2) When $\LL$ is ``nice`` e.g., finite, it is \underline{decidable} with eithere a sentence or a logical axiom
+    (3) Have enough for \underline{completeness}.
+
+    Note: Develop some ``strategies for proofs`` i.e. theorems which allow us to show certain sentences are provable without having to explicitly exhibit a proof.
+
+    Lemma: \underline{Deduction Theorem}: \\
+    $\Sigma \vdash_{\LL} \varphi \rightarrow \psi \text{iff} \Sigma \cup \set{\varphi} \vdash_\LL \psi$
+
+    \begin{proof}
+        $\implies$ \\
+        Suppose $\Sigma \vdash_{\LL} \varphi \rightarrow \psi$.
+        $\varphi_0 \dots \varphi_n$ be a proof of $\varphi \rightarrow \psi$ from $\Sigma$.
+        Let $\varphi_{n+1} = \varphi$.
+        $\varphi_{n+2} = \psi$.
+        $\varphi_{n+1}$ is in $\Sigma \cup \set{\varphi}$
+        $\varphi_{n+2}$ is derived from $\varphi_{n+1}$ and $\varphi_n = \varphi \rightarrow \psi$ by modus ponens.
+        So $\varphi_0 \dots \varphi_{n+2}$ is a proof of $\psi$ from $\Sigma \cup \set{\varphi}$.
+        So $\Sigma \cup \set{\varphi} \vdash_\LL \psi$.
+        \\
+        $\impliedby$ \\
+        Suppose $\Sigma \cup \set{\varphi} \vdash_\LL \psi$.
+        Let $\psi_0 \dots \psi_n$ be a proof of $\psi$ from $\Sigma \cup \set{\varphi}$.
+        For each $i$ let $\varphi_i$ be $\varphi \implies \psi_i$.
+        By induction on $i$ show $\Sigma \vdash_\LL \varphi_i$.
+        Case 1: $\psi_i$ is a logical axiom or an element of $\Sigma$.
+        Then: $\psi_i$, $\psi_i \implies (\varphi \implies \psi_i)$(tautology), then $\varphi \implies \psi_i$
+        So $\Sigma \vdash_\LL \varphi \rightarrow \psi_i$.
+        Case 2: $\psi_i$ is $\varphi$ then $\varphi \implies \psi_i$ is a tautology.
+        So $\Sigma \vdash_\LL \varphi \implies \psi_i$.
+        Case 3: There are $j$ and $k$ < $i$ so $\psi_i$ is derived from $\psi_j$ and $\psi_k = \psi_j \implies \psi_i$.
+        Assume $\Sigma \vdash_\LL \varphi \rightarrow \psi_j$ and $\Sigma \vdash_\LL \varphi \rightarrow (\psi_j \rightarrow \psi_i)$.
+        $(\varphi \rightarrow \psi_j) \rightarrow((\varphi(\psi_j \rightarrow \psi_i))\rightarrow(\varphi \rightarrow \psi_i))$ a propositional tautology.
+        $(\varphi \rightarrow(\psi_j \rightarrow \psi_i)) \rightarrow (\varphi \rightarrow \psi_i)$ by modus ponens.
+        $\varphi \rightarrow \psi_i$ by m.p. (took two previous proofs and added a tautology).
+        This list is a proof of $\varphi \rightarrow \psi_i$ from $\Sigma$.
+        So $\Sigma \vdash_\LL \varphi \rightarrow \psi$.
+    \end{proof}
+
+    Def: A set of $\Sigma$ of $\LL$-sentences is \underline{syntactically inconsistent}, $\neg con_{\vdash, \LL}(\Sigma)$
+    if there is some $\LL$-sentences $\varphi$ so that $\Sigma \vdash_\LL \varphi$ and $\Sigma \vdash_\LL \neg \varphi$.
+
+    Note: By Soundness Theorem $\neg con_{\vdash, \LL}(\Sigma)$ implies $\neg con_{\models}(\Sigma)$ since if $\Sigma \vdash_\LL \varphi$ and $\Sigma \vdash_\LL \neg \varphi$ then $Sigma \models \varphi$ and $\Sigma \models \neg \varphi$.
+    So any $\LL$-strucutre $\mathfrak{A}$ with $\mathfrak{A} \models \Sigma$ must also have $\mathfrak{A} \models \varphi$ and $\mathfrak{A} \models \neg \varphi$ which can't happen so no $\LL$-structure cna satisfy $\Sigma$.
+
+    So $Con_{\models})\Sigma$ implies $Con_{\vdash,\LL}(\Sigma)$\\
+    Lemma TFAE:
+    (1) $\Sigma$ is syntactically inconsistent in $\LL$.
+    (2) $\Sigma \vdash_\LL \psi$ for every $\LL$-sentence $\psi$.
+
+    Proof by Contradiction:
+    (1) $\Sigma \vdash_\LL \varphi$ iff $\neg Con_{\vdash, \LL}(\Sigma \cup \set{\neg \varphi})$
+    (2) $\Sigma \vdash_\LL \neg \varphi$ iff $ \neg Con_{\vdash, \LL}(\Sigma \cup \set{\varphi})$
+
+    We say a formula $\psi$ follows \underline{tautologically} from $\varphi_1 \dots \varphi_n$ si the formula $(\varphi_1 \wedge \dots \wedge \varphi_n) \rightarrow \psi$ is a propositional tautology.
+    \\ \underline{Tautological Reasoning}: If $\psi$ follows tautologically from $\varphi_1 \dots \varphi_n$ then $\set{\varphi_1 \dots \varphi_n} \vdash_\LL \psi$.
+    \\ \underline{Transitivity of $\vdash$}: if
+
+
+    \section{April 10}
+    Recall a proof is s finite sequence of formulas from sgima such that they are either logical axioms, members of sigma or obtained from previous formulas by modus ponens.
+    \\
+    \underline{Quantifier Rules}
+    Let sigma be a set of sentences in some lexicon L.
+    psi will be some setnence, and phi(x) some formula with x as the only free variable.
+    tau is a variable-free term.
+    \\
+    so phi(x/tau) is a sentence.
+    L` is L with a new constant.
+    Then:\\
+    (UI) $\set{\forall x \varphi(x)} \vdash_{\LL} \varphi(\tau) also \vdash_{\LL`} \varphi(c)$ \\
+    (UG) $\sigma \vdash_{\LL`} \varphi(c) \implies \sigma \vdash_{\LL} \forall x \varphi(x)$ \\
+    (EI) $\sigma \cup \set{\varphi(c)} \vdash_{\LL`} \psi \implies \sigma \cup \set{\exists x \varphi(x)} \vdash_\LL \psi$\\
+    (EG) $\varphi(\tau) \vdash_\LL \exists x \varphi(x)$
+
+    Universal, Existential, Instantiation, Generalization
+    if for all values a sentence is true then we can plug anything in for x.
+    sigma is a set of sentences without a constant. if it holds for an arbitrary element then it holds for all elements.
+    ...
+
+    example showing formal proff of for all y phi(y) proves for all x phi(x)
+
+    we can also show that something is provable without giving a proof.
+
+    \underline{Completeness Theorem}: If $\Sigma$ is a set of $\LL$-sentences and $\varphi$ is an $\LL$-sentence, then $\Sigma \models \varphi$ iff $\Sigma \vdash_\LL \varphi$.
+
+    \section{April 15}
+    Equivalence classes, herbrand model, atomic sentence, universal closure \\
+
+    maximally consistent set to help prove left to right of completeness, speficially problem of trichotomy model/satisfaction
+
+    \section{April 17}
+    induction proof of herbrandt model and maximal consistency stuff regarding connectives and quantifiers.
 \end{document}
