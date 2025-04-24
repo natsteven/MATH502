@@ -1,0 +1,288 @@
+%! Author = nathanaelsteven
+%! Date = 3/11/25
+
+\section{Mar 11}
+
+Recall: GCH: $2^k = k^+$ for al infinite cardinals $k$ i.e. $2^{\aleph_{alpha}} = \aleph_{\alpha+1}$ for all $\alpha$
+If we assume GCH we can show any $\kappa^\lambda$, partly thanks to knowing cofinality.
+
+\textbf{Theorem:} Assuming GCH:
+(1) If $2 \leq \kappa \leq \lambda^+$ then $\kappa^\lambda = \lambda^+$
+(2) If $1 \leq \lambda \leq \kappa$ then $\kappa^\lambda = \begin{cases} \kappa & \text{if } $\lambda < cf(\kappa)$ \\ \kappa^+ & \text{if } $\lambda \geq cf(\kappa)$ \end{cases}$
+
+\underline{Ex: } Assuming GCH:
+$\aleph_1^{\aleph_0}, \aleph_1 \leq \aleph_0^+$ so $= \aleph_0^+ = \aleph_1$ by case 1
+and $\aleph_0 \leq \aleph_1, \aleph_0 \leq cf(\aleph_1) =aleph_1$ so $=\aleph_1$ by case 2
+
+$\aleph_{\omega_1}^{\aleph_0} = \aleph_{\omega_1}$
+
+$\aleph_\omega^{\aleph_0}, \aleph_0 \geq cf(\aleph_{\omega_1})$ so $=\aleph_\omega^+ = \aleph_{\omega+1}$
+
+$\aleph_\omega^{\aleph_1}$ (case 2) $\aleph_1 > cf(\aleph_\omega) = \aleph_0$ sp $=\aleph_{\omega+1}$
+
+$\aleph_{\omega}^{\aleph_\omega}$ (both) $= \aleph_{\omega+1}$
+
+$\aleph_\omega^{\aleph_{\omega+1}} = \aleph_{\omega+1}^+ = \aleph_{\omega+2}$
+
+$\aleph_{\omega+1}^{\aleph_\omega} = \aleph_\omega^+ = \aleph_{\omega+1}$
+
+Recall: defined aleph sequnce by recursion, enumeration of all infinite cardinals
+$\aleph_0 = \omega, \aleph_{\alpha+1} = \aleph_\alpha^+, \aleph_\lambda = \sup \set{\aleph_\alpha : \alpha < \lambda}$ for $\lambda$ a limit ordinal.
+
+\dfn \underline{The beth sequence} is defined by recursion on the ordinals.
+$\beth_0 = \aleph_0 = \omega, \beth_{\alpha+1} = 2^{\beth_\alpha}, \beth_\lambda = \sup \set{\beth_\alpha : \alpha < \lambda}$ for $\lambda$ a limit ordinal.
+
+\emph{Note } $\aleph_\alpha \leq \beth_\alpha$ for all $\alpha$
+GCH is equivalent to $\aleph_\alpha = \beth_\alpha$ for all $\alpha$
+
+Recall: $\kappa$, a cardinal (or a limit ordinal), is regular if $cf(\kappa) = \kappa$ otherwise singular.
+
+$\aleph_0$ and $\aleph_{\alpha+1}$ are all regular.
+$cf(\aleph_\omega) = \aleph_0$ so $\aleph_\omega$ is singular
+$cf(\aleph_{\omega+1}) = cf(\omega_1) = \aleph_1 < \aleph_{\omega_1})$ so $\aleph_{\omega_1}$ is singular.
+
+Are there limit ordinal so $\aleph_\lambda$ is regular, meaning $\aleph_\lambda = cf(\aleph_\lambda) = cf(\lambda) \leq \lambda$
+Always have $\aleph_\lambda \geq \lambda$, so need $\aleph_\lambda = \lambda$.
+!fixed point we can find them
+
+\underline{Ex:} $\kappa_0 = \aleph_0$, $\kappa_{n+1} = \aleph_{\kappa_n}$
+$\aleph_0, \aleph_{\aleph_0}, \dots$ (see slides) aleph sub aleph sub alpeh sub 0
+Let $\kappa = \sup (\set{\kappa_n : n \in \omega})$
+$\aleph_\kappa = \sup \set{ \aleph_\alpha : \alpha < \kappa} = \sup \set{ \aleph_{\kappa_n}: n \in \omega}$
+$= \sup \set{\kappa{n+1}: n \in \omega}= \sup \set{\kappa_n  n \in \omega} = \kappa$ but $\kappa$ is not regular
+
+$cf(\aleph_\kappa) = cf(\kappa) = \omega = \aleph_0$ since $\set{\kappa_n : n \in \omega}$ is unbounded in $\kappa$
+so $\kappa$ is singular
+
+\dfn A cardinal $\kappa$ is a \underline{limit cardinal} if $\lambda^+ < \kappa$ for all $\lambda < \kappa$
+(all infinite cardinals have to be limit ordinals, but not all limit ordinals are a cardinal)
+equivalently $\kappa = \aleph_\lambda$ for $\lambda$ a limit ordinal.
+
+\dfn A cardinal $\kappa$ is a \underline{strong limit cardinal} if $2^\lambda < \kappa$ for all $\lambda < \kappa$
+(2 to the lamdba is at least as big as lambda plus: strong implies limit)
+Under GCH strong limits are the same as limit cardinals.
+
+\dfn A cardinal $\kappa > \aleph_0$ ($\aleph_0$ is a limit cardinal?) is a \underline{weakly inaccessible cardinal} if $\kappa$ is a regular limit cardinal.
+(inacc because you cant reach it from below, regular because cant reach from successor and something about making it from subsets?)
+A cardinal $\kappa > \aleph_0$ is \underline{strongly inaccessible} if $\kappa$ is a regular strong limit cardinal.
+(cant reach from belpw, even if we are allowed to use power sets)
+Under GCH these are the same.
+
+\underline{Fact :} ZFC does not prove that there are weakly inaccessible cardinals.
+
+\dfn For any set $A$ we define $[A]^\kappa = \set{x \subseteq A : |x| = \kappa}$
+and $[A]^{\subset \kappa} = \set{x \subseteq A : |x| < \kappa}$
+
+\subsection{Axiom of Foundation}
+(epsilon relation is well founded on all sets, previously only on ordinals)
+\dfn \underline{Axiom of Foundation}
+$\forall x [\exists y (y \in x) \implies \exists y (y \in x \wedge \neg x (z \in x \wedge z \in y))]$
+i.e. $x \neq \emptyset \implies \exists y \in x (y \cap x = \emptyset)$
+i.e. $x \neq \emptyset \implies$ x contains an $\in$-minimal element.
+
+\emph{Note: } Axiom of Foundation is not necessary for the development of ``ordinal`` mathematics.
+All explicitly defined sets we use will be well-founded with respect to $\in$
+
+\emph{Note: } Foundation rules out ``pathological`` sets like $x = \set{x}$
+We could consider the class of ``well-founded sets`` even wihtout Foundation.
+Foundation says all sets can be built iteratively from $\emptyset$ and taking collections of subsets.
+
+Allows us to assign ordinal ranks to sets.
+
+\underline{Ex: } Foundation $\implies \neg \exists x (x \in x)$
+Suppose there were a set where it is an element of itself.
+Consider $\set{x} \neq \emptyset$
+Foundation $\implies \exists y \in \set{x}, y \cap \set{x} = \emptyset$
+Need $y=x$ as it is theonly elements, but $x \cup \set{x} = x$ since $x \in x$ and $x \neq \emptyset$ contradicting $y \cap x = \emptyset$
+
+\underline{Ex: } Similarly, Foundation $\implies$ no infinite descending $\in$-chains or cycles.
+No $x_0 \in x_1 \in \dots \in x_n \in x_0$ or $x_{n+1} = x_n $ for all $n \in \omega$
+
+\emph{Note: } diagram in slides
+Foundation $\implies$ every branch through the tree terminates at the $\emptyset$
+
+\underline{Ex: } $\set{\emptyset, \set{\set{\emptyset}}, \set{\emptyset,\set{\emptyset}}}$
+draw listing out elements of the sets \dots
+(can be infinite, both branches and depth)
+\underline{Ex: } $x_n = \set{\set{\dots \set{\emptyset} \dots}}$ n times $\set{x_n \in \omega}$ diagram in slides.
+have a brnach of length n for each element.
+all arbitrarily long branches aree finite (not infinite) allowed by foundation.
+
+\dfn \underline{Cumulative Hierarchy}
+Define collection of sets $R(\alpha)$ by recursion on $\alpha \in ON$
+$R(0) = \emptyset$
+$R(\alpha+1) = \PP(R(\alpha))$
+$R(\lambda) = \bigccup \set{R(\alpha) : \alpha < \lambda}$ for $\lambda$ a limit ordinal
+
+et $WF =  \bigccup(\alpha \in ON) R(\alpha)$
+
+Note $WF$ is not a set, but defined by a formula $x \in w^F \equiv \exists \alpha x \in R(\alpha)$
+
+\dfn Say x is \underline{well-founded} if $x \in WF$
+
+\underline{Ex: }
+$R(0) = \emptyset$
+$R(1) = \PP(\emptyset) = \set{\emptyset}$
+$R(2) = \set{\emptyset,\set{\emptyset}}$
+$R(3) = \set{\emptyset, \set{\emptyset}, \set{\set{\emptyset}},\set{\emptyset,\set{\emptyset}}} $
+
+Note $|R(n)| = 2^{n-1}$ for $n \geq 1$
+$R(\alpha+1) = 2^{|R(\alpha)|}$
+
+Note $R(\omega) = \bigcup(n \in omega) = R(n)$
+$|R(\omega)| = \aleph_0$
+$|R(\omega+1)| = 2^{\aleph_0}$
+$|R(\omega + \alpha) = \beth_\alpha$
+
+\emph{Note: } $0 = \emptyset \in R(1), 1 = \set{\emptyset} \in R(2)$
+Each $n \in \omega$ has $n \in R(\omega)$ but $\omega \notin R(\omega)$ but $\omega \subseteq R(\omega)$ so $\omega \in R(\omega+1) = \PP(R(\omega))$
+
+\emph{Note: } Call $R(\omega) = HF = $ Hereditarily Finite sets.
+
+\dfn For $x \in WF$ the \underline{rank} of x is $rank(x) =$ the least $\alpha$ so that $x \in R(\alpha + 1)$
+
+\emph{Note: } $x \in R(0) = \emptyset$
+If $x \in R(\lambda)$ for a limit ordinal then $x \in R(\alpha)$ for some $\alpha < \lambda$.
+So th4e least $\delta$ where $x \in R(\delta)$ must be $\delta = \alpha+1$ for some $\alpha$
+
+\underline{\textbf{Lemma}}
+(1) Every $R(\alpha)$ is a transitive set
+(2) If $\alpha \leq R$ then $R(\alpha) \subseteq R(\beta)$
+(3) $R(\alpha+1) \setminus R(\alpha) = \set{x \in WF : rank(x) = \alpha}$
+(4) $R(\alpha) = \set{x \in WF : rank(x) < \alpha}$
+(5) If $x \in y$ and $y \in WF$ then $x \in WF$ and $rank(x) < rank(y)$
+
+
+\begin{proof}
+(1) Every $R(\alpha)$ is a transitive set.
+    By transfinite induction on $\alpha$.
+    $R(0) = \emptyset$ is transitive.
+    $R(\lambda)$ immediate as the union of a collection of transitive sets is transitive.
+    Suppose $R(\alpha)$ is transitive then show $R(\alpha+1) = \PP(R(\alpha))$ is transitive.
+    $R(\alpha) \subseteq R(\alpha)$ since if $x \in R(\alpha)$ then $x \subseteq R(\alpha)$ since $R(\alpha)$ is transitive.
+    So $x \in \PP(\R(\alpha)) = R(\alpha + 1)$.
+    So if $y \in R(\alpha+1)$ then $y \subseteq R(\alpha) \subseteq R(\alpha+1)$ so its transitive.
+(2) If $\alpha \leq \beta$ then $R(\alpha) \subseteq R(\beta)$.
+    Fix $\alpha$ and prove by induction on $\beta \geq \alpha$.
+    Assume $R(\alpha) \subseteq R(\beta)$.
+    From (1) we have $R(\beta) \subseteq R(\beta+1)$
+    So $R(\alpha) \subseteq R(\beta) \subseteq R(\beta+1)$.
+    If $R(\alpha) \subseteq R(\beta)$ all $\alpha \leq \beta < \lambda$ ($\lambda$ a limit ordinal)
+    then $R(\alpha) \leq \bigcup(\beta < \lambda) R(\beta) = R(\lambda)$
+(3) $R(\alpha+1)\setminus R(\alpha) = \set{x \in WF : rank(x) = \alpha}$
+    For $x \in WF$ $rank(x)=$ least $\alpha$ so that $x \in R(\alpha+1)$.
+    Sp $x \in R(\alpha + 1) \wedge x \notin R(\alpha) \leftrightarrow rank(x) = \alpha$.
+(4) $R(\alpha) = \set{x \in WF : rank(x) < \alpha}$.
+    Immediate from (2) and (3)
+%    $x \in R(\alpha) \leftrightarrow x \in R(\beta)$ for some $\beta < \alpha$.
+%    $x \in WF \leftrightarrow \exists \beta < \alpha x \in R(\beta)$
+(5) If $x \in y$ and $y \in WF$ then $x \in WF$ and $rank(x) < rank(y)$.
+    Let $\alpha = rank(y)$ so $y \in R(\alpha+1)$ so $y \subseteq R(\alpha)$.
+    So $x \in R(\alpha)$ so $rank(x) < \alpha = rank(y)$.
+    $y \in WF \implies \exists \alpha y \in R(\alpha)$
+    $x \in y \subseteq R(\alpha)$ so $x \in WF$ and $rank(x) \leq \alpha$.
+    If $rank(x) = \alpha$ then $x \in R(\alpha+1) = \PP(R(\alpha))$ so $x \subseteq R(\alpha)$
+    So $x \in R(\alpha)$ so $rank(x) < \alpha$
+    \end{proof}
+
+   \underline{Lemma}
+   (1) $ON \cap R(\alpha) = \alpha$ for all $\alpha \in ON$.
+(2) $ON \subseteq WF$
+(3) $rank(\alpha) = \alpha$ for $\alpha \in ON$
+
+\begin{proof}
+(1) by induction on $\alpha$.
+    $R(0) = \emptyset = 0$.
+    so $ON \cap R(0) = \emptyset = 0$
+    For $\lambda$ a limit.
+    $ON \cap R(\lambda) = \bigcup_{\alpha < \lambda} ON \cap R(\alpha) = \bigcup(\alpha < \lambda) \alpha = \lambda$
+    Suppose $ON \cap R(\alpha) = \alpha$
+    $\alpha \subseteq R(\alpha) \subseteq R(\alpha+1)$
+    $\alpha \in \PP(\R(\alpha)) = R(\alpha+1)$.
+    So $\alpha + 1 = \alpha \cup \set{\alpha} = \subseteq R(\alpha+1)$.
+    Suppose $\delta \in ON \cap R(\alpha+1)$
+    $\delta \subseteq R(\alpha) \cap ON = \alpha$
+    So $\delta \leq \alpha$ so $\delta \in \alpha + 1$.
+    So $R(\alpha + 1) \cap ON = \alpha + 1$.
+(2) Each $\alpha \subseteq R(\alpha)$ so $\alpha \in R(\alpha + 1)$
+    so $\alpha \in WF$
+(3) $\alpha \in R(\alpha+1) \setminus \R(\alpha)$ iff $\alpha \subseteq R(\alpha)$.
+    So $rank(\alpha) = \alpha$
+    \end{proof}
+
+diagram in slides? potentially
+
+all sets in $R(\omega)$ are finite.
+We see infinite sets in $R(\omega+1)$ as $\omega$ is in it, in fact all subsets of $\omega$.
+each real number can be represented at $R(\omega+1)$
+and at +2 we have all the subsets of $\RR$.
+infinite descending chains and self-referencing sets are not in $WF$ (without foundation).
+
+\underline{Lemma}
+(1) $y \in WF \leftrightarrow y \subseteq WF$
+(2) If $y \in WF$ then $rank(y) = \sup\set{\rank(x) + 1: x \in y}$
+
+\begin{proof}
+(1) Suppose $y \in WF$ then $y \in R(\alpha)$ so $y \subseteq R(\alpha)$ so $y \subseteq WF$
+    Suppose $y \subseteq WF$.
+    Let $\beta = \sup\set{rank(x) +1: x \in y}$ (replacement tells us it is a set).
+    Notice $y \subseteq R(\beta)$ so $y \in R(\beta + 1)$ so $y \in WF$.
+    Since each $x \in y$ has $x \in R(\rank(x) + 1)$
+(2) From last step $rank(y) \leq \sup\set{\rank(x)+1 : x \in y }$.
+    If $x \in y  $ then $rank(x) < rank(y)$
+    So $rank(y) \geq rank(x) + 1 \forall x \in y$.
+    So $rank(y) \geq \sup\set{\rank(x) + 1 : x \in y}$.
+    \end{proof}
+
+\underline{Ex:} $x = \set{1,3}$
+$rank(x) = \sup\set{rank(1) + 1, rank(3) + 1}=4$  (rank + 1 = rank, and sup is +1 of that? so 2,4 so 4)
+$rank(\langle 1,3 \rangle) = rank(\set{\set{1},\set{3}, \set{1,3}})$
+$=\sup\set{rank(\set{1}),...}=5$ (rank of 1,3 is 4) so sup = 5
+
+\underline{Lemma: } If $z \subseteq y$ and $y \in WF$
+then $z \in WF$ and $rank(z) \leq rank(y)$
+
+pf: if $y \in WF$ then it is in some $R(\alpha+1)$ where $\alpha = rank(y)$ and $y \subseteq R(\alpha)$ so $z \subseteq R(\alpha)$
+So $z \in R(\alpha+1)$ and $rank(z) \leq \alpha = rank(y)$.
+
+
+\underline{Lemma:} Let $x,y \in WF$
+(1) $\set{x,y} \in WF$ and $rank(\set{x,y}) = \max(rank(x), rank(y)) + 1$
+(2) $\langle x,y \rangle$ and its rank $= \max(rank(x),rank(y)) + 2$
+(3) $\PP(x) \in WF$ and $rank(\PP(x)) = rank(x) + 1$
+(4) $\bigcup x \in WF$ and $rank(\cup x) \leq rank(x)$
+(5) $x \cup y \in WF$ and $rank(x \cup y) = \max(rank(x),rank(y))$
+(6) $trcl(x) \in WF$ and $rank(TC(x)) = rank(x)$
+
+$TC(x) : \bigcup^0 x = x, \bigcup^{n+1} x = \bigcup (\bigcup^n x), trcl(x) = \bigcup_{n \in \omega} (\bigcup^n x) $
+
+pf: immediate from $rank(\omega) = \sup\set{rank(\omega) + 1: \omega \in x} $ (? rank of x or omega for initial one)
+
+\dfn $ZF^-$ concsits of all Axioms of ZF except foundation.
+\dfn V is all sets?
+
+\underline{Theorem:} In $ZF^-$ the Axiom of Foundation is equivalent to the statement the ``$V = WF$``
+i.e. $\forall x \exists \alpha x \in R(\alpha)$
+
+\begin{proof}
+    $\impliedby$ Suppose $\forall x \exists \alpha x \in R(\alpha)$.
+    If $x \neq \emptyset$ then let $y \in x$ has least rank among all elements of $x$.
+    Then $y$ si an $\in$-minimal element of $x$.
+    no elements of $y$ which are elements of $x$ since they would have lower rank.
+    So Axiom of Foundation holds.
+    $\implies$ Assume Axiom of Foundation.
+    Fix $x$ and show $x \in WF$.
+    let $t = TC(x)$ so $x \subseteq t$
+    If $t \susbeteq WF$ then $x \in t \in WF$ so $\x in WF$
+    Suppose $t \nsubseteq WF$.
+    $t \setminus WF$ would be non-empty.
+    So by Foundation we can find an $\in$-minimal element $y$.
+    Every element of $y$ is an element of $t$ since $t$ is transitive.
+    But no element of $y$ is in $t \setminus WF$.
+    So everey element of $y$ is in $WF$ so $y \subseteq WF$ so $y \in WF$.
+    Contradicting our choice.
+    \end{proof}
+
+
+
+
